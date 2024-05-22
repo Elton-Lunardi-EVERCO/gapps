@@ -1,51 +1,51 @@
 function memoryTimeSeries(url) {
-  $("#mem-time-chart").html("")
+  $("#mem-time-chart").html("");
   $.ajax({
     type: "GET",
     url: url,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    success: function(data){
-        var options = {
-          series: data["series"],
-          chart: {
-          type: 'area',
+    success: function (data) {
+      var options = {
+        series: data["series"],
+        chart: {
+          type: "area",
           stacked: false,
           height: 350,
           zoom: {
-            type: 'x',
+            type: "x",
             enabled: true,
-            autoScaleYaxis: true
+            autoScaleYaxis: true,
           },
           toolbar: {
-            autoSelected: 'zoom'
-          }
+            autoSelected: "zoom",
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         markers: {
           size: 0,
         },
         fill: {
-          type: 'gradient',
+          type: "gradient",
           gradient: {
             shadeIntensity: 1,
             inverseColors: false,
             opacityFrom: 0.5,
             opacityTo: 0,
-            stops: [0, 90, 100]
+            stops: [0, 90, 100],
           },
         },
         yaxis: {
           min: 0,
           max: 100,
           title: {
-            text: 'Used Memory (%)'
+            text: "Used Memory (%)",
           },
         },
         xaxis: {
-          type: 'datetime',
+          type: "datetime",
         },
         /*
         tooltip: {
@@ -57,66 +57,69 @@ function memoryTimeSeries(url) {
           }
         }
         */
-        };
+      };
 
-        var chart = new ApexCharts(document.querySelector("#mem-time-chart"), options);
-        chart.render();
-        return(data)
+      var chart = new ApexCharts(
+        document.querySelector("#mem-time-chart"),
+        options
+      );
+      chart.render();
+      return data;
     },
-    error: function(errMsg) {
-        return(errMsg);
-    }
-  })
+    error: function (errMsg) {
+      return errMsg;
+    },
+  });
 }
 
 function cpuLoadTimeSeries(url) {
-  $("#load-time-chart").html("")
+  $("#load-time-chart").html("");
   $.ajax({
     type: "GET",
     url: url,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    success: function(data){
-        var options = {
-          series: data["series"],
-          chart: {
-          type: 'area',
+    success: function (data) {
+      var options = {
+        series: data["series"],
+        chart: {
+          type: "area",
           stacked: false,
           height: 350,
           zoom: {
-            type: 'x',
+            type: "x",
             enabled: true,
-            autoScaleYaxis: true
+            autoScaleYaxis: true,
           },
           toolbar: {
-            autoSelected: 'zoom'
-          }
+            autoSelected: "zoom",
+          },
         },
         dataLabels: {
-          enabled: false
+          enabled: false,
         },
         markers: {
           size: 0,
         },
         fill: {
-          type: 'gradient',
+          type: "gradient",
           gradient: {
             shadeIntensity: 1,
             inverseColors: false,
             opacityFrom: 0.5,
             opacityTo: 0,
-            stops: [0, 90, 100]
+            stops: [0, 90, 100],
           },
         },
         yaxis: {
           min: 0,
           max: 100,
           title: {
-            text: 'CPU Load'
+            text: "CPU Load",
           },
         },
         xaxis: {
-          type: 'datetime',
+          type: "datetime",
         },
         /*
         tooltip: {
@@ -128,14 +131,17 @@ function cpuLoadTimeSeries(url) {
           }
         }
         */
-        };
+      };
 
-        var chart = new ApexCharts(document.querySelector("#load-time-chart"), options);
-        chart.render();
-        return(data)
+      var chart = new ApexCharts(
+        document.querySelector("#load-time-chart"),
+        options
+      );
+      chart.render();
+      return data;
     },
-    error: function(errMsg) {
-        return(errMsg);
-    }
-  })
+    error: function (errMsg) {
+      return errMsg;
+    },
+  });
 }

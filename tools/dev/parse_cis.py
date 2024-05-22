@@ -2,7 +2,7 @@ import csv
 import json
 import os
 
-'''
+"""
 control_dict = {}
 
 with open('controls.csv') as csvfile:
@@ -15,10 +15,10 @@ with open('controls.csv') as csvfile:
             }
 
 print(json.dumps(control_dict,indent=4))
-'''
+"""
 
-'''
-'''
+"""
+"""
 
 controls = {
     "1": {
@@ -31,7 +31,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "2": {
         "name": "Inventory and Control of Software Assets",
@@ -43,7 +43,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "3": {
         "name": "Data Protection",
@@ -55,7 +55,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "4": {
         "name": "Secure Configuration of Enterprise Assets and Software",
@@ -67,7 +67,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "5": {
         "name": "Account Management",
@@ -79,7 +79,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "6": {
         "name": "Access Control Management",
@@ -91,7 +91,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "7": {
         "name": "Continuous Vulnerability Management",
@@ -103,7 +103,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "8": {
         "name": "Audit Log Management",
@@ -115,7 +115,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "9": {
         "name": "Email and Web Browser Protections",
@@ -127,7 +127,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "10": {
         "name": "Malware Defenses",
@@ -139,7 +139,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "11": {
         "name": "Data Recovery",
@@ -151,7 +151,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "12": {
         "name": "Network Infrastructure Management",
@@ -163,7 +163,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "13": {
         "name": "Network Monitoring and Defense",
@@ -175,7 +175,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "14": {
         "name": "Security Awareness and Skills Training",
@@ -187,7 +187,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "15": {
         "name": "Service Provider Management",
@@ -199,7 +199,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "16": {
         "name": "Application Software Security",
@@ -211,7 +211,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "17": {
         "name": "Incident Response Management",
@@ -223,7 +223,7 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
+        "subcontrols": [],
     },
     "18": {
         "name": "Penetration Testing",
@@ -235,18 +235,18 @@ controls = {
         "dti": "easy",
         "dtc": "easy",
         "meta": {},
-        "subcontrols": []
-    }
+        "subcontrols": [],
+    },
 }
 
-#haaaaaaaaaa
+# haaaaaaaaaa
 
-with open('controls.csv') as csvfile:
-    reader = csv.DictReader(csvfile, delimiter='\t',quotechar='"')
+with open("controls.csv") as csvfile:
+    reader = csv.DictReader(csvfile, delimiter="\t", quotechar='"')
     for row in reader:
         id = row["CIS Controls"]
         ref_code = row["CIS Safeguards"]
-#        print(row["g3"])
+        #        print(row["g3"])
 
         if row["g1"]:
             level = 1
@@ -255,12 +255,19 @@ with open('controls.csv') as csvfile:
         else:
             level = 3
         controls[id]["subcontrols"].append(
-          {"name":row["Title"],"description":row["Description"],"ref_code":f"{row['CIS Safeguards']}","mitigation":"","meta":{},"implementation_group":level}
+            {
+                "name": row["Title"],
+                "description": row["Description"],
+                "ref_code": f"{row['CIS Safeguards']}",
+                "mitigation": "",
+                "meta": {},
+                "implementation_group": level,
+            }
         )
 
-#print(json.dumps(controls,indent=4))
+# print(json.dumps(controls,indent=4))
 
-d=[]
-for k,v in controls.items():
-  d.append(v)
-print(json.dumps(d,indent=4))
+d = []
+for k, v in controls.items():
+    d.append(v)
+print(json.dumps(d, indent=4))
