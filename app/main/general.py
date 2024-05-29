@@ -75,13 +75,13 @@ def change_password(uid):
     password = request.form["password"]
     password2 = request.form["password2"]
     if not misc.perform_pwd_checks(password, password_two=password2):
-        flash("Password did not pass checks", "warning")
+        flash("A senha não passou nas verificações", "warning")
         return redirect(url_for("main.user_profile", uid=uid))
     user.set_password(password)
     db.session.commit()
-    flash("Successfully changed password of:{}".format(user.email))
+    flash("Senha alterada com sucesso de:{}".format(user.email))
     Logs.add(
-        f"{current_user.email} changed password of {user.email}", namespace="events"
+        f"{current_user.email} alterou a senha de {user.email}", namespace="events"
     )
     return redirect(url_for("main.user_profile", uid=uid))
 
@@ -99,7 +99,7 @@ def user_profile(uid):
         db.session.commit()
         flash("Updated user")
         Logs.add(
-            f"{current_user.email} updated the settings of user:{user.email}",
+            f"{current_user.email} atualizou as configurações do usuário:{user.email}",
             namespace="events",
         )
         return redirect(url_for("main.user_profile", uid=user.id))

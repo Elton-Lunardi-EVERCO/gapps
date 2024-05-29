@@ -11,21 +11,21 @@ class InitDbCommand(Command):
 
     def run(self):
         init_db()
-        print('[INFO] Database has been initialized.')
+        print('[INFO] O banco de dados foi inicializado.')
 
 class CreateDbCommand(Command):
     """ Migrate the database."""
 
     def run(self):
         create_db()
-        print('[INFO] Database has been created.')
+        print('[INFO] O banco de dados foi criado.')
 
 class MigrateDbCommand(Command):
     """ Migrate the database."""
 
     def run(self):
         migrate_db()
-        print('[INFO] Database has been migrated.')
+        print('[INFO] O banco de dados foi migrado.')
 
 def init_db():
     """ Initialize the database. Will delete and recreate"""
@@ -64,7 +64,7 @@ def create_default_users():
 
 def create_default_roles():
     """ Create roles """
-    for role in ["Admin","Editor","Viewer","User","Vendor"]:
+    for role in ["Administrador","Editor","Vizualizador","Usuário","Fornecedor"]:
         r = Role(name=role.lower(),label=role)
         db.session.add(r)
         db.session.commit()

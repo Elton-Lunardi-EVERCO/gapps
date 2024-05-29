@@ -56,7 +56,7 @@ class Finding(LogMixin, db.Model):
     @validates("status")
     def _validate_status(self, key, status):
         if not status or status.lower() not in Finding.get_status_list():
-            raise ValueError("invalid status")
+            raise ValueError("status inválido")
         return status
 
     def as_dict(self):
@@ -91,7 +91,7 @@ class Locker(LogMixin, db.Model):
     @staticmethod
     def add(name, value, tenant_id):
         if Locker.find_by_name(name, tenant_id):
-            raise ValueError("name already exists for tenant")
+            raise ValueError("o nome já existe para o locatário")
         locker = Locker(name=name, value=value, tenant_id=tenant_id)
         db.session.add(locker)
         db.session.commit()
@@ -312,7 +312,7 @@ class TaskResult(LogMixin, db.Model):
     @validates("version")
     def _validate_version(self, key, version):
         if not all([c.isdigit() or c == "." for c in str(version)]):
-            raise ValueError("invalid characters in version")
+            raise ValueError("caracteres inválidos na versão")
         return version
 
 
@@ -378,7 +378,7 @@ class Tenant(LogMixin, db.Model):
     def _validate_name(self, key, name):
         special_characters = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~"
         if any(c in special_characters for c in name):
-            raise ValueError("Illegal characters in name")
+            raise ValueError("Caracteres ilegais no nome")
         return name
 
     def as_dict(self):
@@ -413,7 +413,7 @@ class Tenant(LogMixin, db.Model):
 
     def check_valid_framework(self, name):
         if name.lower() not in self.get_valid_frameworks():
-            raise ValueError("framework is not implemented")
+            raise ValueError("framework não está implementado")
         return True
 
     def create_framework(self, name, add_controls=False, add_policies=False):
@@ -633,7 +633,7 @@ class Tenant(LogMixin, db.Model):
     @staticmethod
     def create(user, name, email, approved_domains=None, init=False):
         if Tenant.find_by_name(name):
-            raise ValueError("tenant name already exists")
+            raise ValueError("o nome do locatário já existe")
         tenant = Tenant(
             owner_id=user.id,
             name=name.lower(),
@@ -782,11 +782,11 @@ class Evidence(LogMixin, db.Model):
 
     def get_secure_name_from_uploaded_file(self, filename):
         if ":upload:" not in filename:
-            raise ValueError("invalid naming convention")
+            raise ValueError("convenção de nomenclatura inválida")
         name = filename.split(":upload:")[0].lower()
         file_ext = os.path.splitext(name)[1]
         if file_ext not in current_app.config["UPLOAD_EXTENSIONS"]:
-            raise ValueError("file type is not allowed")
+            raise ValueError("tipo de arquivo não é permitido")
         return secure_filename(name)
 
     def diff_files_with_checks(self, request_files, execute=False):
@@ -817,7 +817,7 @@ class Evidence(LogMixin, db.Model):
 
     def save_file(self, name, file_object):
         if not self.tenant.can_save_file_in_folder(file_object):
-            raise ValueError("tenant does not have enough storage capacity")
+            raise ValueError("locatário não tem capacidade de armazenamento suficiente")
 
         # create evidence folder if it doesnt exist
         self.tenant.create_evidence_folder()
@@ -945,7 +945,7 @@ class Framework(LogMixin, db.Model):
         with new fields such as feature_something
         """
         if not name.startswith("feature_"):
-            raise ValueError("name must start with feature_")
+            raise ValueError("o nome deve começar com feature_")
         if not hasattr(self, name):
             return False
         return getattr(self, name)
@@ -1075,7 +1075,7 @@ class Control(LogMixin, db.Model):
     @staticmethod
     def find_by_abs_ref_code(framework, ref_code):
         if not framework or not ref_code:
-            raise ValueError("framework and ref_code is required")
+            raise ValueError("framework e código_ref é necessário")
         abs_ref_code = f"{framework.lower()}__{ref_code}"
         return Control.query.filter(
             func.lower(Control.abs_ref_code) == func.lower(abs_ref_code)
@@ -1311,7 +1311,7 @@ class Project(LogMixin, db.Model, DateMixin):
         if self.integrations.filter(
             func.lower(Integration.name) == func.lower(self.name)
         ).first():
-            raise ValueError("integration already exists for tenant")
+            raise ValueError("já existe integração para o locatário")
         integration = Integration(name=name)
         self.integrations.append(integration)
         db.session.commit()
@@ -2171,7 +2171,7 @@ class PolicyLabel(LogMixin, db.Model):
     @validates("key")
     def validate_key(self, table_key, key):
         if not key.startswith("policy_label_"):
-            raise ValueError("key must start with policy_label_")
+            raise ValueError("chave deve começar com policy_label_")
         return key
 
 

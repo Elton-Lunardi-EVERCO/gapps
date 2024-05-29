@@ -18,14 +18,14 @@ import os
 
 @api.route('/health', methods=['GET'])
 def get_health():
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/token', methods=['GET'])
 @login_required
 def generate_api_token():
     expiration = int(request.args.get("expiration", 600))
     token = current_user.generate_auth_token(expiration=expiration)
-    return jsonify({"token": token, "expires_in": expiration})
+    return jsonify({"token": token, "expira em": expiration})
 
 @api.route('/session', methods=['GET'])
 @login_required
@@ -42,20 +42,20 @@ def set_session(id):
     result = Authorizer(current_user).can_user_access_tenant(id)
     session["tenant-id"] = result["extra"]["tenant"].id
     session["tenant-uuid"] = result["extra"]["tenant"].uuid
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/session/delete', methods=['GET'])
 @login_required
 def delete_session():
     session.clear()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:id>', methods=['DELETE'])
 @login_required
 def delete_tenant(id):
     result = Authorizer(current_user).can_user_admin_tenant(id)
     result["extra"]["tenant"].delete()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/questionnaires/<int:qid>', methods=['GET'])
 @login_required
@@ -79,7 +79,7 @@ def publish_questionnaire(qid):
     result = Authorizer(current_user).can_user_manage_questionnaire(qid)
     data = request.get_json()
     result["extra"]["questionnaire"].published = data.get("enabled")
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/questionnaires/<int:qid>/guests', methods=['PUT'])
 @login_required
@@ -116,7 +116,7 @@ def update_questionnaire(qid):
     result = Authorizer(current_user).can_user_manage_questionnaire(qid)
     questionnaire = result["extra"]["questionnaire"]
     data = request.get_json()
-    questionnaire.name = data.get("name")
+    questionnaire.name = data.get("nme")
     questionnaire.vendor = data.get("vendor")
     questionnaire.description = data.get("description")
     questionnaire.enabled = data.get("enabled")
@@ -128,7 +128,7 @@ def update_questionnaire(qid):
 def create_questionnaire(tid):
     result = Authorizer(current_user).can_user_manage_tenant(tid)
     data = request.get_json()
-    questionnaire = models.Questionnaire(name=data.get("name"),
+    questionnaire = models.Questionnaire(name=data.get("nme"),
          description=data.get("description"), vendor=data.get("vendor"),
          owner_id=current_user.id)
     if data.get("template") != "empty":
@@ -176,7 +176,7 @@ def get_bg_job_by_id(id):
 def get_bg_jobs(id):
     Authorizer(current_user).can_user_read_tenant(id)
     id = request.args.get("id")
-    name = request.args.get("name")
+    name = request.args.get("nme")
     status = request.args.get("status")
     queue = request.args.get("queue")
     if exclude_scheduler := request.args.get("exclude-scheduler"):
@@ -203,13 +203,13 @@ def get_frameworks(id):
 def generate_report_for_project(id):
     result = Authorizer(current_user).can_user_read_project(id)
     report = Report().generate(result["extra"]["project"])
-    return jsonify({"name": report})
+    return jsonify({"nme": report})
 
 @api.route('/projects/<int:id>/scratchpad', methods=['GET'])
 @login_required
 def get_scratchpad_for_project(id):
     result = Authorizer(current_user).can_user_read_project_scratchpad(id)
-    return jsonify({"notes": result["extra"]["project"].notes})
+    return jsonify({"notas": result["extra"]["project"].notes})
 
 @api.route('/projects/<int:id>/scratchpad', methods=["PUT"])
 @login_required
@@ -218,7 +218,7 @@ def update_scratchpad_for_project(id):
     data = request.get_json()
     result["extra"]["project"].notes = data["data"]
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:id>/comments', methods=["POST"])
 @login_required
@@ -226,7 +226,7 @@ def add_comment_for_project(id):
     result = Authorizer(current_user).can_user_write_project_comments(id)
     data = request.get_json()
     if not data.get("data"):
-        return jsonify({"message": "empty comment"}), 400
+        return jsonify({"mensagem": "comentário vazio"}), 400
     tagged_users = get_users_from_text(data["data"], resolve_users=True,
         tenant=result["extra"]["project"].tenant)
     comment = models.ProjectComment(message=data["data"], owner_id=current_user.id)
@@ -234,8 +234,8 @@ def add_comment_for_project(id):
     db.session.commit()
     if tagged_users:
         link = f"{current_app.config['HOST_NAME']}projects/{id}?tab=comments"
-        title = f"{current_app.config['APP_NAME']}: Mentioned by {current_user.get_username()}"
-        content = f"{current_user.get_username()} mentioned you in a comment for the {result['extra']['project'].name} project. Please click the button to begin."
+        title = f"{current_app.config['APP_NAME']}: Mencionado por {current_user.get_username()}"
+        content = f"{current_user.get_username()} mencionou você em um comentário para o {result['extra']['project'].name} projeto. Clique no botão para começar."
         send_email(
             title,
             sender=current_app.config['MAIL_USERNAME'],
@@ -261,7 +261,7 @@ def delete_comment_for_project(pid, cid):
     result = Authorizer(current_user).can_user_delete_project_comment(pid, cid)
     db.session.delete(result["extra"]["comment"])
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/comments', methods=['GET'])
 @login_required
@@ -339,7 +339,7 @@ def add_members_for_project(pid):
     for user in data["members"]:
         if user := models.User.query.get(user["id"]):
             result["extra"]["project"].add_member(user)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/members/<int:uid>/access', methods=['PUT'])
 @login_required
@@ -347,14 +347,14 @@ def update_access_level_for_user_in_project(pid, uid):
     result = Authorizer(current_user).can_user_manage_project(pid)
     data = request.get_json()
     result["extra"]["project"].update_member_access(uid, data["access_level"])
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/members/<int:uid>', methods=['DELETE'])
 @login_required
 def delete_user_from_project(pid, uid):
     result = Authorizer(current_user).can_user_manage_project(pid)
     result["extra"]["project"].remove_member(models.User.query.get(uid))
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants', methods=['GET'])
 @login_required
@@ -378,16 +378,16 @@ def get_users():
 def create_user():
     result = Authorizer(current_user).can_user_manage_platform()
     if not current_app.config["MAIL_USERNAME"] or not current_app.config["MAIL_PASSWORD"]:
-        return jsonify({"message":"MAIL_USERNAME and MAIL_PASSWORD must be set"}),400
+        return jsonify({"mensagem":"MAIL_USERNAME e MAIL_PASSWORD devem ser definidos"}),400
     data = request.get_json()
     email = data.get("email")
     if not models.User.validate_email(email):
-        return jsonify({"message":"invalid email"}), 400
+        return jsonify({"mensagem":"e-mail inválido"}), 400
     tenant_id = data.get("tenant_id")
     token = models.User.generate_invite_token(email, tenant_id)
     link = "{}{}?token={}".format(current_app.config["HOST_NAME"],"register",token)
-    title = f"{current_app.config['APP_NAME']}: Welcome"
-    content = f"You have been invited to {current_app.config['APP_NAME']}. Please click the button below to begin."
+    title = f"{current_app.config['APP_NAME']}: Bem-Vindo"
+    content = f"Você foi convidado para {current_app.config['APP_NAME']}. Clique no botão abaixo para começar."
     send_email(
         title,
         sender=current_app.config['MAIL_USERNAME'],
@@ -405,7 +405,7 @@ def create_user():
             button_link=link
         )
     )
-    return jsonify({"message": "invited user"})
+    return jsonify({"mensagem": "usuário convidado"})
 
 @api.route('/admin/users/<int:id>', methods=['GET'])
 @login_required
@@ -438,7 +438,7 @@ def create_control_for_tenant(tid):
     Authorizer(current_user).can_user_manage_tenant(tid)
     payload = request.get_json()
     models.Control.create(payload, tid)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/evidence', methods=['GET'])
 @login_required
@@ -481,7 +481,7 @@ def get_policies_for_tenant(tid):
 def create_policy_for_tenant(tid):
     result = Authorizer(current_user).can_user_manage_tenant(tid)
     payload = request.get_json()
-    policy = models.Policy(name=payload["name"],
+    policy = models.Policy(name=payload["nme"],
         description=payload.get("description"),
         ref_code=payload.get("code"))
     result["extra"]["tenant"].policies.append(policy)
@@ -499,19 +499,19 @@ def invite_user_to_tenant(tid):
     email = data.get("email")
     roles = data.get("roles",[])
     if not models.User.validate_email(email):
-        return jsonify({"message":"invalid email"}), 400
+        return jsonify({"mensagem":"e-mail inválido"}), 400
     if not result["extra"]["tenant"].can_we_invite_user(email):
-        return jsonify({"message":"user is not in approved domains"}),403
+        return jsonify({"mensagem":"o usuário não está em domínios aprovados"}),403
     if user := models.User.find_by_email(email):
         result["extra"]["tenant"].add_user(user, roles=roles)
         link = current_app.config["HOST_NAME"]
-        title = f"{current_app.config['APP_NAME']}: Tenant invite"
-        content = f"You have been added to a new tenant in {current_app.config['APP_NAME']}"
+        title = f"{current_app.config['APP_NAME']}: Convite do locatário"
+        content = f"Você foi adicionado a um novo locatário em {current_app.config['APP_NAME']}"
     else:
         token = models.User.generate_invite_token(email, tid, attributes={"roles":roles})
         link = "{}{}?token={}".format(current_app.config["HOST_NAME"],"register",token)
-        title = f"{current_app.config['APP_NAME']}: Welcome"
-        content = f"You have been invited to {current_app.config['APP_NAME']}. Please click the button below to begin."
+        title = f"{current_app.config['APP_NAME']}: Bem-Vindo"
+        content = f"You have been invited to {current_app.config['APP_NAME']}. Clique no botão abaixo para começar."
     if email_configured:
         send_email(
           title,
@@ -530,7 +530,7 @@ def invite_user_to_tenant(tid):
             button_link=link
           )
         )
-    return jsonify({"url":link,"email_sent":email_configured})
+    return jsonify({"url":link,"email_enviado":email_configured})
 
 @api.route('/tenants/<int:tid>', methods=['GET'])
 @login_required
@@ -543,9 +543,9 @@ def get_tenant(tid):
 def update_tenant(tid):
     result = Authorizer(current_user).can_user_admin_tenant(tid)
     data = request.get_json()
-    name = data.get("name").lower()
+    name = data.get("nme").lower()
     if result["extra"]["tenant"].name != name and models.Tenant.find_by_name(name):
-        return jsonify({"message": "tenant name already exists"}), 400
+        return jsonify({"mensagem": "o nome do locatário já existe"}), 400
     result["extra"]["tenant"].name = name
     result["extra"]["tenant"].contact_email = data.get("contact_email")
     result["extra"]["tenant"].approved_domains = data.get("approved_domains")
@@ -558,14 +558,14 @@ def update_tenant(tid):
 def reload_tenant_frameworks(tid):
     result = Authorizer(current_user).can_user_admin_tenant(tid)
     result["extra"]["tenant"].create_base_frameworks()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/load-policies', methods=['PUT'])
 @login_required
 def reload_tenant_policies(tid):
     result = Authorizer(current_user).can_user_admin_tenant(tid)
     result["extra"]["tenant"].create_base_policies()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants', methods=['POST'])
 @login_required
@@ -573,11 +573,11 @@ def add_tenant():
     result = Authorizer(current_user).can_user_create_tenants()
     data = request.get_json()
     try:
-        tenant = models.Tenant.create(current_user, data.get("name"),
+        tenant = models.Tenant.create(current_user, data.get("nme"),
             data.get("contact_email"), approved_domains=data.get("approved_domains"),
             init=True)
     except Exception as e:
-        return jsonify({"message": str(e)}), 400
+        return jsonify({"mensagem": str(e)}), 400
     return jsonify(tenant.as_dict())
 
 @api.route('/users/<int:uid>/tenants', methods=['GET'])
@@ -586,7 +586,7 @@ def get_tenants_for_user(uid):
     result = Authorizer(current_user).can_user_read_tenants_of_user(uid)
     data = []
     for tenant in result["extra"]["user"].tenants():
-        data.append({"id":tenant.id,"name":tenant.name})
+        data.append({"id":tenant.id,"nme":tenant.name})
     return jsonify(data)
 
 @api.route('/tenants/<int:tid>/users', methods=['GET'])
@@ -618,7 +618,7 @@ def update_user(uid):
         result["extra"]["user"].super = data.get("is_super")
     if current_user.super and "can_user_create_tenants" in data:
         result["extra"]["user"].can_user_create_tenant = data.get("can_user_create_tenants")
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/users/<int:uid>/tenants/<int:tid>', methods=['PUT'])
 @login_required
@@ -627,14 +627,14 @@ def update_user_in_tenant(uid, tid):
     data = request.get_json()
     if roles := data.get("roles"):
         result["extra"]["tenant"].set_roles_by_id_for_user(result["extra"]["user"], roles)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/users/<int:uid>/tenants/<int:tid>', methods=['DELETE'])
 @login_required
 def delete_user_in_tenant(uid, tid):
     result = Authorizer(current_user).can_user_manage_user_roles_in_tenant(uid, tid)
     result["extra"]["tenant"].remove_user(result["extra"]["user"])
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>', methods=['GET'])
 @login_required
@@ -651,7 +651,7 @@ def delete_project(pid):
     result = Authorizer(current_user).can_user_manage_project(pid)
     db.session.delete(result["extra"]["project"])
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/policies/<int:pid>', methods=['GET'])
 @login_required
@@ -664,7 +664,7 @@ def policy(pid):
 def update_policy(pid):
     result = Authorizer(current_user).can_user_manage_policy(pid)
     data = request.get_json()
-    result["extra"]["policy"].name = data["name"]
+    result["extra"]["policy"].name = data["nme"]
     result["extra"]["policy"].ref_code = data["ref_code"]
     result["extra"]["policy"].description = data["description"]
     result["extra"]["policy"].template = data["template"]
@@ -688,7 +688,7 @@ def get_evidence(eid):
 @login_required
 def add_evidence_for_tenant(tid):
     result = Authorizer(current_user).can_user_manage_tenant(tid)
-    evidence = models.Evidence(name=request.form.get("name"),
+    evidence = models.Evidence(name=request.form.get("nme"),
         description=request.form.get("description"),
         content=request.form.get("content"),owner_id=current_user.id,
         collected_on=request.form.get("collected") or arrow.utcnow().format("MM/DD/YYYY"))
@@ -702,7 +702,7 @@ def add_evidence_for_tenant(tid):
 def update_evidence(eid):
     result = Authorizer(current_user).can_user_manage_evidence(eid)
     evidence = result["extra"]["evidence"]
-    evidence.name = request.form.get("name")
+    evidence.name = request.form.get("nme")
     evidence.description = request.form.get("description")
     evidence.content = request.form.get("content")
     if request.form.get("collected"):
@@ -716,7 +716,7 @@ def update_evidence(eid):
 def delete_evidence(eid):
     result = Authorizer(current_user).can_user_manage_evidence(eid)
     result["extra"]["evidence"].delete()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/evidence/<int:eid>/controls', methods=['PUT'])
 @login_required
@@ -724,7 +724,7 @@ def add_evidence_to_controls(eid):
     result = Authorizer(current_user).can_user_manage_evidence(eid)
     payload = request.get_json()
     result["extra"]["evidence"].associate_with_controls(payload)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/policies/<int:pid>', methods=['DELETE'])
 @login_required
@@ -732,7 +732,7 @@ def delete_policy(pid):
     result = Authorizer(current_user).can_user_manage_policy(pid)
     result["extra"]["policy"].visible = False
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/controls/<int:cid>', methods=['DELETE'])
 @login_required
@@ -740,7 +740,7 @@ def delete_control(cid):
     result = Authorizer(current_user).can_user_manage_control(cid)
     result["extra"]["control"].visible = False
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/controls/<int:cid>', methods=['GET'])
 @login_required
@@ -764,16 +764,16 @@ def create_project(tid):
     payload = request.get_json()
     result = project_creation(result["extra"]["tenant"], payload, current_user)
     if not result:
-        return jsonify({"message": "failed to create project"}), 400
-    return jsonify({"message": "ok"})
+        return jsonify({"mensagem": "failed to create project"}), 400
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/settings', methods=['POST'])
 @login_required
 def update_settings_in_project(pid):
     result = Authorizer(current_user).can_user_manage_project(pid)
     data = request.get_json()
-    if data.get("name"):
-        result["extra"]["project"].name = data["name"]
+    if data.get("nme"):
+        result["extra"]["project"].name = data["nme"]
     if data.get("description"):
         result["extra"]["project"].description = data["description"]
     if type(data.get("can_auditor_read_scratchpad")) is bool:
@@ -785,7 +785,7 @@ def update_settings_in_project(pid):
     if type(data.get("can_auditor_write_comments")) is bool:
         result["extra"]["project"].can_auditor_write_comments = data["can_auditor_write_comments"]
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/controls', methods=['GET'])
 @login_required
@@ -852,14 +852,14 @@ def update_policy_for_project(pid, ppid):
 def delete_policy_for_project(pid, ppid):
     result = Authorizer(current_user).can_user_delete_policy_from_project(pid, ppid)
     result["extra"]["policy"].project.remove_policy(ppid)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/policies/<int:pid>/controls/<int:cid>', methods=['PUT'])
 @login_required
 def update_controls_for_policy(pid, cid):
     result = Authorizer(current_user).can_user_manage_project_policy(pid)
     result["extra"]["policy"].add_control(cid)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/policies/<int:pid>/controls/<int:cid>', methods=['DELETE'])
 @login_required
@@ -868,14 +868,14 @@ def delete_controls_for_policy(pid, cid):
     if control := result["extra"]["policy"].has_control(cid):
         db.session.delete(control)
         db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/policies/<int:ppid>/controls/<int:cid>', methods=['PUT'])
 @login_required
 def update_policy_controls_for_project(pid, ppid, cid):
     result = Authorizer(current_user).can_user_manage_project_policy(ppid)
     result["extra"]["policy"].add_control(cid)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/policies/<int:ppid>/controls/<int:cid>', methods=['DELETE'])
 @login_required
@@ -884,7 +884,7 @@ def delete_policy_controls_for_project(pid, ppid, cid):
     if control := result["extra"]["policy"].has_control(cid):
         db.session.delete(control)
         db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/controls/<int:cid>', methods=['GET'])
 @login_required
@@ -906,7 +906,7 @@ def get_subcontrols_for_control_in_project(pid, cid):
 def remove_control_from_project(pid, cid):
     result = Authorizer(current_user).can_user_delete_control_from_project(cid, pid)
     result["extra"]["project"].remove_control(cid)
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/policies/<int:pid>/projects/<int:ppid>', methods=['PUT'])
 @login_required
@@ -929,7 +929,7 @@ def update_review_status_for_subcontrol(sid):
     result = Authorizer(current_user).can_user_manage_project_subcontrol_status(sid, payload.get("review-status"))
     result["extra"]["subcontrol"].review_status = payload["review-status"].lower()
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/project-controls/<int:cid>/subcontrols/<int:sid>', methods=['PUT'])
 @login_required
@@ -940,7 +940,7 @@ def update_subcontrols_in_control_for_project(cid, sid):
         result["extra"]["subcontrol"].is_applicable = payload.get("applicable")
     if payload.get("implemented") != None:
         result["extra"]["subcontrol"].implemented = payload.get("implemented")
-    if notes := payload.get("notes"):
+    if notes := payload.get("notas"):
         result["extra"]["subcontrol"].notes = notes
     if feedback := payload.get("feedback"):
         result["extra"]["subcontrol"].auditor_feedback = feedback
@@ -951,7 +951,7 @@ def update_subcontrols_in_control_for_project(cid, sid):
     if payload.get("operator-id") or payload.get("operator-id") == None:
         result["extra"]["subcontrol"].operator_id = payload.get("operator-id")
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/project-controls/<int:cid>/applicability', methods=['PUT'])
 @login_required
@@ -959,7 +959,7 @@ def set_applicability_of_control_for_project(cid):
     result = Authorizer(current_user).can_user_manage_project_control(cid)
     payload = request.get_json()
     result["extra"]["control"].set_applicability(payload["applicable"])
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/tags/<int:ttid>', methods=['DELETE'])
 @login_required
@@ -967,15 +967,15 @@ def delete_tag_for_tenant(tid, ttid):
     result = Authorizer(current_user).can_user_manage_tag(tid)
     db.session.delete(result["extra"]["tag"])
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/tags', methods=['POST'])
 @login_required
 def create_tag_for_tenant(tid):
     result = Authorizer(current_user).can_user_manage_tenant(tid)
     data = request.get_json()
-    models.Tag.add(current_user.id, data.get("name"), result["extra"]["tenant"])
-    return jsonify({"message": "ok"})
+    models.Tag.add(current_user.id, data.get("nme"), result["extra"]["tenant"])
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/labels', methods=['POST'])
 @login_required
@@ -988,7 +988,7 @@ def create_label_for_tenant(tid):
             owner_id=current_user.id)
     )
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/tenants/<int:tid>/labels/<int:lid>', methods=['DELETE'])
 @login_required
@@ -996,7 +996,7 @@ def delete_label_for_tenant(tid, lid):
     result = Authorizer(current_user).can_user_manage_policy_label(lid)
     db.session.delete(result["extra"]["label"])
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/evidence/controls', methods=['GET'])
 @login_required
@@ -1022,7 +1022,7 @@ def update_notes_for_control(pid, cid):
     data = request.get_json()
     result["extra"]["control"].notes = data["data"]
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/controls/<int:cid>/auditor-notes', methods=["PUT"])
 @login_required
@@ -1031,7 +1031,7 @@ def update_auditor_notes_for_control(pid, cid):
     data = request.get_json()
     result["extra"]["control"].auditor_notes = data["data"]
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/subcontrols/<int:sid>/notes', methods=["PUT"])
 @login_required
@@ -1040,7 +1040,7 @@ def update_notes_for_subcontrol(pid, sid):
     data = request.get_json()
     result["extra"]["subcontrol"].notes = data["data"]
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/subcontrols/<int:sid>/auditor-notes', methods=["PUT"])
 @login_required
@@ -1049,7 +1049,7 @@ def update_auditor_notes_for_subcontrol(pid, sid):
     data = request.get_json()
     result["extra"]["subcontrol"].auditor_notes = data["data"]
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/subcontrols/<int:sid>/context', methods=["PUT"])
 @login_required
@@ -1058,7 +1058,7 @@ def update_context_for_subcontrol(pid, sid):
     data = request.get_json()
     result["extra"]["subcontrol"].context = data["data"]
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/controls/<int:cid>/comments', methods=["POST"])
 @login_required
@@ -1066,15 +1066,15 @@ def add_comment_for_control(pid, cid):
     result = Authorizer(current_user).can_user_manage_project_control(cid)
     data = request.get_json()
     if not data.get("data"):
-        return jsonify({"message": "empty comment"}), 400
+        return jsonify({"mensagem": "comentário vazio"}), 400
     comment = models.ControlComment(message=data["data"], owner_id=current_user.id)
     result["extra"]["control"].comments.append(comment)
     db.session.commit()
     tagged_users = get_users_from_text(data["data"], resolve_users=True, tenant=result["extra"]["control"].project.tenant)
     if tagged_users:
         link = f"{current_app.config['HOST_NAME']}projects/{pid}/controls/{cid}?tab=comments"
-        title = f"{current_app.config['APP_NAME']}: Mentioned by {current_user.get_username()}"
-        content = f"{current_user.get_username()} mentioned you in a comment for a control. Please click the button to begin."
+        title = f"{current_app.config['APP_NAME']}: Mencionado por {current_user.get_username()}"
+        content = f"{current_user.get_username()} mencionou você em um comentário para controle. Clique no botão para começar."
         send_email(
             title,
             sender=current_app.config['MAIL_USERNAME'],
@@ -1092,7 +1092,7 @@ def add_comment_for_control(pid, cid):
                 button_link=link
             )
         )
-    models.Logs.add("Added comment for control",
+    models.Logs.add("Adicionado comentário para controle",
         namespace=f"projects:{pid}.controls:{result['extra']['control'].id}.comments:{comment.id}",
         action="create",
         user_id=current_user.id
@@ -1105,7 +1105,7 @@ def delete_comment_for_control(pid, cid, ccid):
     result = Authorizer(current_user).can_user_manage_project_control_comment(cid)
     db.session.delete(result["extra"]["comment"])
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/controls/<int:cid>/comments', methods=["GET"])
 @login_required
@@ -1120,7 +1120,7 @@ def add_comment_for_subcontrol(pid, sid):
     result = Authorizer(current_user).can_user_read_project_subcontrol(sid)
     data = request.get_json()
     if not data.get("data"):
-        return jsonify({"message": "empty comment"}), 400
+        return jsonify({"mensagem": "comentário vazio"}), 400
     comment = models.SubControlComment(message=data["data"], owner_id=current_user.id)
     result["extra"]["subcontrol"].comments.append(comment)
     db.session.commit()
@@ -1128,8 +1128,8 @@ def add_comment_for_subcontrol(pid, sid):
     tagged_users = get_users_from_text(data["data"], resolve_users=True, tenant=result["extra"]["subcontrol"].p_control.project.tenant)
     if tagged_users:
         link = f"{current_app.config['HOST_NAME']}projects/{pid}/controls/{result['extra']['subcontrol'].project_control_id}/subcontrols/{sid}?tab=comments"
-        title = f"{current_app.config['APP_NAME']}: Mentioned by {current_user.get_username()}"
-        content = f"{current_user.get_username()} mentioned you in a comment for a subcontrol. Please click the button to begin."
+        title = f"{current_app.config['APP_NAME']}: Mencionado por {current_user.get_username()}"
+        content = f"{current_user.get_username()} mencionou você em um comentário para um subcontrole. Clique no botão para começar."
         send_email(
             title,
             sender=current_app.config['MAIL_USERNAME'],
@@ -1147,7 +1147,7 @@ def add_comment_for_subcontrol(pid, sid):
                 button_link=link
             )
         )
-    models.Logs.add("Added comment for subcontrol",
+    models.Logs.add("Adicionado comentário para subcontrole",
         namespace=f"projects:{pid}.subcontrols:{result['extra']['subcontrol'].id}.comments:{comment.id}",
         action="create",
         user_id=current_user.id
@@ -1160,7 +1160,7 @@ def delete_comment_for_subcontrol(pid, sid, cid):
     result = Authorizer(current_user).can_user_manage_project_subcontrol_comment(cid)
     db.session.delete(result["extra"]["comment"])
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})
 
 @api.route('/projects/<int:pid>/subcontrols/<int:sid>/comments', methods=["GET"])
 @login_required
@@ -1219,7 +1219,7 @@ def delete_feedback_for_subcontrol(pid, sid, fid):
     result = Authorizer(current_user).can_user_manage_project_subcontrol_feedback(fid)
     db.session.delete(result["extra"]["feedback"])
     db.session.commit()
-    return jsonify({"message":"ok"})
+    return jsonify({"mensagem":"ok"})
 
 @api.route('/projects/<int:pid>/subcontrols/<int:sid>/evidence', methods=["GET"])
 @login_required
@@ -1232,9 +1232,9 @@ def get_evidence_for_subcontrol(pid, sid):
 @login_required
 def add_evidence_for_subcontrol(pid, sid):
     result = Authorizer(current_user).can_user_manage_project_subcontrol(sid)
-    evidence = models.Evidence(name=request.form.get("name"),
+    evidence = models.Evidence(name=request.form.get("nme"),
         content=request.form.get("content"),description=request.form.get("description"),
-        tenant_id=result["extra"]["subcontrol"].p_control.project.tenant_id,
+        tenant_id=result["extra"]["subcontrojsonifycontl"].p_control.project.tenant_id,
         owner_id=current_user.id)
     result["extra"]["subcontrol"].evidence.append(evidence)
     db.session.commit()
@@ -1247,4 +1247,4 @@ def delete_evidence_for_subcontrol(pid, sid, eid):
     result = Authorizer(current_user).can_user_manage_project_subcontrol_evidence(sid, eid)
     result["extra"]["subcontrol"].evidence.remove(result["extra"]["evidence"])
     db.session.commit()
-    return jsonify({"message": "ok"})
+    return jsonify({"mensagem": "ok"})

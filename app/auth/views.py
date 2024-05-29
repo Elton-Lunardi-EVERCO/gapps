@@ -32,19 +32,19 @@ def login():
         email = request.form["email"]
         password = request.form["password"]
         if not (user := User.find_by_email(email)):
-            flash(_l('Invalid email or password'), 'warning')
-            Logs.add(f"invalid email for {email}", level="warning")
+            flash(_l('E-mail ou senha inválida'), 'warning')
+            Logs.add(f"e-mail inválido para {email}", level="warning")
             return redirect(url_for('auth.login'))
         if not user.check_password(password):
-            flash(_l('Invalid email or password'), 'warning')
-            Logs.add(f"invalid password for email:{email}", level="warning")
+            flash(_l('E-mail ou senha inválida'), 'warning')
+            Logs.add(f"senha inválida para e-mail:{email}", level="warning")
             return redirect(next_page or url_for('auth.login'))
         if not user.is_active:
-            flash(_l('User is inactive'), 'warning')
-            Logs.add(f"inactive user tried to login:{email}", level="warning")
+            flash(_l('O usuário está inativo'), 'warning')
+            Logs.add(f"usuário inativo tentou fazer login:{email}", level="warning")
             return redirect(next_page or url_for('auth.login'))
-        flash("Welcome")
-        Logs.add(f"{email} logged in")
+        flash("Bem-Vindo")
+        Logs.add(f"{email} logado")
         login_user(user)
         return redirect(next_page or url_for('main.home'))
     return render_template('auth/login.html')
@@ -55,28 +55,28 @@ def login_with_magic_link(tid):
     if current_user.is_authenticated:
         return redirect(next_page or url_for('main.home'))
     if not current_app.config["MAIL_USERNAME"] or not current_app.config["MAIL_PASSWORD"]:
-        flash("Email is not configured", "warning")
+        flash("O e-mail não está configurado", "warning")
         abort(404)
     if not (tenant := Tenant.query.get(tid)):
         abort(404)
     if not tenant.magic_link_login:
-        flash("Feature is not enabled", "warning")
+        flash("O recurso não está ativado", "warning")
         abort(404)
     if request.method == "POST":
         email = request.form["email"]
         if not (user := User.find_by_email(email)):
-            flash(_l('Invalid email'), 'warning')
-            Logs.add(f"invalid email for {email}", level="warning")
+            flash(_l('E-mail inválido'), 'warning')
+            Logs.add(f"e-mail inválido for {email}", level="warning")
             return redirect(url_for('auth.login_with_magic_link', tid=tid))
         if not user.is_active:
-            flash(_l('User is inactive'), 'warning')
-            Logs.add(f"inactive user tried to login:{email}", level="warning")
+            flash(_l('O usuário está inativo'), 'warning')
+            Logs.add(f"usuário inativo tentou fazer login:{email}", level="warning")
             return redirect(next_page or url_for('auth.login_with_magic_link', tid=tid))
         # send email with login
         token = user.generate_magic_link(tid)
         link = f"{current_app.config['HOST_NAME']}magic-login/{token}"
-        title = f"{current_app.config['APP_NAME']}: Login Request"
-        content = f"You have requested a login via email. If you did not request a magic link, please ignore. Otherwise, please click the button below to login."
+        title = f"{current_app.config['APP_NAME']}: Solicitação de login"
+        content = f"Você solicitou um login por e-mail. Se você não solicitou um link mágico, ignore. Caso contrário, clique no botão abaixo para fazer login."
         send_email(
             title,
             sender=current_app.config['MAIL_USERNAME'],
@@ -95,34 +95,34 @@ def login_with_magic_link(tid):
                 button_label="Login"
             )
         )
-        Logs.add(f"magic link login request to {email}")
-        flash("Please check your email for the login information")
+        Logs.add(f"solicitação de login do link mágico para {email}")
+        flash("Verifique seu e-mail para obter as informações de login")
     return render_template('auth/magic-login.html', tid=tid)
 
 @auth.route('/magic-login/<string:token>', methods=['GET'])
 def validate_magic_link(token):
     next_page = request.args.get('next')
     if not (vtoken := User.verify_magic_token(token)):
-        flash("Token is invalid", "warning")
+        flash("O token é inválido", "warning")
         return redirect(url_for('auth.login'))
     if not (user := User.query.get(vtoken.get("user_id"))):
-        flash("Invalid user id", "warning")
+        flash("ID de usuário inválido", "warning")
         return redirect(url_for('auth.login'))
     if not (tenant := Tenant.query.get(vtoken.get("tenant_id"))):
-        flash("Invalid tenant id", "warning")
+        flash("ID de locatário inválido", "warning")
         return redirect(url_for('auth.login'))
     if user.id == tenant.owner_id or user.has_tenant(tenant):
-        flash("Welcome")
-        Logs.add(f"{user.email} logged in via magic link")
+        flash("Bem-Vindo")
+        Logs.add(f"{user.email} logado via link mágico")
         login_user(user)
         return redirect(next_page or url_for('main.home'))
-    flash("User can not access tenant", "warning")
+    flash("O usuário não consegue acessar o locatário", "warning")
     return redirect(url_for('auth.login'))
 
 @auth.route('/logout')
 def logout():
     logout_user()
-    flash("You are logged out", "success")
+    flash("Você está desconectado", "success")
     Logs.add(f"{current_user} logged out")
     return redirect(url_for('auth.login'))
 
@@ -130,7 +130,7 @@ def logout():
 def register():
     next_page = request.args.get('next')
     if current_user.is_authenticated:
-        flash("You are already registered", "success")
+        flash("Você já está registrado", "success")
         return redirect(next_page or url_for('main.home'))
     email = None
     result = {}
@@ -139,12 +139,12 @@ def register():
             email = result["email"]
     if current_app.config["ENABLE_SELF_REGISTRATION"] != "1":
         if not token:
-            Logs.add("missing token for registration", level="warning")
-            flash("Missing token","warning")
+            Logs.add("faltando token para registro", level="warning")
+            flash("Token ausente","warning")
             return redirect(url_for("auth.login"))
         if not result:
-            Logs.add(f"invalid or expired token", level="warning")
-            flash("Invalid or expired token","warning")
+            Logs.add(f"token inválido ou expirado", level="warning")
+            flash("Token inválido ou expirado","warning")
             return redirect(url_for("auth.login"))
     if request.method == "POST":
         email = email or request.form["email"]
@@ -152,14 +152,14 @@ def register():
         password = request.form.get("password")
         password2 = request.form.get("password2")
         if not User.validate_registration(email, username, password, password2):
-            flash("Invalid email, username and/or password", "warning")
+            flash("E-mail, nome de usuário e/ou senha inválidos", "warning")
             return redirect(next_page or url_for('auth.register', token=token))
         new_user = User.add(email, password=password,
             username=username, confirmed=True,
             tenants=[{"id":result.get("tenant_id"), "roles": result.get("roles",[])}])
         login_user(new_user)
-        flash(f'{email}, you are now registered', 'success')
-        Logs.add(f"{email} successfully registered")
+        flash(f'{email}, você agora está registrado', 'success')
+        Logs.add(f"{email} registrado com sucesso")
         return redirect(next_page or url_for('main.home'))
     return render_template('auth/register.html', email=email)
 
@@ -172,13 +172,13 @@ def reset_password_request():
     if request.method == "POST":
         email = request.form.get("email")
         if not (user := User.find_by_email(email)):
-            flash("Email sent, check your mail")
+            flash("E-mail enviado, verifique seu e-mail")
             return redirect(next_page or url_for('auth.reset_password_request'))
-        Logs.add(f"{email} requested a password reset", level="warning")
+        Logs.add(f"{email} solicitou uma redefinição de senha", level="warning")
         token = user.generate_auth_token()
         link = f"{current_app.config['HOST_NAME']}reset-password/{token}"
-        title = f"{current_app.config['APP_NAME']}: Password reset"
-        content = f"You have requested a password reset. If you did not request a reset, please ignore. Otherwise, click the button below to continue."
+        title = f"{current_app.config['APP_NAME']}: Redefinição de senha"
+        content = f"Você solicitou uma redefinição de senha. Se não solicitou uma redefinição, ignore. Caso contrário, clique no botão abaixo para continuar."
         send_email(
             title,
             sender=current_app.config['MAIL_USERNAME'],
@@ -206,18 +206,18 @@ def reset_password(token):
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     if not (user := User.verify_auth_token(token)):
-        Logs.add("invalid or missing token for password reset", level="warning")
-        flash("Missing or invalid token","warning")
+        Logs.add("token inválido ou ausente para redefinição de senha", level="warning")
+        flash("Token ausente ou inválido","warning")
         return redirect(url_for("auth.reset_password_request"))
     if request.method == "POST":
         password = request.form.get("password")
         password2 = request.form.get("password2")
         if not misc.perform_pwd_checks(password, password_two=password2):
-            flash("Password did not pass checks", "warning")
+            flash("A senha não passou nas verificações", "warning")
             return redirect(url_for("auth.reset_password", token=token))
         user.set_password(password)
         db.session.commit()
-        flash("Password reset! Please login with your new password", "success")
-        Logs.add(f"{user.email} reset their password", level="warning")
+        flash("Redefinição de senha! Por favor faça login com sua nova senha", "success")
+        Logs.add(f"{user.email} redefinir sua senha", level="warning")
         return redirect(url_for('auth.login'))
     return render_template('auth/reset_password.html',token=token)

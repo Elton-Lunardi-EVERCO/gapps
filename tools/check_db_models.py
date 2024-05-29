@@ -25,22 +25,22 @@ def should_we_create_models():
             # check if we have tables created
             created_tables = inspector.get_table_names()
             if len(created_tables) < 5:
-                return "Yes"
-            return "No"
+                return "Sim"
+            return "Não"
         except exc.SQLAlchemyError as e:
-            print(f"[ERROR] Traceback while querying db model: {e}")
-            return "Error"
-    return "Error"
+            print(f"[ERROR] Traceback ao consultar o modelo de banco de dados: {e}")
+            return "Erro"
+    return "Erro"
 
 
-print(f"[INFO] Checking if database models require creation")
+print(f"[INFO] Verificando se os modelos de banco de dados exigem criação")
 result = should_we_create_models()
-if result == "Yes":
-    print(f"[WARNING] Unable to query the database models. They need to be created")
+if result == "Sim":
+    print(f"[WARNING] Não é possível consultar os modelos de banco de dados. Eles precisam ser criados")
     exit(1)
-elif result == "Error":
-    print("[ERROR] Error while querying database models")
+elif result == "Erro":
+    print("[ERROR] Erro ao consultar modelos de banco de dados")
     exit(1)
-elif result == "No":
-    print(f"[INFO] Successfully queried the database models")
+elif result == "Não":
+    print(f"[INFO] Consultou com sucesso os modelos de banco de dados")
 exit(0)

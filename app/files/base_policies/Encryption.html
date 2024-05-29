@@ -1,79 +1,93 @@
-<h2>Purpose and Scope</h2>
+<h2>Finalidade e âmbito</h2>
 <ul>
-    <li>This policy defines organizational requirements for the use of cryptographic controls, as well as the
-        requirements for cryptographic keys, in order to protect the confidentiality, integrity, authenticity and
-        nonrepudiation of information.</li>
-    <li>This policy applies to all systems, equipment, facilities and information within the scope of the
-        organization&rsquo;s information security program.</li>
-    <li>All employees, contractors, part-time and temporary workers, service providers, and those employed by others to
-        perform work on behalf of the organization having to do with cryptographic systems, algorithms, or keying
-        material are subject to this policy and must comply with it.</li>
+    <li>Esta política define requisitos organizacionais para o uso de controles criptográficos, bem como o
+        Requisitos para chaves criptográficas, a fim de proteger a confidencialidade, integridade, autenticidade e
+        Não repudiação da informação.</li>
+    <li>Esta política se aplica a todos os sistemas, equipamentos, instalações e informações dentro do escopo do
+        Programa de segurança da informação da organização.</li>
+    <li>Todos os funcionários, contratados, trabalhadores de meio período e temporários, prestadores de serviços e
+        aqueles empregados por outros para
+        realizar trabalhos em nome da organização relacionada a sistemas criptográficos, algoritmos ou digitação
+        O material está sujeito a esta política e deve cumprir com ela.</li>
 </ul>
-<h2>Background</h2>
+<h2>Fundo</h2>
 <ul>
-    <li>This policy defines the high level objectives and implementation instructions for the organization&rsquo;s use
-        of cryptographic algorithms and keys. It is vital that the organization adopt a standard approach to
-        cryptographic controls across all work centers in order to ensure end-to-end security, while also promoting
-        interoperability. This document defines the specific algorithms approved for use, requirements for key
-        management and protection, and requirements for using cryptography in cloud environments.</li>
+    <li>Esta política define os objetivos de alto nível e as instruções de implementação para o uso da organização
+        de algoritmos e chaves criptográficas.É vital que a organização adote uma abordagem padrão para
+        Controles criptográficos em todos os centros de trabalho para garantir a segurança de ponta a ponta, além de
+        promover
+        interoperabilidade.Este documento define os algoritmos específicos aprovados para uso, requisitos para chave
+        Gerenciamento e proteção e requisitos para o uso de criptografia em ambientes em nuvem.</li>
 </ul>
-<h2>Policy</h2>
+<h2>Política</h2>
 <ul>
-    <li>The organization must protect individual systems or information by means of cryptographic controls as defined in
-        Table 3:</li>
+    <li>A organização deve proteger sistemas ou informações individuais por meio de controles criptográficos, conforme
+        definido em
+        Tabela 3:</li>
 </ul>
-<table style="border-collapse: collapse; width: 100%; height: 36px;" border="1">
+<table border="1" style="border-collapse: collapse; width: 100%; height: 36px;">
     <colgroup>
-        <col style="width: 24.9425%;">
-        <col style="width: 24.9425%;">
-        <col style="width: 24.9425%;">
-        <col style="width: 24.9425%;">
+        <col style="width: 24.9425%;" />
+        <col style="width: 24.9425%;" />
+        <col style="width: 24.9425%;" />
+        <col style="width: 24.9425%;" />
     </colgroup>
     <tbody>
         <tr style="height: 18px;">
-            <td style="height: 18px;">Name of System</td>
-            <td style="height: 18px;">Cryptographic Tool</td>
-            <td style="height: 18px;">Encryption Algorithm</td>
-            <td style="height: 18px;">Key Size</td>
+            <td style="height: 18px;">Nome do sistema</td>
+            <td style="height: 18px;">Ferramenta criptográfica</td>
+            <td style="height: 18px;">Algoritmo de criptografia</td>
+            <td style="height: 18px;">Tamanho da chave</td>
         </tr>
         <tr style="height: 18px;">
-            <td style="height: 18px;">&nbsp;</td>
-            <td style="height: 18px;">&nbsp;</td>
-            <td style="height: 18px;">&nbsp;</td>
-            <td style="height: 18px;">&nbsp;</td>
+            <td style="height: 18px;"> </td>
+            <td style="height: 18px;"> </td>
+            <td style="height: 18px;"> </td>
+            <td style="height: 18px;"> </td>
         </tr>
     </tbody>
 </table>
-<p>&nbsp;</p>
+<p> </p>
 <ul>
-    <li>Except where otherwise stated, keys must be managed by their owners.</li>
-    <li>Cryptographic keys must be protected against loss, change or destruction by applying appropriate access control
-        mechanisms to prevent unauthorized use and backing up keys on a regular basis.</li>
-    <li>When required, customers of the organization&rsquo;s cloud-based software or platform offering must be able to
-        obtain information regarding:
+    <li>Exceto onde indicado de outra forma, as chaves devem ser gerenciadas por seus proprietários.</li>
+    <li>As chaves criptográficas devem ser protegidas contra a perda, mudança ou destruição aplicando o controle de
+        acesso apropriado
+        Mecanismos para impedir o uso não autorizado e o backup das teclas regularmente.</li>
+    <li>Quando necessário, os clientes da oferta de software ou plataforma baseada em nuvem da organização devem ser
+        capazes de
+        obter informações sobre:
         <ul>
-            <li>The cryptographic tools used to protect their information.</li>
-            <li>Any capabilities that are available to allow cloud service customers to apply their own cryptographic
-                solutions.</li>
-            <li>The identity of the countries where the cryptographic tools are used to store or transfer cloud service
-                customers&rsquo; data.</li>
+            <li>As ferramentas criptográficas usadas para proteger suas informações.</li>
+            <li>Quaisquer recursos disponíveis para permitir que os clientes de serviços em nuvem apliquem seus próprios
+                criptográficos
+                soluções.</li>
+            <li>A identidade dos países onde as ferramentas criptográficas são usadas para armazenar ou transferir o
+                serviço em nuvem
+                dados dos clientes.</li>
         </ul>
     </li>
-    <li>The use of organizationally-approved encryption must be governed in accordance with the laws of the country,
-        region, or other regulating entity in which users perform their work. Encryption must not be used to violate any
-        laws or regulations including import/export restrictions. The encryption used by the Company conforms to
-        international standards and U.S. import/export requirements, and thus can be used across international
-        boundaries for business purposes.</li>
-    <li>All key management must be performed using software that automatically manages access control, secure storage,
-        backup and rotation of keys. Specifically:
+    <li>O uso da criptografia organizada organizalmente deve ser governada de acordo com as leis do país,
+        região ou outra entidade reguladora na qual os usuários executam seu trabalho.A criptografia não deve ser usada
+        para violar nenhum
+        leis ou regulamentos, incluindo restrições de importação/exportação.A criptografia usada pela empresa está em
+        conformidade com
+        Padrões internacionais e requisitos de importação/exportação dos EUA e, portanto, podem ser usados ​​em toda a
+        Internacional
+        limites para fins comerciais.</li>
+    <li>Todo o gerenciamento de chaves deve ser realizado usando software que gerencie automaticamente o controle de
+        acesso, armazenamento seguro,
+        backup e rotação de chaves. Especificamente:
         <ul>
-            <li>The key management service must provide key access to specifically-designated users, with the ability to
-                encrypt/decrypt information and generate data encryption keys.</li>
-            <li>The key management service must provide key administration access to specifically-designated users, with
-                the ability to create, schedule delete, enable/disable rotation, and set usage policies for keys.</li>
-            <li>The key management service must store and backup keys for the entirety of their operational lifetime.
-            </li>
-            <li>The key management service must rotate keys at least once every 12 months.</li>
+            <li>O serviço de gerenciamento de chaves deve fornecer acesso importante a usuários projetados
+                especificamente, com a capacidade de
+                Criptografar/descriptografar informações e gerar chaves de criptografia de dados.</li>
+            <li>O serviço de gerenciamento de chaves deve fornecer acesso de administração chave a usuários
+                especificamente projetados, com
+                A capacidade de criar, agendar excluir, ativar/desativar a rotação e definir políticas de uso para
+                chaves.</li>
+            <li>O serviço de gerenciamento de chaves deve armazenar e fazer chaves de backup durante toda a sua vida
+                útil.</li>
+            <li>O serviço de gerenciamento de chaves deve girar as teclas pelo menos uma vez a cada 12 meses.</li>
         </ul>
     </li>
 </ul>

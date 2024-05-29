@@ -21,10 +21,10 @@ class ControlMixin(object):
         for field in parent_fields:
             data[field] = getattr(self.control, field)
         data["status"] = self.status()
-        data["progress_completed"] = self.progress("complete")
+        data["progress_completed"] = self.progress("completo")
         data["progress_implemented"] = self.implemented_progress()
         data["progress_evidence"] = self.progress("with_evidence")
-        data["is_complete"] = self.is_complete()
+        data["está completo"] = self.is_complete()
         data["is_applicable"] = self.is_applicable()
         data["description"] = self.control.description
         data["guidance"] = self.control.guidance
@@ -38,24 +38,24 @@ class ControlMixin(object):
         if stats:
             data["stats"] = {
                 "feedback":0,
-                "comments":0,
-                "evidence":0,
-                "subcontrols":data["subcontrol_count"],
+                "comentários":0,
+                "evidência":0,
+                "subcontroles":data["subcontrol_count"],
                 "subcontrols_complete":0,
-                "inapplicable_subcontrols":0,
-                "complete_feedback":0,
+                "subcontroles_inaplicáveis":0,
+                "feedback_completo":0,
                 "infosec_status":0,
-                "auditor_status":0
+                "status_auditor":0
             }
             for sub in subcontrols:
-                if sub["is_complete"]:
+                if sub["está completo"]:
                     data["stats"]["subcontrols_complete"] += 1
                 if not sub["is_applicable"]:
                     data["stats"]["inapplicable_subcontrols"] += 1
                 data["stats"]["feedback"] += sub.get("feedback", 0)
-                data["stats"]["comments"] += sub.get("comments", 0)
-                data["stats"]["evidence"] += sub.get("evidence", 0)
-                data["stats"]["complete_feedback"] += sub.get("complete_feedback", 0)
+                data["stats"]["comentários"] += sub.get("comentários", 0)
+                data["stats"]["evidência"] += sub.get("evidência", 0)
+                data["stats"]["feedback_completo"] += sub.get("feedback_completo", 0)
                 data["stats"]["infosec_status"] += sub.get("infosec_status", 0)
                 data["stats"]["auditor_status"] += sub.get("auditor_status", 0)
         return data
@@ -71,12 +71,12 @@ class ControlMixin(object):
 
     def status(self):
         if not self.is_applicable():
-            return "not applicable"
+            return "não aplicável"
         if self.is_complete():
-            return "complete"
+            return "completo"
         if self.implemented_progress() > 0:
-            return "in progress"
-        return "not started"
+            return "em andamento"
+        return "não foi iniciado"
 
     def get_color_from_int(self, number, alternate=False):
         if number >= 90:
@@ -89,10 +89,10 @@ class ControlMixin(object):
 
     def status_color(self):
         color = {
-            "not applicable":"slate",
-            "complete":"green",
-            "in progress":"orange",
-            "not started":"gray"
+            "não aplicável":"slate",
+            "completo":"green",
+            "em andamento":"orange",
+            "não foi iniciado":"gray"
         }
         status = self.status()
         return color.get(status,"slate")
@@ -147,7 +147,7 @@ class ControlMixin(object):
             elif filter == "with_evidence":
                 if subcontrol.has_evidence():
                     subcontrols.append(subcontrol)
-            elif filter == "complete":
+            elif filter == "completo":
                 if subcontrol.is_complete():
                     subcontrols.append(subcontrol)
             elif filter == "uncomplete":
@@ -172,7 +172,7 @@ class SubControlMixin(object):
         data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
         data["implementation_status"] = self.implementation_status()
         data["has_evidence"] = self.has_evidence()
-        data["is_complete"] = self.is_complete()
+        data["está completo"] = self.is_complete()
         data["framework"] = self.framework().name
         data["project"] = self.p_control.project.name
         data["parent_control"] = self.p_control.control.name
@@ -180,21 +180,21 @@ class SubControlMixin(object):
         data["description"] = self.subcontrol.description
         data["mitigation"] = self.subcontrol.mitigation
         data["ref_code"] = self.subcontrol.ref_code
-        data["comments"] = self.comments.count()
-        data["evidence"] = self.evidence.count()
+        data["comentários"] = self.comments.count()
+        data["evidência"] = self.evidence.count()
         data["feedback"] = self.feedback.count()
         data["owner"] = User.query.get(self.owner_id).email if self.owner_id else "Missing Owner"
         data["operator"] = User.query.get(self.operator_id).email if self.operator_id else "Missing Operator"
-        data["complete_feedback"] = len(self.complete_feedback())
+        data["feedback_completo"] = len(self.complete_feedback())
         data["review_complete"] = self.review_complete()
         data["infosec_status"] = self.action_required_from_infosec()
         data["auditor_status"] = self.action_required_from_auditor()
         if include_evidence:
-            data["evidence"] = [x.as_dict() for x in self.evidence.all()]
+            data["evidência"] = [x.as_dict() for x in self.evidence.all()]
         return data
 
     def review_complete(self):
-        if self.review_status in ["complete"]:
+        if self.review_status in ["completo"]:
             return True
         return False
 
@@ -204,7 +204,7 @@ class SubControlMixin(object):
         return False
 
     def action_required_from_infosec(self):
-        if self.review_status in ["not started","infosec action", "action required"]:
+        if self.review_status in ["não foi iniciado","infosec action", "action required"]:
             return True
         return False
 
@@ -247,7 +247,7 @@ class SubControlMixin(object):
 
     def status_color(self):
         color = {
-            "not applicable":"slate",
+            "não aplicável":"slate",
             "not implemented":"gray",
             "fully implemented":"green",
             "mostly implemented":"orange",
@@ -258,7 +258,7 @@ class SubControlMixin(object):
 
     def implementation_status(self):
         if not self.is_applicable:
-            return "not applicable"
+            return "não aplicável"
         if not self.implemented or self.implemented == 0:
             return "not implemented"
         if self.implemented == 100:
@@ -381,7 +381,7 @@ class SubControlMixin(object):
         return True
 
     def set_evidence(self, evidence_id_list):
-        Evidence = get_class_by_tablename("Evidence")
+        Evidence = get_class_by_tablename("Evidência")
         self.remove_evidence()
         if not isinstance(evidence_id_list, list):
             evidence_id_list = [evidence_id_list]

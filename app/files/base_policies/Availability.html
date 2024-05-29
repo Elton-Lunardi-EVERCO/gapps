@@ -1,78 +1,99 @@
-<h2>Purpose and Scope</h2>
+<h2>Finalidade e âmbito</h2>
 <ul>
-    <li>The purpose of this policy is to define requirements for proper controls to protect the availability of the
-        organization&rsquo;s information systems.</li>
-    <li>This policy applies to all users of information systems within the organization. This typically includes
-        employees and contractors, as well as any external parties that come into contact with systems and information
-        controlled by the organization (hereinafter referred to as &ldquo;users&rdquo;). This policy must be made
-        readily available to all users.</li>
+    <li>O objetivo desta política é definir requisitos para controles adequados para proteger a disponibilidade do
+        sistemas de informação da organização.</li>
+    <li>Esta política se aplica a todos os usuários de sistemas de informação dentro da organização.Isso normalmente
+        inclui
+        funcionários e contratados, bem como qualquer parte externa que entre em contato com sistemas e informações
+        controlado pela organização (a seguir denominada "usuários").Esta política deve ser feita
+        prontamente disponível para todos os usuários.</li>
 </ul>
-<h2>Background</h2>
+<h2>Fundo</h2>
 <ul>
-    <li>The intent of this policy is to minimize the amount of unexpected or unplanned downtime (also known as outages)
-        of information systems under the organization&rsquo;s control. This policy prescribes specific measures for the
-        organization that will increase system redundancy, introduce failover mechanisms, and implement monitoring such
-        that outages are prevented as much as possible. Where they cannot be prevented, outages will be quickly detected
-        and remediated.</li>
-    <li>Within this policy, an availability is defined as a characteristic of information or information systems in
-        which such information or systems can be accessed by authorized entities whenever needed.</li>
+    <li>A intenção desta política é minimizar a quantidade de tempo de inatividade inesperado ou não planejado (também
+        conhecido como interrupções)
+        de sistemas de informação sob o controle da organização.Esta política prescreve medidas específicas para o
+        organização que aumentará a redundância do sistema, introduzirá mecanismos de failover e implementará o
+        monitoramento como
+        que as interrupções são evitadas o máximo possível.Onde eles não podem ser evitados, as interrupções serão
+        rapidamente detectadas
+        e remediado.</li>
+    <li>Dentro desta política, uma disponibilidade é definida como uma característica dos sistemas de informação ou
+        informação em
+        que tais informações ou sistemas podem ser acessados por entidades autorizadas sempre que necessário.</li>
 </ul>
-<h2>References</h2>
+<h2>Referências</h2>
 <ul>
-    <li>Risk Assessment Policy</li>
+    <li>Política de avaliação de risco</li>
 </ul>
-<h2>Policy</h2>
+<h2>Política</h2>
 <ol>
-    <li>Information systems must be consistently available to conduct and support business operations.</li>
-    <li>Information systems must have a defined availability classification, with appropriate controls enabled and
-        incorporated into development and production processes based on this classification.</li>
-    <li>System and network failures must be reported promptly to the organization&rsquo;s lead for Information
-        Technology (IT) or designated IT operations manager.</li>
-    <li>Users must be notified of scheduled outages (e.g., system maintenance) that require periods of downtime. This
-        notification must specify the date and time of the system maintenance, expected duration, and anticipated system
-        or service resumption time.</li>
-    <li>Prior to production use, each new or significantly modified application must have a completed risk assessment
-        that includes availability risks. Risk assessments must be completed in accordance with the Risk Assessment
-        Policy (reference (a)).</li>
-    <li>Capacity management and load balancing techniques must be used, as deemed necessary, to help minimize the risk
-        and impact of system failures.</li>
-    <li>Information systems&nbsp;must have an appropriate data backup plan that ensures:
+    <li>Os sistemas de informação devem estar disponíveis consistentemente para conduzir e apoiar operações comerciais.
+    </li>
+    <li>Os sistemas de informação devem ter uma classificação de disponibilidade definida, com controles apropriados
+        ativados e
+        Incorporado aos processos de desenvolvimento e produção com base nessa classificação.</li>
+    <li>As falhas do sistema e da rede devem ser relatadas imediatamente ao líder da organização de Tecnologia da
+        informação (TI) ou gerente de operações de TI designado.</li>
+    <li>Os usuários devem ser notificados sobre interrupções programadas (por exemplo, manutenção do sistema) que
+        requerem períodos de inatividade.Esse
+        A notificação deve especificar a data e a hora da manutenção do sistema, duração esperada e sistema antecipado
+        ou tempo de retomada de serviço.</li>
+    <li>Antes do uso da produção, cada aplicativo novo ou significativamente modificado deve ter uma avaliação de risco
+        preenchida
+        Isso inclui riscos de disponibilidade.As avaliações de risco devem ser concluídas de acordo com a avaliação de
+        risco
+        Política (referência (a)).</li>
+    <li>As técnicas de gerenciamento de capacidade e balanceamento de carga devem ser usadas, conforme considerado
+        necessário, para ajudar a minimizar o risco
+        e impacto das falhas do sistema.</li>
+    <li>Information systems must have an appropriate data backup plan that ensures:
         <ul>
-            <li>All sensitive data can be restored within a reasonable time period.</li>
-            <li>Full backups of critical resources are performed on at least a weekly basis.</li>
-            <li>Incremental backups for critical resources are performed on at least a daily basis.</li>
-            <li>Backups and associated media are maintained for a minimum of thirty (30) days and retained for at least
-                one (1) year, or in accordance with legal and regulatory requirements.</li>
-            <li>Backups are stored off-site with multiple points of redundancy and protected using encryption and key
-                management.</li>
-            <li>Tests of backup data must be conducted once per quarter. Tests of configurations must be conducted twice
-                per year.</li>
+            <li>Todos os dados sensíveis podem ser restaurados dentro de um período razoável.</li>
+            <li>Backups completos de recursos críticos são realizados pelo menos semanalmente.</li>
+            <li>Backups incrementais para recursos críticos são realizados pelo menos diariamente.</li>
+            <li>Backups e mídia associada são mantidos por um mínimo de trinta (30) dias e retidos por pelo menos
+                um (1) ano, ou de acordo com os requisitos legais e regulatórios.</li>
+            <li>Os backups são armazenados fora do local com vários pontos de redundância e protegidos usando
+                criptografia e chave
+                gerenciamento.</li>
+            <li>Os testes de dados de backup devem ser realizados uma vez por trimestre.Testes de configurações devem
+                ser conduzidos duas vezes
+                por ano.</li>
         </ul>
     </li>
-    <li>Information systems&nbsp;must have an appropriate redundancy and failover plan that meets the following
-        criteria:
+    <li>Os sistemas de informação devem ter um plano apropriado de redundância e failover que atenda aos seguintes
+        critérios:
         <ul>
-            <li>Network infrastructure that supports critical resources must have system-level redundancy (including but
-                not limited to a secondary power supply, backup disk-array, and secondary computing system). Critical
-                core components (including but not limited to routers, switches, and other devices linked to Service
-                Level Agreements (SLAs)) must have an actively maintained spare. SLAs must require parts replacement
-                within twenty-four (24) hours.</li>
-            <li>Servers that support critical resources must have redundant power supplies and network interface cards.
-                All servers must have an actively maintained spare. SLAs must require parts replacement within
-                twenty-four (24) hours.</li>
-            <li>Servers classified as high availability must use disk mirroring.</li>
+            <li>A infraestrutura de rede que suporta recursos críticos deve ter redundância no nível do sistema
+                (incluindo mas
+                não limitado a uma fonte de alimentação secundária, gravação de disco de backup e sistema de computação
+                secundária).Crítico
+                Componentes principais (incluindo, entre outros
+                Acordos de nível (SLAs)) devem ter um sobressalente mantido ativamente.SLAs devem exigir substituição de
+                peças
+                Dentro de vinte e quatro (24) horas.</li>
+            <li>Os servidores que suportam recursos críticos devem ter fontes de alimentação redundantes e cartões de
+                interface de rede.
+                Todos os servidores devem ter um sobressalente mantido ativamente.SLAs devem exigir a substituição de
+                peças dentro
+                Vinte e quatro (24) horas.</li>
+            <li>Os servidores classificados como alta disponibilidade devem usar o espelhamento de disco.</li>
         </ul>
     </li>
-    <li>Information systems must have an appropriate business continuity plan that meets the following criteria:
+    <li>Os sistemas de informação devem ter um plano de continuidade de negócio adequado que cumpra os seguintes
+        critérios:
         <ul>
-            <li>Recovery time and data loss limits are defined in Table 3.</li>
-            <li>Recovery time requirements and data loss limits must be adhered to with specific documentation in the
-                plan.</li>
-            <li>Company and/or external critical resources, personnel, and necessary corrective actions must be
-                specifically identified.</li>
-            <li>Specific responsibilities and tasks for responding to emergencies and resuming business operations must
-                be included in the plan.</li>
-            <li>All applicable legal and regulatory requirements must be satisfied.</li>
+            <li>Os limites de tempo de recuperação e perda de dados são definidos na Tabela 3.</li>
+            <li>Requisitos de tempo de recuperação e limites de perda de dados devem ser respeitados com documentação
+                específica no
+                plano.</li>
+            <li>Empresa e/ou recursos críticos externos, pessoal e ações corretivas necessárias devem ser
+                especificamente identificado.</li>
+            <li>Responsabilidades e tarefas específicas para responder a emergências e retomar as operações comerciais
+                devem
+                ser incluído no plano.</li>
+            <li>Todos os requisitos legais e regulamentares aplicáveis devem ser atendidos.</li>
         </ul>
     </li>
 </ol>

@@ -15,10 +15,10 @@ def can_we_connect_to_postgres():
 
 
 print(
-    f"[INFO] Checking if we can connect to the database server: {SQLALCHEMY_DATABASE_URI}"
+    f"[INFO] Verificando se podemos nos conectar ao servidor de banco de dados: {SQLALCHEMY_DATABASE_URI}"
 )
 if not can_we_connect_to_postgres():
-    print(f"[ERROR] Unable to connect to the database server")
+    print(f"[ERROR] Não é possível conectar-se ao servidor de banco de dados")
     exit(1)
-print(f"[INFO] Successfully connected to the database server")
+print(f"[INFO] Conectado com sucesso ao servidor de banco de dados")
 exit(0)

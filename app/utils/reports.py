@@ -19,7 +19,7 @@ class Report:
             "company": project.tenant.name,
             "contact_email": project.tenant.contact_email,
             "date": arrow.now().strftime("%d %B, %Y"),
-            "report_title":"Compliance Report"
+            "report_title":"Relatório de Conformidade"
         }
         return data
 

@@ -25,15 +25,15 @@ google_bp = make_google_blueprint(
 @oauth_authorized.connect_via(google_bp)
 def google_logged_in(blueprint, token):
     if not token:
-        flash("Failed to log in.", category="error")
-        current_app.logger.warning("Missing token for OAuth login")
+        flash("Falha ao fazer login.", category="error")
+        current_app.logger.warning("Token ausente para login do OAuth")
         return redirect(url_for('main.home'))
 
     resp = blueprint.session.get("/oauth2/v1/userinfo")
     if not resp.ok:
-        msg = "Failed to fetch user info."
+        msg = "Falha ao buscar informações do usuário."
         flash(msg, category="error")
-        current_app.logger.warning("Failed response for OAuth login")
+        current_app.logger.warning("Falha na resposta para login do OAuth")
         return redirect(url_for('main.home'))
 
     info = resp.json()
@@ -67,7 +67,7 @@ def google_logged_in(blueprint, token):
         oauth.user = user
         db.session.add_all([user, oauth])
         db.session.commit()
-        flash(_l("Signed up with your Google account"), 'success')
+        flash(_l("Inscreveu-se com sua conta do Google"), 'success')
     login_user(user)
     next_page = request.args.get('next')
     return redirect(next_page or url_for('main.home'))
@@ -78,5 +78,5 @@ def google_error(blueprint, message, response):
         name=blueprint.name, message=message, response=response
     )
     flash(msg, "error")
-    current_app.logger.warning("Google OAuth error:{}".format(msg))
+    current_app.logger.warning("Erro do Google OAuth:{}".format(msg))
     return redirect(url_for('main.home'))

@@ -24,7 +24,7 @@ def facebook_logged_in(blueprint, token):
         return redirect(url_for('main.index'))
     resp = blueprint.session.get("/me?fields=email,name")
     if not resp.ok:
-        msg = "Failed to fetch user info."
+        msg = "Falha ao buscar informações do usuário."
         flash(msg, "warning")
         return redirect(url_for('main.index'))
 
@@ -61,7 +61,7 @@ def facebook_logged_in(blueprint, token):
         oauth.user = user
         db.session.add_all([user, oauth])
         db.session.commit()
-        flash(_l("Successfully facebook connection"), 'success')
+        flash(_l("Conexão com o Facebook com sucesso"), 'success')
     login_user(user)
     return redirect(url_for('main.index'))
 

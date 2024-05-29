@@ -23,12 +23,12 @@ twitter_bp = make_twitter_blueprint(
 @oauth_authorized.connect_via(twitter_bp)
 def twitter_logged_in(blueprint, token):
     if not token:
-        flash("Failed to log in.", category="error")
+        flash("Falha ao fazer login.", category="error")
         return redirect(url_for('main.index'))
 
     resp = blueprint.session.get("account/verify_credentials.json?include_email=true")
     if not resp.ok:
-        msg = "Failed to fetch user info."
+        msg = "Falha ao buscar informações do usuário."
         flash(msg, category="error")
         return redirect(url_for('main.index'))
 
@@ -53,7 +53,7 @@ def twitter_logged_in(blueprint, token):
         username = info.get("name", "No name")
         email = info.get(
             "email",
-            "Check request email address from users in your twitter app"
+            "Verifique o endereço de e-mail de solicitação dos usuários em seu aplicativo do Twitter"
         )
         user = User(
             username=username.lower(),
@@ -68,7 +68,7 @@ def twitter_logged_in(blueprint, token):
         oauth.user = user
         db.session.add_all([user, oauth])
         db.session.commit()
-        flash(_l("Successfully twitter connection"), 'success')
+        flash(_l("Conexão com o Twitter com sucesso"), 'success')
     login_user(user)
     return redirect(url_for('main.index'))
 

@@ -15,20 +15,20 @@ async def scheduler(timestamp: int):
     Task = get_class_by_tablename("Task")
     tasks = Task.query.all()
     if not tasks:
-        current_app.logger.debug("Database does not contain any periodic tasks... skipping")
+        current_app.logger.debug("O banco de dados não contém nenhuma tarefa periódica... pulando")
         return True
-    current_app.logger.debug(f"Found {len(tasks)} periodic tasks")
+    current_app.logger.debug(f"Encontrado {len(tasks)} tarefas periódicas")
     for task in tasks:
         if not task.disabled:
             now = datetime.now()
             if not task.last_run or now > task.not_before:
-                current_app.logger.info(f"Task is ready for deferment: {task.get_lock()}")
+                current_app.logger.info(f"A tarefa está pronta para adiamento: {task.get_lock()}")
                 await BgHelper().run_async_task(task)
                 task.last_run = now
                 task.not_before = croniter(task.cron, now).get_next(datetime)
                 db.session.commit()
             else:
-                current_app.logger.debug(f"Periodic task: {task.get_lock()} is not ready... skipping")
+                current_app.logger.debug(f"Tarefas periódicas: {task.get_lock()} não está pronto... pulando")
         else:
-            current_app.logger.debug(f"Periodic task: {task.get_lock()} is disabled... skipping")
+            current_app.logger.debug(f"Tarefas periódicas: {task.get_lock()} está desativado... pulando")
     return True

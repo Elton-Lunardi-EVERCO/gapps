@@ -22,7 +22,7 @@ def is_super(f):
     @wraps(f)
     def decorated_function(*args, **kws):
         if not current_user.super:
-            return jsonify({"message":"unauthorized"}),401
+            return jsonify({"mensagem":"unauthorized"}),401
         return f(*args, **kws)
     return decorated_function
 
@@ -56,7 +56,7 @@ def roles_denied(*role_names):
                     current_user = user
                     login_user(user)
                 else:
-                    return jsonify({"message":"authentication failed"}),401
+                    return jsonify({"mensagem":"falha na autenticação"}),401
             else:
                 if not current_user.is_authenticated:
                     return redirect(url_for("auth.login"))
@@ -66,9 +66,9 @@ def roles_denied(*role_names):
             # But: roles_accepted must call has_roles(role_names):  ('A', 'B') --< (('A', 'B'),)
             if current_user.has_any_role_for_tenant_by_id(session.get("tenant-id"), role_names) and not current_user.super:
                 if enc_token:
-                    return jsonify({"message":"forbidden"}),403
+                    return jsonify({"mensagem":"proibido"}),403
                 # Redirect to the unauthorized page
-                flash("User does not have the required roles to access this resource!",category="warning")
+                flash("O usuário não possui as funções necessárias para acessar este recurso!",category="warning")
                 return redirect(url_for("main.home"))
 
             # It's OK to call the view
@@ -108,7 +108,7 @@ def roles_accepted(*role_names):
                     current_user = user
                     login_user(user)
                 else:
-                    return jsonify({"message":"authentication failed"}),401
+                    return jsonify({"mensagem":"falha na autenticação"}),401
             else:
                 if not current_user.is_authenticated:
                     return redirect(url_for("auth.login"))
@@ -118,9 +118,9 @@ def roles_accepted(*role_names):
             # But: roles_accepted must call has_roles(role_names):  ('A', 'B') --< (('A', 'B'),)
             if not current_user.has_any_role_for_tenant_by_id(session.get("tenant-id"), role_names) and not current_user.super:
                 if enc_token:
-                    return jsonify({"message":"forbidden"}),403
+                    return jsonify({"mensagem":"proibido"}),403
                 # Redirect to the unauthorized page
-                flash("User does not have the required roles to access this resource!",category="warning")
+                flash("O usuário não possui as funções necessárias para acessar este recurso!",category="warning")
                 return redirect(url_for("main.home"))
 
             # It's OK to call the view
@@ -158,7 +158,7 @@ def roles_required(*role_names):
                     current_user = user
                     login_user(user)
                 else:
-                    return jsonify({"message":"authentication failed"}),401
+                    return jsonify({"mensagem":"falha na autenticação"}),401
             else:
                 if not current_user.is_authenticated:
                     return redirect(url_for("auth.login"))
@@ -166,9 +166,9 @@ def roles_required(*role_names):
             # User must have the required roles
             if not current_user.has_all_roles_for_tenant_by_id(session.get("tenant-id"), *role_names) and not current_user.super:
                 if enc_token:
-                    return jsonify({"message":"forbidden"}),403
+                    return jsonify({"mensagem":"proibido"}),403
                 # Redirect to the unauthorized page
-                flash("User does not have the required roles to access this resource!",category="warning")
+                flash("O usuário não possui as funções necessárias para acessar este recurso!",category="warning")
                 return redirect(url_for("main.home"))
 
             # It's OK to call the view
@@ -201,7 +201,7 @@ def login_required(view_function):
         if token := request.headers.get("token"):
             api = True
             if not (user := validate_token_in_header(token)):
-                return jsonify({"message":"authentication failed"}),401
+                return jsonify({"mensagem":"falha na autenticação"}),401
             current_user = user
             login_user(current_user)
         else:

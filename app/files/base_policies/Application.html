@@ -1,127 +1,177 @@
-<h2>Purpose and Scope</h2>
+<h2>Objetivo e Escopo</h2>
 <ul>
-    <li>This application security policy defines the security framework and requirements for applications, notably web
-        applications, within the organization&rsquo;s production environment.</li>
-    <li>This document also provides implementing controls and instructions for web application security, to include
-        periodic vulnerability scans and other types of evaluations and assessments.</li>
-    <li>This policy applies to all applications within the organization&rsquo; production environment, as well as
-        administrators and users of these applications. This typically includes employees and contractors.</li>
+    <li>Esta política de segurança de aplicativos define a estrutura e os requisitos de segurança para aplicativos,
+        principalmente web
+        aplicativos, dentro do ambiente de produção da organização.</li>
+    <li>Este documento também fornece controles e instruções de implementação para segurança de aplicações web,
+        incluindo
+        verificações periódicas de vulnerabilidade e outros tipos de avaliações e avaliações.</li>
+    <li>Esta pol&iacute;tica se aplica a todos os aplicativos dentro da organiza&ccedil;&atilde;o. ambiente de produção,
+        bem como
+        administradores e usuários desses aplicativos. Isso normalmente inclui funcionários e prestadores de serviços.
+    </li>
 </ul>
-<h2>Background</h2>
+<h2>Plano de fundo</h2>
 <ul>
-    <li>Application vulnerabilities typically account for the largest number of initial attack vectors after malware
-        infections. As a result, it is important that applications are designed with security in mind, and that they are
-        scanned and continuously monitored for malicious activity that could indicate a system compromise. Discovery and
-        subsequent mitigation of application vulnerabilities will limit the organization&rsquo;s attack surface, and
-        ensures a baseline level of security across all systems.</li>
-    <li>In addition to scanning guidance, this policy also defines technical requirements and procedures &nbsp;to ensure
-        that applications are properly hardened in accordance with security best practices.</li>
+    <li>As vulnerabilidades de aplicativos normalmente são responsáveis ​​pelo maior número de vetores de ataque
+        iniciais depois do malware
+        infecções. Como resultado, é importante que as aplicações sejam projetadas tendo em mente a segurança e que
+        sejam
+        verificado e monitorado continuamente em busca de atividades maliciosas que possam indicar um comprometimento do
+        sistema. Descoberta e
+        a mitigação subsequente de vulnerabilidades de aplicativos limitará a superfície de ataque da organização&rsquo;
+        e
+        garante um nível básico de segurança em todos os sistemas.</li>
+    <li>Além das orientações de digitalização, esta política também define requisitos e procedimentos técnicos para
+        garantir
+        que os aplicativos sejam devidamente protegidos de acordo com as práticas recomendadas de segurança.</li>
 </ul>
-<h2>References</h2>
+<h2>Referências</h2>
 <ul>
-    <li>Data Classification Policy</li>
-    <li>OWASP Risk Rating Methodology</li>
-    <li>OWASP Testing Guide</li>
-    <li>OWASP Top Ten Project</li>
+    <li>Política de Classificação de Dados</li>
+    <li>Metodologia de classificação de risco OWASP</li>
+    <li>Guia de teste OWASP</li>
+    <li>Projeto Top Ten da OWASP</li>
 </ul>
-<h2>Policy</h2>
+<h2>Política</h2>
 <ul>
-    <li>The organization must ensure that all applications it develops and/or acquires are securely configured and
-        managed.</li>
-    <li>The following security best practices must be considered and, if feasible, applied as a matter of the
-        application&rsquo;s security design:
+    <li>A organização deve garantir que todos os aplicativos que desenvolve e/ou adquire estão configurados e
+        gerenciado.</li>
+    <li>As seguintes práticas recomendadas de segurança devem ser consideradas e, se possível, aplicadas como uma
+        questão de
+        aplicativo&rsquo;s projeto de segurança:
         <ul>
-            <li>Data handled and managed by the application must be classified in accordance with the Data
-                Classification Policy (reference (a)).</li>
-            <li>If the application processes confidential information, a confidential record banner must be prominently
-                displayed which highlights the type of confidential data being accessed (e.g., personally-identifiable
-                information (PII), protected health information (PHI), etc.)</li>
-            <li>Sensitive data, especially data specifically restricted by law or policy (e.g., social security numbers,
-                passwords, and credit card data) should not be displayed in plaintext.</li>
-            <li>Ensure that applications validate input properly and restrictively, allowing only those types of input
-                that are known to be correct. Examples include, but are not limited to cross-site scripting, buffer
-                overflow errors, and injection flaws.</li>
-            <li>Ensure that applications execute proper error handling so that errors will not provide detailed system
-                information to an unprivileged user, deny service, impair security mechanisms, or crash the system.</li>
-            <li>Where possible, authorize access to applications by affiliation, membership or employment, rather than
-                by individual. Provide an automated review of authorizations on a regular basis, where possible.</li>
-            <li>Ensure that applications encrypt data at rest and in transit.</li>
-            <li>Implement application logging to the extent practical. Retain logs of all users and access events for at
-                least 14 days.</li>
-            <li>Qualified peers conduct security reviews of code &nbsp;for all new or significantly modified
-                applications; particularly, those that affect the collection, use, and/or display of confidential data.
-                Document all actions taken.</li>
-            <li>Implement a change management process for changes to existing software applications.</li>
-            <li>Standard configuration of the application must be documented.</li>
-            <li>Default passwords used within the application, such as for administrative control panels or integration
-                with databases must be changed immediately upon installation.</li>
-            <li>Applications must require complex passwords in accordance with current security best practices (at least
-                8 characters in length, combination of alphanumeric upper/lowercase characters and symbols).</li>
-            <li>During development and testing, applications must not have access to live data.</li>
+            <li>Os dados tratados e gerenciados pelo aplicativo devem ser classificados de acordo com o Regulamento de
+                Dados
+                Política de Classificação (referência (a)).</li>
+            <li>Se o aplicativo processar informações confidenciais, um banner de registro confidencial deverá estar em
+                destaque
+                exibido que destaca o tipo de dados confidenciais que estão sendo acessados ​​(por exemplo, dados de
+                identificação pessoal
+                informações de saúde protegidas (PII), informações de saúde protegidas (PHI), etc.)</li>
+            <li>Dados confidenciais, especialmente dados especificamente restritos por lei ou política (por exemplo,
+                números de segurança social,
+                senhas e dados de cartão de crédito) não devem ser exibidos em texto simples.</li>
+            <li>Garantir que os aplicativos validem as entradas de maneira adequada e restritiva, permitindo apenas
+                esses tipos de entrada
+                que se sabe estarem corretos. Os exemplos incluem, entre outros, scripts entre sites, buffer
+                erros de overflow e falhas de injeção.</li>
+            <li>Garantir que os aplicativos executem o tratamento de erros adequado para que os erros não forneçam
+                informações detalhadas do sistema
+                informações a um usuário sem privilégios, negar serviço, prejudicar mecanismos de segurança ou travar o
+                sistema.</li>
+            <li>Sempre que possível, autorize o acesso às candidaturas por afiliação, associação ou emprego, em vez de
+                por indivíduo. Forneça uma revisão automatizada das autorizações regularmente, sempre que possível.</li>
+            <li>Garanta que os aplicativos criptografem os dados em repouso e em trânsito.</li>
+            <li>Implemente o registro de aplicativos na medida do possível. Retenha registros de todos os usuários e
+                acesse eventos por pelo menos
+                pelo menos 14 dias.</li>
+            <li>Pessoas qualificadas realizam análises de segurança do código &nbsp;para todos os novos ou
+                significativamente modificados
+                formulários; particularmente aqueles que afetam a coleta, uso e/ou exibição de dados confidenciais.
+                Documente todas as ações realizadas.</li>
+            <li>Implemente um processo de gerenciamento de mudanças em aplicativos de software existentes.</li>
+            <li>A configuração padrão do aplicativo deve ser documentada.</li>
+            <li>Senhas padrão usadas no aplicativo, como para painéis de controle administrativo ou integração
+                com bancos de dados devem ser alterados imediatamente após a instalação.</li>
+            <li>Os aplicativos devem exigir senhas complexas de acordo com as práticas recomendadas de segurança atuais
+                (pelo menos
+                8 caracteres de comprimento, combinação de caracteres alfanuméricos maiúsculos/minúsculos e símbolos).
+            </li>
+            <li>Durante o desenvolvimento e os testes, os aplicativos não devem ter acesso a dados ativos.</li>
         </ul>
     </li>
-    <li>Where applications are acquired from a third party, such as a vendor:
+    <li>Quando os aplicativos são adquiridos de terceiros, como um fornecedor:
         <ul>
-            <li>Only applications that are supported by an approved vendor shall be procured and used.</li>
-            <li>Full support contracts must be arranged with the application vendor for full life-cycle support.</li>
-            <li>No custom modifications may be applied to the application without confirmation that the vendor can
-                continue to provide support.</li>
-            <li>Updates, patches and configuration changes issued by the vendor shall be implemented as soon as
-                possible.</li>
-            <li>A full review of applications and licenses shall be completed at least annually, as part of regular
-                software reviews.</li>
+            <li>Somente aplicativos suportados por um fornecedor aprovado serão adquiridos e usados.</li>
+            <li>Os contratos de suporte completo devem ser firmados com o fornecedor do aplicativo para suporte durante
+                todo o ciclo de vida.</li>
+            <li>Nenhuma modificação personalizada pode ser aplicada ao aplicativo sem a confirmação de que o fornecedor
+                pode
+                continue a fornecer suporte.</li>
+            <li>Atualizações, patches e alterações de configuração emitidas pelo fornecedor deverão ser implementadas
+                assim que
+                possível.</li>
+            <li>Uma análise completa dos pedidos e licenças deverá ser concluída pelo menos uma vez por ano, como parte
+                do processo regular
+                análises de software.</li>
         </ul>
     </li>
-    <li>Web applications must be assessed according to the following criteria:
+    <li>As aplicações Web devem ser avaliadas de acordo com os seguintes critérios:
         <ul>
-            <li>New or major application releases must have a full assessment prior to approval of the change control
-                documentation and/or release into the production environment.</li>
-            <li>Third-party or acquired applications must have a full assessment prior to deployment.</li>
-            <li>Software releases must have an appropriate assessment, as determined by the organization&rsquo;s
-                information security manager, with specific evaluation criteria based on the security risks inherent in
-                the changes made to the application&rsquo;s functionality and/or architecture.</li>
-            <li>Emergency releases may forego security assessments and carry the assumed risk until a proper assessment
-                can be conducted. Emergency releases must be approved by the Chief Information Officer or designee.</li>
-            <li>Vulnerabilities that are discovered during application assessments must be mitigated based upon the
-                following risk levels, which are based on the Open Web Application Security Project (OWASP) Risk Rating
-                Methodology (reference (b)):
+            <li>Versões de aplicativos novos ou principais devem passar por uma avaliação completa antes da aprovação do
+                controle de alterações
+                documentação e/ou lançamento no ambiente de produção.</li>
+            <li>Aplicativos adquiridos ou de terceiros devem passar por uma avaliação completa antes da implantação.
+            </li>
+            <li>As versões de software devem ter uma avaliação apropriada, conforme determinado pela organização&rsquo;
+                gestor de segurança da informação, com critérios de avaliação específicos baseados nos riscos de
+                segurança inerentes
+                as alterações feitas no aplicativo&rsquo;s funcionalidade e/ou arquitetura.</li>
+            <li>As liberações emergenciais podem renunciar às avaliações de segurança e assumir o risco assumido até uma
+                avaliação adequada
+                pode ser conduzido. As liberações de emergência devem ser aprovadas pelo Diretor de Informações ou
+                pessoa designada.</li>
+            <li>As vulnerabilidades descobertas durante as avaliações de aplicativos devem ser mitigadas com base no
+                seguintes níveis de risco, que são baseados na classificação de risco do Open Web Application Security
+                Project (OWASP)
+                Metodologia (referência (b)):
                 <ul>
-                    <li>High - issues categorized as high risk must be fixed immediately, otherwise alternate mitigation
-                        strategies must be implemented to limit exposure before deployment. Applications with high risk
-                        issues are subject to being taken off-line or denied release into the production environment.
+                    <li>Alto - problemas classificados como de alto risco devem ser corrigidos imediatamente; caso
+                        contrário, mitigação alternativa
+                        estratégias devem ser implementadas para limitar a exposição antes da implantação. Aplicações
+                        com alto risco
+                        problemas estão sujeitos a serem colocados off-line ou negados a liberação no ambiente de
+                        produção.
                     </li>
-                    <li>Medium - issues categorized as medium risk must be reviewed to determine specific items to be
-                        mitigated. Actions to implement mitigations must be scheduled. Applications with medium risk
-                        issues may be taken off-line or denied release into the production environment based on the
-                        number of issues; multiple issues may increase the risk to an unacceptable level. Issues may be
-                        fixed in patch releases unless better mitigation options are present.</li>
-                    <li>Low - issues categorized as low risk must be reviewed to determine specific items to be
-                        mitigated. Actions to implement mitigations must be scheduled.</li>
+                    <li>Médio - questões categorizadas como de risco médio devem ser revisadas para determinar itens
+                        específicos a serem
+                        mitigado. As ações para implementar mitigações devem ser agendadas. Aplicações com risco médio
+                        problemas podem ser colocados off-line ou ter sua liberação negada no ambiente de produção com
+                        base no
+                        número de questões; vários problemas podem aumentar o risco a um nível inaceitável. Os problemas
+                        podem ser
+                        corrigido em versões de patch, a menos que melhores opções de mitigação estejam presentes.</li>
+                    <li>Baixo - questões categorizadas como de baixo risco devem ser revisadas para determinar itens
+                        específicos a serem
+                        mitigado. As ações para implementar mitigações devem ser agendadas.</li>
                 </ul>
             </li>
         </ul>
     </li>
-    <li>Testing is required to validate fixes and/or mitigation strategies for any security vulnerabilities classified
-        as Medium risk or greater.</li>
-    <li>The following security assessment types may be leveraged to perform an application security assessment:
+    <li>É necessário testar para validar correções e/ou estratégias de mitigação para quaisquer vulnerabilidades de
+        segurança classificadas
+        como risco Médio ou superior.</li>
+    <li>Os seguintes tipos de avaliação de segurança podem ser aproveitados para realizar uma avaliação de segurança de
+        aplicativo:
         <ul>
-            <li>Full - comprised of tests for all known web application vulnerabilities using both automated and manual
-                tools based on the OWASP Testing Guide (reference (c)). A full assessment must leverage manual
-                penetration testing techniques to validate discovered vulnerabilities to determine the overall risk of
-                any and all discovered issues.</li>
-            <li>Quick - consists of an automated scan of an application for, at a minimum, the OWASP Top Ten web
-                application security risks (reference (d)).</li>
-            <li>Targeted - verifies vulnerability remediation changes or new application functionality.</li>
-            <li>To counter the risk of unauthorized access, the organization maintains a Data Center Security Policy
-                (reference (c)).</li>
-            <li>Security requirements for the software development life cycle, including system development, acquisition
-                and maintenance are defined in the Software Development Lifecycle Policy (reference (d)).</li>
-            <li>Security requirements for handling information security incidents are defined in the Security Incident
-                Response Policy (reference (e)).</li>
-            <li>Disaster recovery and business continuity management policy is defined in the Disaster Recovery Policy
-                (reference (f)).</li>
-            <li>Requirements for information system availability and redundancy are defined in the System Availability
-                Policy (reference (g)).</li>
+            <li>Completo - composto por testes para todas as vulnerabilidades conhecidas de aplicativos da Web usando
+                testes automatizados e manuais
+                ferramentas baseadas no OWASP Testing Guide (referência (c)). Uma avaliação completa deve aproveitar o
+                manual
+                técnicas de teste de penetração para validar vulnerabilidades descobertas para determinar o risco geral
+                de
+                todo e qualquer problema descoberto.</li>
+            <li>Rápido - consiste em uma varredura automatizada de um aplicativo para, no mínimo, o OWASP Top Ten web
+                riscos de segurança do aplicativo (referência (d)).</li>
+            <li>Direcionado - verifica alterações de correção de vulnerabilidades ou novas funcionalidades do
+                aplicativo.</li>
+            <li>Para combater o risco de acesso não autorizado, a organização mantém uma Política de Segurança do Data
+                Center
+                (referência (c)).</li>
+            <li>Requisitos de segurança para o ciclo de vida de desenvolvimento de software, incluindo desenvolvimento
+                de sistemas, aquisição
+                e manutenção são definidas na Política de Ciclo de Vida de Desenvolvimento de Software (referência (d)).
+            </li>
+            <li>Os requisitos de segurança para lidar com incidentes de segurança da informação são definidos no
+                Incidente de Segurança
+                Política de resposta (referência (e)).</li>
+            <li>A política de recuperação de desastres e gestão de continuidade de negócios é definida na Política de
+                Recuperação de Desastres
+                (referência (f)).</li>
+            <li>Os requisitos para disponibilidade e redundância do sistema de informação são definidos no documento
+                Disponibilidade do Sistema
+                Política (referência (g)).</li>
         </ul>
     </li>
 </ul>

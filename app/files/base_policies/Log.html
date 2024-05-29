@@ -1,69 +1,88 @@
-<h2>Purpose and Scope</h2>
+<h2>Finalidade e âmbito</h2>
 <ul>
-    <li>This log management and review policy defines specific requirements for information systems to generate, store,
-        process, and aggregate appropriate audit logs across the organization&rsquo;s entire environment in order to
-        provide key information and detect indicators of potential compromise.</li>
-    <li>This policy applies to all information systems within the organization&rsquo;s production network.</li>
-    <li>This policy applies to all employees, contractors, and partners of the organization that administer or provide
-        maintenance on the organization&rsquo;s production systems. Throughout this policy, these individuals are
-        referred to as system administrators.</li>
+    <li>Esta política de gerenciamento de logs e revisão define requisitos específicos para sistemas de informação
+        gerar, armazenar,
+        processo e agregar logs de auditoria apropriados em todo o ambiente da organização para
+        Forneça informações importantes e detecte indicadores de compromisso potencial.</li>
+    <li>Esta política se aplica a todos os sistemas de informação da rede de produção da organização.</li>
+    <li>Esta política se aplica a todos os funcionários, contratados e parceiros da organização que administram ou
+        fornecem
+        Manutenção nos sistemas de produção da organização.Ao longo desta política, esses indivíduos são
+        referido como administradores de sistema.</li>
 </ul>
-<h2>Background</h2>
+<h2>Fundo</h2>
 <ul>
-    <li>In order to measure an information system&rsquo;s level of security through confidentiality, integrity, and
-        availability, the system must collect audit data that provides key insights into system performance and
-        activities. This audit data is collected in the form of system logs. Logging from critical systems,
-        applications, and services provides information that can serve as a starting point for metrics and incident
-        investigations. This policy provides specific requirements and instructions for how to manage such logs.</li>
+    <li>Para medir o nível de segurança de um sistema de informação por meio de confidencialidade, integridade e
+        Disponibilidade, o sistema deve coletar dados de auditoria que fornecem informações importantes sobre o
+        desempenho do sistema e
+        Atividades.Esses dados de auditoria são coletados na forma de logs do sistema.Registro de sistemas críticos,
+        Aplicativos e serviços fornecem informações que podem servir como ponto de partida para métricas e incidentes
+        investigações.Esta política fornece requisitos e instruções específicas sobre como gerenciar esses logs.</li>
 </ul>
-<h2>Policy</h2>
+<h2>Política</h2>
 <ul>
-    <li>All production systems within the organization shall record and retain audit-logging information that includes
-        the following information:
+    <li>Todos os sistemas de produção dentro da organização devem registrar e reter informações de registro de auditoria
+        que incluam
+        a informação a seguir:
         <ul>
-            <li>Activities performed on the system.</li>
-            <li>The user or entity (i.e. system account) that performed the activity, including the system that the
-                activity was performed from.</li>
-            <li>The file, application, or other object that the activity was performed on.</li>
-            <li>The time that the activity occurred.</li>
-            <li>The tool that the activity was performed with.</li>
-            <li>The outcome (e.g., success or failure) of the activity.</li>
+            <li>Atividades realizadas no sistema.</li>
+            <li>O usuário ou entidade (ou seja, conta do sistema) que realizou a atividade, incluindo o sistema que o
+                A atividade foi realizada.</li>
+            <li>O arquivo, aplicação ou outro objeto em que a atividade foi realizada.</li>
+            <li>O tempo em que a atividade ocorreu.</li>
+            <li>A ferramenta com a qual a atividade foi realizada.</li>
+            <li>O resultado (por exemplo, sucesso ou falha) da atividade.</li>
         </ul>
     </li>
-    <li>Specific activities to be logged must include, at a minimum:
+    <li>As atividades específicas a serem registradas devem incluir, no mínimo:
         <ul>
-            <li>Information (including authentication information such as usernames or passwords) is created, read,
-                updated, or deleted.</li>
-            <li>Accepted or initiated network connections.</li>
-            <li>User authentication and authorization to systems and networks.</li>
-            <li>Granting, modification, or revocation of access rights, including adding a new user or group; changing
-                user privileges, file permissions, database object permissions, firewall rules, and passwords.</li>
-            <li>System, network, or services configuration changes, including software installation, patches, updates,
-                or other installed software changes.</li>
-            <li>Startup, shutdown, or restart of an application.</li>
-            <li>Application process abort, failure, or abnormal end, especially due to resource exhaustion or reaching a
-                resource limit or threshold (such as CPU, memory, network connections, network bandwidth, disk space, or
-                other resources), the failure of network services such as DHCP or DNS, or hardware fault.</li>
-            <li>Detection of suspicious and/or malicious activity from a security system such as an Intrusion Detection
-                or Prevention System (IDS/IPS), anti-virus system, or anti-spyware system.</li>
+            <li>Informações (incluindo informações de autenticação como nomes de usuário ou senhas) são criadas, lida,
+                lida,
+                atualizado ou excluído.</li>
+            <li>Conexões de rede aceitas ou iniciadas.</li>
+            <li>Autenticação e autorização do usuário para sistemas e redes.</li>
+            <li>Concessão, modificação ou revogação de direitos de acesso, incluindo a adição de um novo usuário ou
+                grupo;mudando
+                Privilégios de usuário, permissões de arquivos, permissões de objeto de banco de dados, regras de
+                firewall e senhas.</li>
+            <li>Alterações de configuração de sistema, rede ou serviços, incluindo instalação de software, patches,
+                atualizações,
+                ou outras mudanças de software instaladas.</li>
+            <li>Startup, desligamento ou reinicialização de um aplicativo.</li>
+            <li>Aborto do processo de aplicação, falha ou fim anormal, especialmente devido à exaustão de recursos ou
+                atingindo um
+                Limite ou limite de recursos (como CPU, memória, conexões de rede, largura de banda de rede, espaço em
+                disco ou
+                Outros recursos), a falha de serviços de rede, como DHCP ou DNS ou falha de hardware.</li>
+            <li>Detecção de atividades suspeitas e/ou maliciosas de um sistema de segurança, como uma detecção de
+                intrusão
+                ou sistema de prevenção (IDS/IPS), sistema antivírus ou sistema anti-spyware.</li>
         </ul>
     </li>
-    <li>Unless technically impractical or infeasible, all logs must be aggregated in a central system so that activities
-        across different systems can be correlated, analyzed, and tracked for similarities, trends, and cascading
-        effects. Log aggregation systems must have automatic and timely log ingest, event and anomaly tagging and
-        alerting, and ability for manual review.</li>
+    <li>A menos que tecnicamente impraticável ou inviável, todos os toras devem ser agregados em um sistema central para
+        que as atividades
+        Em diferentes sistemas, podem ser correlacionados, analisados ​​e rastreados para semelhanças, tendências e
+        cascata
+        efeitos.Os sistemas de agregação de logs devem ter uma marcação automática e oportuna de ingestão, evento e
+        anomalia e
+        alerta e capacidade de revisão manual.</li>
     <li>Logs must be manually reviewed on a regular basis:
         <ul>
-            <li>The activities of users, administrators and system operators must be reviewed on at least a monthly
-                basis.</li>
-            <li>Logs related to PII must be reviewed on at least a monthly basis in order to identify unusual behavior.
-            </li>
+            <li>As atividades de usuários, administradores e operadores do sistema devem ser revisados ​​em pelo menos
+                um mensal
+                base.</li>
+            <li>Os registros relacionados ao PII devem ser revisados ​​pelo menos mensalmente, a fim de identificar
+                comportamentos incomuns.</li>
         </ul>
     </li>
-    <li>When using an outsourced cloud environment, logs must be kept on cloud environment access and use, resource
-        allocation and utilization, and changes to PII. Logs must be kept for all administrators and operators
-        performing activities in cloud environments.</li>
-    <li>All information systems within the organization must synchronize their clocks by implementing Network Time
-        Protocol (NTP) or a similar capability. All information systems must synchronize with the same primary time
-        source.</li>
+    <li>Ao usar um ambiente de nuvem terceirizado, os logs devem ser mantidos no acesso e uso do ambiente em nuvem,
+        recurso
+        alocação e utilização e alterações no PII.Os registros devem ser mantidos para todos os administradores e
+        operadores
+        realizando atividades em ambientes em nuvem.</li>
+    <li>Todos os sistemas de informação dentro da organização devem sincronizar seus relógios implementando o tempo de
+        rede
+        Protocolo (NTP) ou uma capacidade semelhante.Todos os sistemas de informação devem sincronizar com o mesmo
+        horário primário
+        fonte.</li>
 </ul>
