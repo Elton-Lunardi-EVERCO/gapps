@@ -6,22 +6,22 @@
   <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
     <div class="card bg-base-100 border border-base-200">
       <div class="card-body">
-        <h2 class="card-title">User Information</h2>
-        <p class="text-sm font-medium ">Edit information</p>
+        <h2 class="card-title">Informações do usuário</h2>
+        <p class="text-sm font-medium ">Editar informações</p>
         <form action="{{url_for("main.user_profile",uid=user.id)}}" method="POST">
           <div class="overflow-hidden sm:rounded-md">
             <div class="px-4 py-5">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="first" class="block text-sm font-medium ">First name</label>
+                  <label for="first" class="block text-sm font-medium ">Primeiro Nome</label>
                   <input type="text" name="first" id="first" value="{{user.first_name}}" class="mt-1 block w-full input-md rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="last" class="block text-sm font-medium ">Last name</label>
+                  <label for="last" class="block text-sm font-medium ">Sobrenome</label>
                   <input type="text" name="last" id="last" value="{{user.last_name}}" class="mt-1 block w-full input-md rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="username" class="block text-sm font-medium ">Username</label>
+                  <label for="username" class="block text-sm font-medium ">Nome de usuário</label>
                   <input type="text" name="username" id="username" value="{{user.username}}" class="mt-1 block w-full input-md rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
                 <div class="col-span-6 sm:col-span-3">
@@ -29,16 +29,16 @@
                   <input type="text" name="email" id="email" autocomplete="email" value="{{user.email}}" class="{%if not is_admin%}pointer-events-none bg-slate-200{%endif%} mt-1 input-md block w-full rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="active" class="block text-sm font-medium ">Active</label>
+                  <label for="active" class="block text-sm font-medium ">Ativo</label>
                   <select id="active" name="active" class="{%if not is_admin%}pointer-events-none bg-slate-200{%endif%} mt-1 input-md block w-full rounded-md border border border-base-300 py-2 px-3 shadow-sm sm:text-sm">
-                    <option value="yes" {%if user.is_active%}selected{%endif%}>Active</option>
-                    <option value="no" {%if not user.is_active%}selected{%endif%}>Inactive</option>
+                    <option value="yes" {%if user.is_active%}selected{%endif%}>Ativado</option>
+                    <option value="no" {%if not user.is_active%}selected{%endif%}>Desativado</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
-              <button class="btn btn-primary">Save</button>
+              <button class="btn btn-primary">Salvar</button>
             </div>
           </div>
         </form>
@@ -48,23 +48,23 @@
   <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 mt-6">
     <div class="card bg-base-100 border border-base-200">
       <div class="card-body">
-        <h2 class="card-title">Change Password</h2>
+        <h2 class="card-title">Mudar Senha</h2>
         <form action="{{url_for("main.change_password",uid=user.id)}}" method="POST">
           <div class="overflow-hidden sm:rounded-md">
             <div class="px-4 py-5">
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="first" class="block text-sm font-medium ">Password</label>
+                  <label for="first" class="block text-sm font-medium ">Senha</label>
                   <input type="text" name="password" id="password" class="mt-1 block w-full input-md rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
                 <div class="col-span-6 sm:col-span-3">
-                  <label for="last" class="block text-sm font-medium ">Repeat password</label>
+                  <label for="last" class="block text-sm font-medium ">Repita a Senha</label>
                   <input type="text" name="password2" id="password2" class="mt-1 block w-full input-md rounded-md border border-base-300 shadow-sm  sm:text-sm">
                 </div>
               </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
-              <button class="btn btn-primary">Save</button>
+              <button class="btn btn-primary">Salvar</button>
             </div>
           </div>
         </form>

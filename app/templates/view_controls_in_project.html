@@ -15,9 +15,9 @@
               <h1 class="text-2xl tracking-tight font-bold text-gray-900 {%block hide_title_on_mobile%}{%endblock%}">
                 <div class="breadcrumbs p-0">
                   <ul>
-                    <li><a href="{{url_for("main.projects")}}">Projects</a></li>
+                    <li><a href="{{url_for("main.projects")}}">Projetos</a></li>
                     <li><a href="{{url_for("main.view_project",id=project.id)}}">{{project.name}}</a></li>
-                    <li class="text-primary">Controls</li>
+                    <li class="text-primary">Controles</li>
                   </ul>
                 </div>
               </h1>
@@ -25,10 +25,10 @@
           </div>
         </div>
         <div class="tabs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-x-4">
-          <a href="{{url_for("main.view_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Project Summary</a>
-          <a href="{{url_for("main.view_policies_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Policies</a>
-          <a href="{{url_for("main.view_controls_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-primary tab-active">Controls</a>
-          <a href="{{url_for("main.view_settings_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Settings</a>
+          <a href="{{url_for("main.view_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Resumo do projeto</a>
+          <a href="{{url_for("main.view_policies_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Políticas</a>
+          <a href="{{url_for("main.view_controls_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-primary tab-active">Controles</a>
+          <a href="{{url_for("main.view_settings_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Configurações</a>
         </div>
     </header>
 {%endblock%}
@@ -38,18 +38,18 @@
             <div class="col-span-6">
     <div class="card bg-base-100">
       <div class="card-body">
-        <h2 class="card-title mb-2">Controls</h2>
-        <p class="text-sm text-gray-500 font-medium mb-4">These {{controls|length}} controls are included in your project. Be sure to update the status and implementation effort. <a href="{{config.DOC_LINK}}" class="text-primary">Need help?</a></p>
+        <h2 class="card-title mb-2">Controles</h2>
+        <p class="text-sm text-gray-500 font-medium mb-4">Estes {{controls|length}} controles estão incluídos em seu projeto. Certifique-se de atualizar o status e o esforço de implementação. <a href="{{config.DOC_LINK}}" class="text-primary">Precisa de Ajuda?</a></p>
         <table class="table table-vcenter table-bordered" id="controls-table" style="width:100%">
           <thead>
             <tr>
-              <th class="w-1">Reference</th>
-              <th class="w-1">Category</th>
-              <th>Name</th>
+              <th class="w-1">Referência</th>
+              <th class="w-1">Categoria</th>
+              <th>Nome</th>
               <th class="w-1">Status</th>
-              <th class="w-1">Implemented</th>
-              <th class="w-1">Evidence</th>
-              <th class="w-1">More</th>
+              <th class="w-1">Implementado</th>
+              <th class="w-1">Evidência</th>
+              <th class="w-1">Mais</th>
             </tr>
           </thead>
           <tbody>
@@ -76,8 +76,8 @@
 <div class="dropdown dropdown-top dropdown-end">
   <label tabindex="0" class="btn btn btn-sm border border-white btn-outline"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg></label>
   <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-    <li><a href="{{url_for("main.view_control_in_project",id=project.id,cid=project_control.id)}}" class="view">View</a></li>
-    <li><a data-name="{{project_control.name}}" data-id="{{project_control.id}}" class="remove-control">Remove from Project</a></li>
+    <li><a href="{{url_for("main.view_control_in_project",id=project.id,cid=project_control.id)}}" class="view">Vizualizar</a></li>
+    <li><a data-name="{{project_control.name}}" data-id="{{project_control.id}}" class="remove-control">Remover do Projeto</a></li>
   </ul>
 </div>
               </td>
@@ -105,8 +105,8 @@
     <div id="view-modal-body" class="card-body">
 <div class="overflow-hidden bg-white border shadow sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6">
-    <h3 class="text-lg font-medium leading-6 text-gray-900">Control Details</h3>
-    <p class="mt-1 max-w-2xl text-sm text-gray-500">View detailed information about the control</p>
+    <h3 class="text-lg font-medium leading-6 text-gray-900">Detalhes dos Controles</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">Veja informações detalhadas sobre o controle</p>
   </div>
   <div class="border-t border-gray-200">
     <dl id="div-holder"><dl>
@@ -129,7 +129,7 @@
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          success: function(data){
-             createToast("success","Removed control")
+             createToast("Sucesso!","Removed control")
              setTimeout(function() {location.reload();}, 500);
              return(data)
          },
@@ -158,17 +158,17 @@
                               console.log(data)
                               var divHolder = $("#div-holder")
                               divHolder.html("");
-                              divHolder.append(formatTableRow("Name",data["name"],"gray"));
-                              divHolder.append(formatTableRow("Reference Code",data["ref_code"],"white"));
-                              divHolder.append(formatTableRow("System Level",data["system_level"],"gray"));
+                              divHolder.append(formatTableRow("Nome",data["name"],"gray"));
+                              divHolder.append(formatTableRow("Codigo de Referência",data["ref_code"],"white"));
+                              divHolder.append(formatTableRow("Nível do Sistema",data["system_level"],"gray"));
                               divHolder.append(formatTableRow("Status",data["status"],"white"));
-                              divHolder.append(formatTableRow("Applicable",data["is_applicable"],"gray"));
-                              divHolder.append(formatTableRow("Complete",data["is_complete"],"white"));
-                              divHolder.append(formatTableRow("Category",data["category"],"gray"));
-                              divHolder.append(formatTableRow("Subcategory",data["subcategory"],"white"));
-                              divHolder.append(formatTableRow("Difficulty to Implement",data["dti"],"gray"));
-                              divHolder.append(formatTableRow("Difficulty to Collect",data["dtc"],"white"));
-                              divHolder.append(formatTableRow("Focus Areas",`<a href="/projects/${data["project_id"]}/controls/${data["id"]}" class="btn btn-xs">View ${data["focus_areas"].length} focus areas</p>`,"gray"));
+                              divHolder.append(formatTableRow("Aplicável",data["is_applicable"],"gray"));
+                              divHolder.append(formatTableRow("Completo",data["is_complete"],"white"));
+                              divHolder.append(formatTableRow("Categoria",data["category"],"gray"));
+                              divHolder.append(formatTableRow("Subcategoria",data["subcategory"],"white"));
+                              divHolder.append(formatTableRow("Dificuldade de Implementação",data["dti"],"gray"));
+                              divHolder.append(formatTableRow("DIficuldade de Coleta",data["dtc"],"white"));
+                              divHolder.append(formatTableRow("Áreas de Foco",`<a href="/projects/${data["project_id"]}/controls/${data["id"]}" class="btn btn-xs">View ${data["focus_areas"].length} focus areas</p>`,"gray"));
                               return(data)
                             },
                             error: function(errMsg) {

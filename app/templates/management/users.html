@@ -6,27 +6,27 @@
   {{ macro.filehelper(datatables=True) }}
 {% endblock %}
 
-{%block page_header_title%}User Management{%endblock%}
+{%block page_header_title%}Gerenciamento de usuários{%endblock%}
 {%block page_header_title_border%}{%endblock%}
-{%block page_header_buttons%}<button class="btn btn-primary btn-sm add-user-btn">Add User</button>{%endblock%}
+{%block page_header_buttons%}<button class="btn btn-primary btn-sm add-user-btn">Adicionar Usuários</button>{%endblock%}
 {%block tenant_btn%}{%endblock%}
 {%block content%}
 <div class="grid grid-cols-6 gap-4">
   <div class="col-span-6">
     <div class="card bg-base-100 border border-base-200">
       <div class="card-body">
-        <h2 class="card-title mb-4">Users</h2>
+        <h2 class="card-title mb-4">Usuários</h2>
               <table class="table table-vcenter" id="users" style="width:100%">
                 <thead>
                   <tr>
                     <th>Email</th>
-                    <th>Username</th>
-                    <th class="w-1">Create Tenant</th>
-                    <th class="w-1">Tenants</th>
-                    <th class="w-1">Active</th>
+                    <th>Nome de Usuário</th>
+                    <th class="w-1">Criar locatário</th>
+                    <th class="w-1">Locatários</th>
+                    <th class="w-1">Ativo</th>
                     <th class="w-1">Super</th>
-                    <th class="w-1">Confirmed</th>
-                    <th class="w-1">Manage</th>
+                    <th class="w-1">Confirmado</th>
+                    <th class="w-1">Gerenciar</th>
                   </tr>
                 </thead>
                 <tbody id="user-body"></tbody>
@@ -39,7 +39,7 @@
 <input type="checkbox" id="edit-user-modal" class="modal-toggle" />
 <label for="edit-user-modal" class="modal cursor-pointer">
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
-    <h3 class="text-lg font-bold">Edit User</h3>
+    <h3 class="text-lg font-bold">Editar Usuário</h3>
         <div class="py-4 sm:mt-0">
           <div class="md:grid md:grid-cols-1 md:gap-6">
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -50,17 +50,17 @@
                                     <input id="email" type="text" class="input input-bordered w-full" disabled/>
                                   </div>
                                   <div class="col-span-6 sm:col-span-3">
-                                    <label class="block text-sm font-medium mb-2">Username</label>
-                                    <input id="username" type="text" placeholder="Input username" class="input input-bordered w-full" />
+                                    <label class="block text-sm font-medium mb-2">Nome de Usuário</label>
+                                    <input id="username" type="text" placeholder="Insira o nome do usuário" class="input input-bordered w-full" />
                                   </div>
                           </div>
                           <div class="grid grid-cols-6 gap-6 mt-4">
                                   <div class="col-span-2">
-                                    <label class="block text-sm font-medium mb-2">Can User Create Tenants</label>
+                                    <label class="block text-sm font-medium mb-2">O Usuário pode criar Locatários</label>
                                     <input id="can-user-create-tenants" type="checkbox" class="toggle toggle-primary" checked />
                                   </div>
                                   <div class="col-span-2">
-                                    <label class="block text-sm font-medium mb-2">Active</label>
+                                    <label class="block text-sm font-medium mb-2">Ativo</label>
                                     <input id="active" type="checkbox" class="toggle toggle-primary" checked />
                                   </div>
                                   <div class="col-span-2">
@@ -71,7 +71,7 @@
                           <div id="tenant-div" class="grid grid-cols-10 gap-2 mt-4">
                           </div>
                           <div class="px-4 py-3 text-right sm:px-6">
-                                <button class="btn btn-primary save-edit-btn">Save</button>
+                                <button class="btn btn-primary save-edit-btn">Salvar</button>
                           </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
 <input type="checkbox" id="add-user-modal" class="modal-toggle" />
 <label for="add-user-modal" class="modal cursor-pointer">
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
-    <h3 class="text-lg font-bold">Add User</h3>
+    <h3 class="text-lg font-bold">Adicionar Usuário</h3>
         <div class="py-4 sm:mt-0">
           <div class="md:grid md:grid-cols-1 md:gap-6">
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -92,12 +92,12 @@
                                 <div class="grid grid-cols-6 gap-6">
                                   <div class="col-span-6 sm:col-span-3">
                                     <label for="email" class="block text-sm font-medium ">Email</label>
-                                    <input id="new-email" type="email" placeholder="Input email" class="input input-bordered w-full" />
+                                    <input id="new-email" type="email" placeholder="Insira o email" class="input input-bordered w-full" />
                                   </div>
                                   <div class="col-span-6 sm:col-span-3">
-                                    <label for="tenant" class="block text-sm font-medium ">Tenant</label>
+                                    <label for="tenant" class="block text-sm font-medium ">Locatário</label>
                                     <select id="new-tenant" class="select select-bordered w-full">
-                                      <option value="" selected>No tenant</option>
+                                      <option value="" selected>Sem Locatário</option>
                                       {%for tenant in tenants%}
                                       <option value="{{tenant.id}}">{{tenant.name}}</option>
                                       {%endfor%}
@@ -106,7 +106,7 @@
                                 </div>
                           </div>
                           <div class="px-4 py-3 text-right sm:px-6">
-                                <button class="btn btn-primary save-user-btn">Save</button>
+                                <button class="btn btn-primary save-user-btn">Salvar</button>
                           </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(data){
-        toast("Edited user settings")
+        toast("Configurações de usuário editadas")
         document.getElementById('edit-user-modal').checked = false;
         loadUserTable()
         return(data)
@@ -187,7 +187,7 @@
         data: JSON.stringify(data),
         dataType: "json",
         success: function(data){
-          toast("Invited user")
+          toast("Usuário convidado")
           document.getElementById('add-user-modal').checked = false;
           return(data)
         },
@@ -213,7 +213,7 @@
             var can_user_create_tenants = (data[user].can_user_create_tenant === true) ? '<p class="font-medium text-xs capitalize text-green-600 bg-green-400/10 rounded-full py-1 px-3 w-fit">True</p>' : '<p class="font-medium text-xs capitalize text-red-600 bg-red-400/10 rounded-full py-1 px-3 w-fit">False</p>';
             var is_super = (data[user].super === true) ? '<p class="font-medium text-xs capitalize text-green-600 bg-green-400/10 rounded-full py-1 px-3 w-fit">True</p>' : '<p class="font-medium text-xs capitalize text-red-600 bg-red-400/10 rounded-full py-1 px-3 w-fit">False</p>';
             var is_active = (data[user].is_active === true) ? '<p class="font-medium text-xs capitalize text-green-600 bg-green-400/10 rounded-full py-1 px-3 w-fit">True</p>' : '<p class="font-medium text-xs capitalize text-red-600 bg-red-400/10 rounded-full py-1 px-3 w-fit">False</p>';
-            $("#user-body").append(`<tr><td class="text-sm font-medium ">${clean(data[user].email)}</td><td class="text-sm font-medium ">${clean(data[user].username)}</td><td class="text-sm font-medium  capitalize">${can_user_create_tenants}</td><td class="text-sm font-medium  capitalize">${data[user].tenants.length}</td><td class="text-sm font-medium  capitalize">${is_active}</td><td class="text-sm font-medium ">${is_super}</td><td class="text-sm font-medium ">${data[user].email_confirmed_at}</td><td class="text-center"><button data-user-id="${data[user].id}" class="btn btn-xs edit-user-btn">Edit</button></td></tr>`);
+            $("#user-body").append(`<tr><td class="text-sm font-medium ">${clean(data[user].email)}</td><td class="text-sm font-medium ">${clean(data[user].username)}</td><td class="text-sm font-medium  capitalize">${can_user_create_tenants}</td><td class="text-sm font-medium  capitalize">${data[user].tenants.length}</td><td class="text-sm font-medium  capitalize">${is_active}</td><td class="text-sm font-medium ">${is_super}</td><td class="text-sm font-medium ">${data[user].email_confirmed_at}</td><td class="text-center"><button data-user-id="${data[user].id}" class="btn btn-xs edit-user-btn">Editar</button></td></tr>`);
           }
           $('#users').DataTable({"pageLength":25,"order": [[ 0, "desc" ]]});
           return(data)

@@ -18,9 +18,9 @@
               <table class="table table-vcenter" id="frameworks" style="width:100%">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th class="w-1">Controls</th>
-                    <th class="w-1">View</th>
+                    <th>Nome</th>
+                    <th class="w-1">Controles</th>
+                    <th class="w-1">Visualizar</th>
                   </tr>
                 </thead>
                 <tbody id="framework-body"></tbody>
@@ -33,7 +33,7 @@
 <input type="checkbox" id="edit-framework-modal" class="modal-toggle" />
 <label for="edit-framework-modal" class="modal cursor-pointer">
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
-    <h3 class="text-lg font-bold">Edit framework</h3>
+    <h3 class="text-lg font-bold">Editar framework</h3>
         <div class="py-4 sm:mt-0">
           <div class="md:grid md:grid-cols-1 md:gap-6">
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -42,7 +42,7 @@
                             <div id="edit-framework-body" class="col-span-6 sm:col-span-3"></div>
                           </div>
                           <div class="px-4 py-3 text-right sm:px-6">
-                                <button class="btn btn-primary save-edit-btn">Save</button>
+                                <button class="btn btn-primary save-edit-btn">Salvar</button>
                           </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
 <input type="checkbox" id="add-framework-modal" class="modal-toggle" />
 <label for="add-framework-modal" class="modal cursor-pointer">
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
-    <h3 class="text-lg font-bold">Add framework</h3>
+    <h3 class="text-lg font-bold">Adicionar framework</h3>
         <div class="py-4 sm:mt-0">
           <div class="md:grid md:grid-cols-1 md:gap-6">
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -62,17 +62,17 @@
                           <div class="px-4 py-5 sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
                                   <div class="col-span-3 sm:col-span-3">
-                                        <label class="block text-sm font-medium ">Name</label>
+                                        <label class="block text-sm font-medium ">Nome</label>
                                         <input placeholder="Enter the name of the framework" type="text" name="name" id="name" class="mt-3 border block w-full rounded-md border-base-300 shadow-sm input-md">
                                   </div>
                                   <div class="col-span-3 sm:col-span-3">
-                                        <label class="block text-sm font-medium ">Contact Email</label>
+                                        <label class="block text-sm font-medium ">Email para contato</label>
                                         <input type="text" name="contact" id="contact" class="mt-3 border block w-full rounded-md border-base-300 shadow-sm input-md">
                                   </div>
                                 </div>
                           </div>
                           <div class="px-4 py-3 text-right sm:px-6">
-                                <button class="btn btn-primary save-framework-btn">Save</button>
+                                <button class="btn btn-primary save-framework-btn">Salvar</button>
                           </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
         dataType: "json",
         success: function(data){
           for (var framework in data) {
-            $("#framework-body").append(`<tr><td class="text-sm font-medium  uppercase">${clean(data[framework].name)}</td><td class="text-sm font-medium ">${data[framework].controls}</td><td class="text-center"><a href="/frameworks/${clean(data[framework].name)}" class="btn btn-xs">View</a></td></tr>`);
+            $("#framework-body").append(`<tr><td class="text-sm font-medium  uppercase">${clean(data[framework].name)}</td><td class="text-sm font-medium ">${data[framework].controls}</td><td class="text-center"><a href="/frameworks/${clean(data[framework].name)}" class="btn btn-xs">Vizualizar</a></td></tr>`);
           }
           $('#frameworks').DataTable({"pageLength":25,"order": [[ 0, "desc" ]]});
           return(data)

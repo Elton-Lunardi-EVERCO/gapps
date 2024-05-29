@@ -6,7 +6,7 @@
 {{ macro.filehelper(datatables=True,select2=True,editor=True) }}
 {% endblock %}
 
-{%block page_header_title%}{{policy.name}}<p class="text-sm  font-medium">Create policies and associate them with your projects</p>{%endblock%}
+{%block page_header_title%}{{policy.name}}<p class="text-sm  font-medium">Crie políticas e associe-as aos seus projetos</p>{%endblock%}
 {%block page_header_title_border%}{%endblock%}
 
 {%block content%}
@@ -14,24 +14,24 @@
             <div class="col-span-2 h-full">
         <ul class="bg-base-100 p-2 rounded-box h-full mx-auto">
             <li class="text-xl font-medium ">
-                <p class="m-auto text-center mt-4 mb-4">Settings</p>
+                <p class="m-auto text-center mt-4 mb-4">Configurações</p>
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Policy name</label>
-              <input type="text" value="{{policy.name or ""}}" placeholder="Policy name" id="name" class="input w-full max-w-xs border border-base-300" />
+              <label class="block text-sm font-medium  mb-2">Nome da Política</label>
+              <input type="text" value="{{policy.name or ""}}" placeholder="Nome da Política" id="name" class="input w-full max-w-xs border border-base-300" />
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Ref Code</label>
-              <input type="text" value="{{policy.ref_code or ""}}" placeholder="Reference Code" id="ref_code" class="input w-full max-w-xs border border-base-300" />
+              <label class="block text-sm font-medium  mb-2">Código de Ref</label>
+              <input type="text" value="{{policy.ref_code or ""}}" placeholder="Código de Referência" id="ref_code" class="input w-full max-w-xs border border-base-300" />
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Description</label>
-              <input type="text" value="{{policy.description or ""}}" placeholder="Policy description" id="description" class="input w-full max-w-xs border border-base-300" />
+              <label class="block text-sm font-medium  mb-2">Descrição</label>
+              <input type="text" value="{{policy.description or ""}}" placeholder="Descrição da Política" id="description" class="input w-full max-w-xs border border-base-300" />
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Labels</label>
+              <label class="block text-sm font-medium  mb-2">Rótulos</label>
               <select class="select custom-select ql-insertCustomTags bg-transparent border border-base-300">
-                <option value="">Add Label</option>
+                <option value="">Adicionar Rótulo</option>
                 {%for label in labels.keys()%}
                 <option value="{{label}}" data-marker={{label}} data-title="{{label}}" data-colour="warning">{{label}}</option>
                 {%endfor%}
@@ -43,7 +43,7 @@
             <div class="col-span-8 h-full">
                 <div class="card bg-base-100 border border-base-200">
                     <div class="card-body gap-0">
-                        <h2 class="card-title text-xl font-medium  mb-4 justify-between">Policy Content</h2>
+                        <h2 class="card-title text-xl font-medium  mb-4 justify-between">Conteúdo da Política</h2>
                         <textarea id="default">{%if policy.content%}{{policy.content|safe}}{%endif%}</textarea>
                         <button class="save-policy btn btn-md btn-primary mt-4 w-20">Save</button>
                     </div>
@@ -52,14 +52,14 @@
             <div class="col-span-10">
                 <div class="card bg-base-100 border border-base-200">
                   <div class="card-body">
-                    <h2 class="card-title">Control Association</h2>
-                    <p class="text-sm  font-medium mb-4">Associate controls with your policy</p>
+                    <h2 class="card-title">Associação de Controle</h2>
+                    <p class="text-sm  font-medium mb-4">Associe controles à sua política</p>
                     <table class="table table-vcenter" id="control-table" style="width:100%">
                       <thead>
                         <tr>
-                          <th class="w-1">Associated</th>
-                          <th class="w-1">Control Code</th>
-                          <th>Control Name</th>
+                          <th class="w-1">Associado</th>
+                          <th class="w-1">Código de Controle</th>
+                          <th>Nome do Controle</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -118,7 +118,7 @@ tinymce.init({
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function(data){
-        toast("Saved policy")
+        toast("Política Salva!")
         return(data)
     },
     error: function(errMsg) {
@@ -141,7 +141,7 @@ tinymce.init({
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-          toast(`Updated the controls for the policy`)
+          toast(`Atualizados os controles da política`)
           return(data)
         },
         error: function(errMsg) {

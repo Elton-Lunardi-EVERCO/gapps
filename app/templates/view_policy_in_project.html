@@ -19,17 +19,17 @@
   <div class="min-w-0 flex-1">
     <div class="breadcrumbs text-2xl font-bold  sm:tracking-tight">
       <ul>
-        <li><a href="{{url_for("main.projects")}}">Projects</a></li>
+        <li><a href="{{url_for("main.projects")}}">Projetos</a></li>
         <li><a class="capitalize" href="{{url_for("main.view_project",pid=project.id)}}">{{project.name}}</a></li>
-        <li><a href="{{url_for("main.view_project",pid=project.id,tab="policies")}}">Policies</a></li>
+        <li><a href="{{url_for("main.view_project",pid=project.id,tab="policies")}}">Políticas</a></li>
         <li class="text-primary capitalize">{{policy.policy.name or policy.policy.ref_code}}</li>
       </ul>
     </div>
   </div>
   <div class="flex">
     <span class="ml-3 hidden sm:block">
-      <a href="{{url_for("main.view_rendered_policy",pid=policy.id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost border border-base-300">View</a>
-      <button class="save-policy btn btn-sm btn-primary">Save</button>
+      <a href="{{url_for("main.view_rendered_policy",pid=policy.id)}}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost border border-base-300">Vizualizar</a>
+      <button class="save-policy btn btn-sm btn-primary">Salvar</button>
     </span>
   </div>
 </div>
@@ -38,11 +38,11 @@
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184" /></svg>
         <span class="text-sm font-medium capitalize">{{project.framework.name}}</span>
       </div>
-      <div class="flex gap-x-2 py-1 px-2 tooltip" data-tip="Completion">
+      <div class="flex gap-x-2 py-1 px-2 tooltip" data-tip="Conclusão">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
         <span class="text-sm font-medium">{{project.progress("complete")}}%</span>
       </div>
-      <div class="flex gap-x-2 py-1 px-2 tooltip" data-tip="Started at">
+      <div class="flex gap-x-2 py-1 px-2 tooltip" data-tip="Começou às">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" /></svg>
         <span class="text-sm font-medium">{{project.simple(project.date_added)}}</span>
       </div>
@@ -54,8 +54,8 @@
       {%endif%}
       <div class="divider divider-horizontal"></div>
       <div class="flex gap-x-10 tabs">
-        <a href="{{url_for("main.view_project",pid=project.id,tab="summary")}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">Project Summary</a>
-        <a href="{{url_for("main.view_project",pid=project.id,tab="policies")}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">Project Policies</a>
+        <a href="{{url_for("main.view_project",pid=project.id,tab="summary")}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">Resumo do projeto</a>
+        <a href="{{url_for("main.view_project",pid=project.id,tab="policies")}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">Políticas do Projeto</a>
       </div>
     </div>
 
@@ -65,27 +65,27 @@
             <div class="col-span-2 h-full border border-base-200 rounded-lg">
         <ul class="bg-base-100 p-2 rounded-box h-full mx-auto">
             <li class="text-xl font-medium ">
-                <p class="m-auto text-center mt-4 mb-4">Settings</p>
+                <p class="m-auto text-center mt-4 mb-4">Configurações</p>
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Policy name</label>
-              <input type="text" value="{{policy.policy.name or ""}}" placeholder="Policy name" id="name" class="input w-full max-w-xs border border-base-300" disabled/>
+              <label class="block text-sm font-medium  mb-2">Nome da Política</label>
+              <input type="text" value="{{policy.policy.name or ""}}" placeholder="Nome da Política" id="name" class="input w-full max-w-xs border border-base-300" disabled/>
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Description</label>
-              <input type="text" value="{{policy.policy.description or ""}}" placeholder="Policy description" id="description" class="input w-full max-w-xs border border-base-300" disabled/>
+              <label class="block text-sm font-medium  mb-2">Descrição</label>
+              <input type="text" value="{{policy.policy.description or ""}}" placeholder="Descrição da Política" id="description" class="input w-full max-w-xs border border-base-300" disabled/>
             </li>
             <li class="px-2 mt-2">
-              <label class="block text-sm font-medium  mb-2">Labels</label>
+              <label class="block text-sm font-medium  mb-2">Rótulos</label>
               <select class="select custom-select bg-transparent border border-base-300">
-                <option value="">Add Label</option>
+                <option value="">Adicionar Rótulo</option>
                 {%for label in labels.keys()%}
                 <option value="{{label}}" data-marker={{label}} data-title="{{label}}" data-colour="warning">{{label}}</option>
                 {%endfor%}
               </select>
             </li>
             <li class="px-2 mt-2">
-            <label class="block text-sm font-medium  mb-2">Public</label>
+            <label class="block text-sm font-medium  mb-2">Público</label>
             {%if policy.public_viewable%}
             <input id="public" type="checkbox" class="toggle toggle-success" checked />
             {%else%}
@@ -97,19 +97,19 @@
             </div>
             <div class="col-span-8 h-full">
                 <textarea id="default">{%if policy.content%}{{policy.content|safe}}{%endif%}</textarea>
-                <button class="save-policy btn btn-md btn-primary mt-4 w-20 float-right">Save</button>
+                <button class="save-policy btn btn-md btn-primary mt-4 w-20 float-right">Salvar</button>
             </div>
             <div class="col-span-10">
                 <div class="card bg-base-100 border border-base-200">
                   <div class="card-body">
-                    <h2 class="card-title">Control Association</h2>
-                    <p class="text-sm  font-medium mb-4">Associate controls with your policy</p>
+                    <h2 class="card-title">Associação de Controle</h2>
+                    <p class="text-sm  font-medium mb-4">Associe controles à sua política</p>
                     <table class="table table-vcenter" id="control-table" style="width:100%">
                       <thead>
                         <tr>
-                          <th class="w-1">Associated</th>
-                          <th class="w-1">Control Code</th>
-                          <th>Control Name</th>
+                          <th class="w-1">Associado</th>
+                          <th class="w-1">Código de Controle</th>
+                          <th>Nome do Controle</th>
                           <th class="w-1">Status</th>
                         </tr>
                       </thead>
@@ -164,7 +164,7 @@ tinymce.init({
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function(data){
-        toast("Saved policy")
+        toast("Política Salva!")
         return(data)
     },
     error: function(errMsg) {
@@ -187,7 +187,7 @@ tinymce.init({
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-          toast(`Updated the controls for the policy`)
+          toast(`Atualizados os controles da política`)
           return(data)
         },
         error: function(errMsg) {

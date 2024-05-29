@@ -7,24 +7,24 @@
   {{ macro.filehelper(datatables=True,select2=True) }}
 {% endblock %}
 
-{%block page_header_title%}Controls<p class="text-sm  font-medium">Controls can be added to your projects. When you create a project, you can import a framework (which contains controls).</p>{%endblock%}
+{%block page_header_title%}Controles<p class="text-sm  font-medium">Os controles podem ser adicionados aos seus projetos. Ao criar um projeto, você pode importar uma estrutura (que contém controles).</p>{%endblock%}
 {%block page_header_title_border%}{%endblock%}
-{%block page_header_buttons%}<button class="btn btn-sm btn-primary modal-button">New Control</button>{%endblock%}
+{%block page_header_buttons%}<button class="btn btn-sm btn-primary modal-button">Novo controle</button>{%endblock%}
 
 {%block content%}
 <div class="grid grid-cols-6 gap-4 mt-2">
             <div class="col-span-6">
     <div class="card bg-base-100 border border-base-200">
       <div class="card-body">
-        <h2 class="card-title mb-2">Controls</h2>
+        <h2 class="card-title mb-2">Controles</h2>
         <p id="loader"></p>
         <table class="table table-vcenter " id="controls" style="width:100%">
           <thead>
             <tr>
-              <th class="w-1">Reference</th>
+              <th class="w-1">Referência</th>
               <th class="w-1">Framework</th>
-              <th class="">Name</th>
-              <th class="w-1">More</th>
+              <th class="">Nome</th>
+              <th class="w-1">Mais</th>
             </tr>
           </thead>
           <tbody id="control-body"></tbody>
@@ -39,13 +39,13 @@
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
     <h3 id="add-to-project-modal-title" class="text-lg font-bold"></h3>
     <div id="add-to-project-modal-body" class="card-body">
-      <label class="block text-sm font-medium ">Selected Control</label>
+      <label class="block text-sm font-medium ">Selecionar Controle</label>
       <p id="modal-p" class="mb-2"></p>
-      <label class="block text-sm font-medium ">Select Project</label>
+      <label class="block text-sm font-medium ">Selecionar Projeto</label>
       <select id="selected-project" class="select select-bordered w-full max-w-xs"></select>
     </div>
     <div class="px-4 py-3 text-right sm:px-6">
-      <button class="btn btn-primary btn-save-control-to-project">Save</button>
+      <button class="btn btn-primary btn-save-control-to-project">Salvar</button>
     </div>
   </label>
 </label>
@@ -57,18 +57,18 @@
     <div id="view-modal-body" class="card-body">
 <div class="overflow-hidden border border-base-200 shadow sm:rounded-lg">
   <div class="px-4 py-5 sm:px-6 bg-base-200">
-    <h3 class="text-lg font-medium leading-6 ">Control Details</h3>
-    <p class="mt-1 max-w-2xl text-sm ">View detailed information about the control</p>
+    <h3 class="text-lg font-medium leading-6 ">Detalhes dos Controles</h3>
+    <p class="mt-1 max-w-2xl text-sm ">Veja informações detalhadas sobre o controle</p>
   </div>
   <div class="border-t border-base-200">
     <dl id="div-holder"></dl>
     <div class="px-4 py-5">
-      <h3 class="text-lg font-medium leading-6  mb-4">Subcontrols</h3>
+      <h3 class="text-lg font-medium leading-6  mb-4">Subcontroles</h3>
       <table class="table table-vcenter" id="control-table" style="width:100%">
         <thead>
           <tr>
             <th class="w-1">Ref</th>
-            <th>Name</th>
+            <th>Nome</th>
           </tr>
         </thead>
         <tbody id="control-table-body"></tbody>
@@ -85,9 +85,9 @@
 <div class="modal">
   <div class="modal-box relative w-11/12 max-w-7xl">
     <label for="control-modal" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <h3 class="text-lg font-bold">New Control</h3>
+    <h3 class="text-lg font-bold">Novo Controle</h3>
         <div class="py-4 sm:mt-0">
-                <p class="text-sm font-medium ">Create a new control which can be added to your projects. Subcontrols are child tasks of the control. For example, if you create a control with two (2) subcontrols, you would complete the subcontrols and the top level control would be satisfied. Subcontrols are not mandatory to use, but are highly encouraged to break down a control.</p>
+                <p class="text-sm font-medium ">Crie um novo controle que pode ser adicionado aos seus projetos. Os subcontroles são tarefas filhas do controle. Por exemplo, se você criar um controle com dois (2) subcontroles, você completará os subcontroles e o controle de nível superior será satisfeito. O uso de subcontroles não é obrigatório, mas é altamente recomendado para quebrar um controle.</p>
                 <div class="card-body">
           <div class="md:grid md:grid-cols-1 md:gap-6">
                 <div class="mt-5 md:col-span-2 md:mt-0">
@@ -95,50 +95,50 @@
                           <div class="px-4 py-5 sm:p-6 border border-base-200">
                                 <div class="grid grid-cols-6 gap-6">
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Name</label>
-                                        <input placeholder="Enter the name of the control" type="text" id="name" class="mt-2 block w-full rounded-md shadow-sm input-md border">
+                                        <label class="block text-sm font-medium ">Nome</label>
+                                        <input placeholder="Insira o nome do controle" type="text" id="name" class="mt-2 block w-full rounded-md shadow-sm input-md border">
                                   </div>
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Reference code</label>
-                                        <input placeholder="Enter the reference code" type="text" id="ref_code" class="mt-2 block w-full rounded-md shadow-sm input-md border">
+                                        <label class="block text-sm font-medium ">Código de Referência</label>
+                                        <input placeholder="Insira o código de referência" type="text" id="ref_code" class="mt-2 block w-full rounded-md shadow-sm input-md border">
                                   </div>
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium  mb-2">Select Framework (or create new one)</label>
+                                        <label class="block text-sm font-medium  mb-2">Selecionar Framework (ou criar um novo)</label>
                                         <select class="select select-bordered w-full max-w-xs framework-select" id="framework"></select>
                                   </div>
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">System Level</label>
+                                        <label class="block text-sm font-medium ">Nível do Sistema</label>
                                         <select class="select select-bordered w-full max-w-xs mt-2" id="system_level">
-                                          <option value="no" selected>False</option>
-                                          <option value="yes">True</option>
+                                          <option value="no" selected>Falso</option>
+                                          <option value="yes">Verdadeiro</option>
                                         </select>
                                   </div>
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Category</label>
-                                        <input placeholder="Enter the category" type="text" id="category" class="mt-2 block w-full rounded-md shadow-sm input-md border">
+                                        <label class="block text-sm font-medium ">Categoria</label>
+                                        <input placeholder="Insira a categoria" type="text" id="category" class="mt-2 block w-full rounded-md shadow-sm input-md border">
                                   </div>
                                   <div class="col-span-2 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Subcategory</label>
-                                        <input placeholder="Enter the subcategory" type="text" id="subcategory" class="mt-2 block w-full rounded-md shadow-sm input-md border">
+                                        <label class="block text-sm font-medium ">Subcategoria</label>
+                                        <input placeholder="Insira a subcategoria" type="text" id="subcategory" class="mt-2 block w-full rounded-md shadow-sm input-md border">
                                   </div>
                                   <div class="col-span-3 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Description</label>
+                                        <label class="block text-sm font-medium ">Descrição</label>
                                         <textarea data-name="description" id="description" class="textarea textarea-bordered w-full mt-2"></textarea>
                                   </div>
                                   <div class="col-span-3 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Implementation Difficulty</label>
+                                        <label class="block text-sm font-medium ">Dificuldade de Implementação</label>
                                         <select class="select select-bordered w-full max-w-xs mt-2" id="dti">
-                                          <option value="easy" selected>Easy</option>
-                                          <option value="moderate">Moderate</option>
-                                          <option value="hard">Hard</option>
+                                          <option value="easy" selected>Fácil</option>
+                                          <option value="moderate">Moderado</option>
+                                          <option value="hard">Díficil</option>
                                         </select>
                                   </div>
                                   <div class="col-span-3 sm:col-span-2">
-                                        <label class="block text-sm font-medium ">Collection Difficulty</label>
+                                        <label class="block text-sm font-medium ">Dificuldade de coleta</label>
                                         <select class="select select-bordered w-full max-w-xs mt-2" id="dtc">
-                                          <option value="easy" selected>Easy</option>
-                                          <option value="moderate">Moderate</option>
-                                          <option value="hard">Hard</option>
+                                          <option value="easy" selected>Fácil</option>
+                                          <option value="moderate">Moderado</option>
+                                          <option value="hard">Díficil</option>
                                         </select>
                                   </div>
                                 </div>
@@ -149,16 +149,16 @@
                     <table id="myTable" class="table order-list">
                         <thead class="thead-white">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Mitigation</th>
-                                <th scope="col w-1">Delete</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Mitigação</th>
+                                <th scope="col w-1">Excluir</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr id="subcontrol-1" class="item">
                                 <td>
-                                    <input type="text" name="name_0" class="form-control w-full input-md border name rounded-md" required="true" placeholder="Subcontrol name"/>
+                                    <input type="text" name="name_0" class="form-control w-full input-md border name rounded-md" required="true" placeholder="Nome do Subcontrole"/>
                                 </td>
                                 <td>
                                     <textarea rows="1" class="textarea textarea-bordered description"></textarea>
@@ -167,13 +167,13 @@
                                     <textarea rows="1" class="textarea textarea-bordered mitigation"></textarea>
                                 </td>
                                 <!--<td><a class="deleteRow btn-sm"></a></td>-->
-                                <td><input type="button" class="ibtnDel btn btn-sm btn-outline btn-error" value="Delete"></td>
+                                <td><input type="button" class="ibtnDel btn btn-sm btn-outline btn-error" value="Excluir"></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="5" class="text-left">
-                                    <input class="btn btn-md btn-primary btn-block" id="addrow" value="Add subcontrol" />
+                                    <input class="btn btn-md btn-primary btn-block" id="addrow" value="Adicionar Subcontrole" />
                                 </td>
                             </tr>
                             <tr>
@@ -182,7 +182,7 @@
                         </tfoot>
                     </table>
                     <div class="text-right">
-                      <button class="btn btn-primary save-control w-20">Save</button>
+                      <button class="btn btn-primary save-control w-20">Salvar</button>
                     </div>
                   </div>
 
@@ -211,7 +211,7 @@
         success: function(data){
           $("#loader").html("")
           for (var control in data) {
-            $("#control-body").append(`<tr data-control-id=${data[control].id}> <td class="text-sm font-medium  uppercase">${clean(data[control].ref_code)}</td><td><p class="font-medium text-xs uppercase text-primary bg-base-200 rounded-full py-1 px-3 w-fit">${clean(data[control].framework)}</p></td><td class="text-sm font-medium  whitespace-normal"><div class="tooltip" data-tip="Double click to see more"><div class="whitespace-normal text-left capitalize">${clean(data[control].name)}</div></div></td><td class="text-center"><div class="dropdown dropdown-top dropdown-end"><label tabindex="0" class="btn btn-sm btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg></label><ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"><li><a data-name="${clean(data[control].name)}" data-id="${data[control].id}" class="add-to-project">Add to project</a></li><li><a data-id="${data[control].id}" class="delete-control">Delete</a></li></ul></div></td></tr>`);
+            $("#control-body").append(`<tr data-control-id=${data[control].id}> <td class="text-sm font-medium  uppercase">${clean(data[control].ref_code)}</td><td><p class="font-medium text-xs uppercase text-primary bg-base-200 rounded-full py-1 px-3 w-fit">${clean(data[control].framework)}</p></td><td class="text-sm font-medium  whitespace-normal"><div class="tooltip" data-tip="Dois cliques para ver mais"><div class="whitespace-normal text-left capitalize">${clean(data[control].name)}</div></div></td><td class="text-center"><div class="dropdown dropdown-top dropdown-end"><label tabindex="0" class="btn btn-sm btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" /></svg></label><ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"><li><a data-name="${clean(data[control].name)}" data-id="${data[control].id}" class="add-to-project">Adicionar ao projeto</a></li><li><a data-id="${data[control].id}" class="delete-control">Excluir</a></li></ul></div></td></tr>`);
           }
           var table = $('#controls').DataTable({"pageLength":25,"order": [[ 0, "desc" ]]});
           table.on('dblclick', 'tbody tr', function() {
@@ -272,7 +272,7 @@
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          success: function(data){
-             toast("Deleted control","success")
+             toast("Controle Deletado!","success")
              loadControlTable();
              return(data)
          },
@@ -287,19 +287,19 @@
         var data = {
           "framework":$("#framework").val(),
           "controls": [{
-            "name":$("#name").val(),
-            "ref_code":$("#ref_code").val(),
-            "description":$("#description").val(),
-            "system_level":($("#system_level").val() === "yes") ? true : false,
-            "category":$("#category").val(),
-            "subcategory":$("#subcategory").val(),
+            "nome":$("#name").val(),
+            "ref_codigo":$("#ref_code").val(),
+            "descricao":$("#description").val(),
+            "nivel do sistema":($("#system_level").val() === "yes") ? true : false,
+            "categoria":$("#category").val(),
+            "subcategoria":$("#subcategory").val(),
             "dti":$("#dti").val(),
             "dtc":$("#dtc").val(),
-            "subcontrols":[]
+            "subcontrole":[]
           }],
         }
         if (data["framework"] == null || data["framework"].length === 0){
-          toast(`Framework is required`,"error")
+          toast(`Framework é necessário`,"error")
           return;
         }
         for (var control in data["controls"]) {
@@ -308,7 +308,7 @@
             var value = obj[key];
             if (key !== "subcontrols") {
               if (value == null || value.length === 0){
-                toast(`${key} is required`,"error")
+                toast(`${key} é necessário`,"error")
                 validation = false
               };
             };
@@ -338,7 +338,7 @@
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           success: function(data){
-            toast("Created control","success")
+            toast("Controle Criado!","success")
             document.getElementById('control-modal').checked = false;
             loadControlTable();
             return(data)
@@ -358,11 +358,11 @@
             var newRow = $(`<tr id="subcontrol-${counter}" class="item">`);
             var cols = "";
 
-            cols += '<td><input type="text" class="form-control w-full input-md name rounded-md" required="true" placeholder="Subcontrol name"></td>';
+            cols += '<td><input type="text" class="form-control w-full input-md name rounded-md" required="true" placeholder="Nome do Subcontrole"></td>';
             cols += '<td><textarea rows="1" class="textarea textarea-bordered description"></textarea></td>';
             cols += '<td><textarea rows="1" class="textarea textarea-bordered mitigation"></textarea></td>';
 
-            cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-outline btn-error" value="Delete"></td>';
+            cols += '<td><input type="button" class="ibtnDel btn btn-sm btn-outline btn-error" value="Excluir"></td>';
             newRow.append(cols);
             $("table.order-list").append(newRow);
             counter++;
@@ -406,7 +406,7 @@
          contentType: "application/json; charset=utf-8",
          dataType: "json",
          success: function(data){
-             toast("Added control to the project","success")
+             toast("Adicionado controle ao projeto","success")
              document.getElementById('add-to-project-modal').checked = false;
              return(data)
          },
@@ -419,7 +419,7 @@
      $(document).on('click', '.add-to-project', function() {
        var controlId = $(this).data('id')
        var controlName = $(this).data('name')
-       $("#modal-p").html('<div class="col-span-9 mx-auto mt-10"><div role="status"><svg aria-hidden="true" class="mr-2 w-8 h-8 animate-spin text-gray-200 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Loading...</span></div></div>')
+       $("#modal-p").html('<div class="col-span-9 mx-auto mt-10"><div role="status"><svg aria-hidden="true" class="mr-2 w-8 h-8 animate-spin text-gray-200 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Carregando...</span></div></div>')
        document.getElementById('add-to-project-modal').checked = true;
        $("#selected-project").html("")
        var selectedTenant = getTenant();
@@ -433,7 +433,7 @@
                $("#selected-project").append(`<option value="${data[project].id}">${data[project].name}</option>`)
              }
              $(".btn-save-control-to-project").data("id",controlId)
-             $("#add-to-project-modal-title").html(`Which project would you like to add this control to?`)
+             $("#add-to-project-modal-title").html(`A qual projeto você gostaria de adicionar esse controle?`)
              $("#modal-p").html(`${controlName}`)
              return(data)
          },

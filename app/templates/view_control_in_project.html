@@ -24,22 +24,22 @@
   <div class="min-w-0 flex-1">
     <div class="breadcrumbs text-2xl font-bold  sm:tracking-tight">
       <ul>
-        <li><a href="{{url_for("main.projects")}}">Projects</a></li>
+        <li><a href="{{url_for("main.projects")}}">Projetos</a></li>
         <li><a class="capitalize" href="{{url_for("main.view_project",pid=project.id)}}">{{project.name}}</a></li>
-        <li><a class="capitalize" href="{{url_for("main.view_project",pid=project.id,tab="controls")}}">Controls</a></li>
+        <li><a class="capitalize" href="{{url_for("main.view_project",pid=project.id,tab="controls")}}">Controles</a></li>
         <li><a class="uppercase text-primary hover:text-primary-focus" href="{{url_for("main.view_project",pid=project.id)}}">{{project_control.control.ref_code}}</a></li>
       </ul>
     </div>
   </div>
   <div class="flex">
     <span id="applicable-div" class="ml-3 hidden sm:block">
-      <button class="btn btn-sm"><div class="justify-center flex" role="status"><svg aria-hidden="true" class="w-5 h-5 animate-spin fill-blue-600 text-gray-200" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Loading...</span></div></button>
+      <button class="btn btn-sm"><div class="justify-center flex" role="status"><svg aria-hidden="true" class="w-5 h-5 animate-spin fill-blue-600 text-gray-200" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Carregando...</span></div></button>
     </span>
     <span class="ml-3 hidden sm:block">
-      <button class="btn format-btn reload-button btn-ghost border border-base-300 btn-sm">Reload<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2 svg-reload"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg></button>
+      <button class="btn format-btn reload-button btn-ghost border border-base-300 btn-sm">Recarregar<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2 svg-reload"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg></button>
     </span>
     <span class="ml-3 hidden sm:block">
-      <button class="btn btn-ghost border border-base-300 btn-sm" @click="document.getElementById('help-modal').checked = true">Help<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg></button>
+      <button class="btn btn-ghost border border-base-300 btn-sm" @click="document.getElementById('help-modal').checked = true">Ajuda<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 ml-2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg></button>
     </span>
   </div>
 </div>
@@ -70,28 +70,28 @@
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'overview' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Overview<span class="ml-1 text-sm" id="overview-title"></span>
+        Visão geral<span class="ml-1 text-sm" id="overview-title"></span>
         </button>
         <button
           x-on:click="changeTab('subcontrols')"
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'subcontrols' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Subcontrols<span class="ml-1 text-sm" id="subcontrols-title"></span>
+        Subcontroles<span class="ml-1 text-sm" id="subcontrols-title"></span>
         </button>
         <button
           x-on:click="changeTab('comments')"
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'comments' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Comments<span class="ml-1 text-sm" id="comments-title"></span>
+          Comentários<span class="ml-1 text-sm" id="comments-title"></span>
         </button>
         <button
           x-on:click="changeTab('todo')"
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'todo' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Auditor Feedback<span class="ml-1 text-sm" id="feedback-title"></span>
+          Feedback do Auditor<span class="ml-1 text-sm" id="feedback-title"></span>
         </button>
         {%if not is_auditor%}
         <button
@@ -99,7 +99,7 @@
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'internal-notes' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Notes<span class="ml-1 text-sm" id="notes-title">{%if project_control.notes%}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-orange-400"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>{%endif%}</span>
+          Notas<span class="ml-1 text-sm" id="notes-title">{%if project_control.notes%}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 text-orange-400"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>{%endif%}</span>
         </button>
         {%endif%}
         {%if is_auditor%}
@@ -108,7 +108,7 @@
           x-bind:class="{ 'tab-active border-primary border-b-2': tab === 'auditor-notes' }"
           class="tab hover:text-primary tab-md capitalize text-sm font-semibold focus:border-primary"
         >
-          Auditor Notes<span class="ml-1 text-sm" id="auditor-notes-title">{%if project_control.auditor_notes%}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-orange-400"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>{%endif%}</span>
+          Notas do Auditor<span class="ml-1 text-sm" id="auditor-notes-title">{%if project_control.auditor_notes%}<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-orange-400"><path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>{%endif%}</span>
         </button>
         {%endif%}
       </div>
@@ -130,10 +130,10 @@
   <div class="col-span-9" x-show="tab === 'internal-notes'">
         <div class="mb-4 justify-between flex">
           <div>
-            <h1 class="text-2xl font-bold">Internal Notes</h1>
-            <p class="text-sm">Internal notes are not viewable by the auditor/reviewer</p>
+            <h1 class="text-2xl font-bold">Notas Internas</h1>
+            <p class="text-sm">As notas internas não podem ser visualizadas pelo auditor/revisor</p>
           </div>
-          <button @click="saveNotes" class="btn btn-primary btn-sm">Save</button>
+          <button @click="saveNotes" class="btn btn-primary btn-sm">Salvar</button>
         </div>
         <div id="internal-editor" class="mb-5">{%if project_control.notes%}{{project_control.notes|safe}}{%endif%}</div>
   </div>
@@ -142,8 +142,8 @@
   <div class="col-span-9" x-show="tab === 'auditor-notes'">
         <div class="mb-4 justify-between flex">
           <div>
-            <h1 class="text-2xl font-bold">Auditor Notes</h1>
-            <p class="text-sm">Auditor notes are not viewable by the InfoSec team</p>
+            <h1 class="text-2xl font-bold">Notas do Auditor</h1>
+            <p class="text-sm">As notas do auditor não podem ser visualizadas pela equipe InfoSec</p>
           </div>
           <button @click="saveAuditorNotes" class="btn btn-primary btn-sm">Save</button>
         </div>
@@ -156,15 +156,15 @@
   <div class="col-span-9" x-show="tab === 'comments'" @reload.window="getComments()">
         <div class="mb-4 justify-between flex">
           <div>
-            <h1 class="text-2xl font-bold">Comments<span id="comment-count" class="ml-2"></span></h1>
-            <p class="text-sm">Comments are used by the InfoSec team and Auditor to converse about the control</p>
+            <h1 class="text-2xl font-bold">Comentários<span id="comment-count" class="ml-2"></span></h1>
+            <p class="text-sm">Os comentários são usados ​​pela equipe InfoSec e pelo Auditor para conversar sobre o controle</p>
           </div>
           <div class="my-auto flex justify-between gap-x-2">
-            <button @click="saveComment" class="btn btn-sm btn-primary">Send</button>
+            <button @click="saveComment" class="btn btn-sm btn-primary">Enviar</button>
           </div>
         </div>
         <div class="mb-5">
-          <textarea id="comment" rows="4" class="textarea textarea-bordered w-full text-sm" placeholder="Write a comment..." required=""></textarea>
+          <textarea id="comment" rows="4" class="textarea textarea-bordered w-full text-sm" placeholder="Escreva um comentário..." required=""></textarea>
           <div class=" h-[calc(100vh-500px)] overflow-auto px-3" id="comments"></div>
         </div>
   </div>
@@ -173,7 +173,7 @@
         <div class="mb-4 flex justify-between">
           <div>
             <h1 class="text-2xl font-bold">Feedback<span id="feedback-count" class="ml-2"></span></h1>
-            <p class="text-sm">Feedback is used by the Auditor to list action items and/or questions for the InfoSec team to complete. The Auditor and InfoSec team should mark completion. Note: Feedback is attached to each subcontrol. {%if is_auditor%}If you would like to add new feedback, please click under the specific subcontrol.{%endif%}</p>
+            <p class="text-sm">O feedback é usado pelo Auditor para listar itens de ação e/ou perguntas a serem concluídas pela equipe InfoSec. O Auditor e a equipe InfoSec devem marcar a conclusão. Nota: O feedback é anexado a cada subcontrole. {%if is_auditor%}Se desejar adicionar novos comentários, clique no subcontrole específico.{%endif%}</p>
           </div>
         </div>
         <div id="feedback-body" class="h-[calc(100vh-400px)] overflow-auto px-3">
@@ -185,7 +185,7 @@
                             <div class="flex-none leading-none py-2">
                                 <div class="flex flex-row gap-x-6 text-xs leading-none font-semibold text-base-content">
                                         <div class="flex flex-col gap-y-2">
-                                          <p class="mx-auto">InfoSec Team</p>
+                                          <p class="mx-auto">Time InfoSec</p>
                                           <input class="checkbox border-2 mx-auto" :id="`feedback-${item.id}`" type="checkbox" :checked="item.is_complete" @click="checkItem(index)" {%if is_auditor%}disabled{%endif%}>
                                         </div>
                                         <div class="flex flex-col gap-y-2">
@@ -197,24 +197,24 @@
                             <div class="flex-grow max-w-full py-4 ml-8 my-auto">
                                 <div class="w-full leading-none">
                                     <h3 class="text-sm w-full  mt-1 font-semibold capitalize text-base-content" :class="item.title.length?'text-base-content':'text-primary'" x-text="item.title||'Add Feedback...'" x-show="!item.open"></h3>
-                                    <input type="text" x-show="item.open" class="text-md w-full bg-transparent leading-none focus:outline-none mb-2" x-model="item.title" :id="`titleField${index}`" placeholder="Add Feedback..." {%if not is_auditor%}disabled{%endif%}/>
+                                    <input type="text" x-show="item.open" class="text-md w-full bg-transparent leading-none focus:outline-none mb-2" x-model="item.title" :id="`titleField${index}`" placeholder="Adicionar Feedback..." {%if not is_auditor%}disabled{%endif%}/>
                                 </div>
                                 <div class="w-full" x-show="item.open" x-data="{content:`Note: This feedback is tied to the Subcontrol ID:${item.subcontrol_id}. If you would like to add new feedback, view more details or converse, <a class='text-red-500 underline' target='_blank' rel='noopener noreferrer' href='/projects/{{project.id}}/controls/{{project_control.id}}/subcontrols/${item.subcontrol_id}'>please view the subcontrol</a>`}">
                                   <p class="text-xs font-semi-bold mb-2" x-html="content"></p>
                                 </div>           
                                 <div class="w-full" x-show="item.open">
-                                    <label class="block text-sm font-medium">Auditor Description</label>
-                                    <textarea class="textarea bg-base-200 w-full leading-tight my-2" rows="3" x-model="item.description" placeholder="Enter notes or supporting items to help the team" {%if not is_auditor%}disabled{%endif%}></textarea>
+                                    <label class="block text-sm font-medium">Descrição do Auditor</label>
+                                    <textarea class="textarea bg-base-200 w-full leading-tight my-2" rows="3" x-model="item.description" placeholder="Insira notas ou itens de apoio para ajudar a equipe" {%if not is_auditor%}disabled{%endif%}></textarea>
                                 </div>
                                 <div class="w-full" x-show="item.open">
-                                    <label class="block text-sm font-medium">InfoSec Response</label>
-                                    <textarea class="textarea bg-base-200 w-full leading-tight my-2" rows="3" @change="updateItem(index)" x-model="item.response" placeholder="Provide a explanation to the Auditors action item or question." {%if is_auditor%}disabled{%endif%}></textarea>
+                                    <label class="block text-sm font-medium">Respostas InfoSec</label>
+                                    <textarea class="textarea bg-base-200 w-full leading-tight my-2" rows="3" @change="updateItem(index)" x-model="item.response" placeholder="Forneça uma explicação para o item de ação ou pergunta dos Auditores." {%if is_auditor%}disabled{%endif%}></textarea>
                                 </div>
                                 <div class="w-full flex justify-end" x-show="item.open">
                                     <button class="btn btn-success mr-2" @click="updateItem(index)">Save</button>
                                     <a target="_blank" rel="noopener noreferrer" x-bind:href="'/projects/{{project.id}}/controls/{{project_control.id}}/subcontrols/' + item.subcontrol_id + '?tab=todo'" class="btn btn-primary mr-2">View Item</a>
                                     {%if is_auditor%}
-                                    <button class="btn btn-error" @click="removeItem(index)">Delete</button>
+                                    <button class="btn btn-error" @click="removeItem(index)">Excluir</button>
                                     {%endif%}
                                 </div>
                             </div>
@@ -224,7 +224,7 @@
                 </ul>
             </template>
             <template x-if="!todos.length">
-                <p class="text-primary text-xl font-semibold mx-auto text-center mt-5"><b class="mr-2">😊</b>No Feedback</p>
+                <p class="text-primary text-xl font-semibold mx-auto text-center mt-5"><b class="mr-2">😊</b>Sem Feedback</p>
             </template>
         </div>
     </div>
@@ -271,7 +271,7 @@ function saveNotes() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-            toast("Saved notes")
+            toast("Notas salvas!")
             return(data)
         },
         error: function(errMsg) {
@@ -290,7 +290,7 @@ function saveAuditorNotes() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-            toast("Saved notes")
+            toast("Notas salvas!")
             return(data)
         },
         error: function(errMsg) {
@@ -352,7 +352,7 @@ function deleteComment(id) {
         dataType: "json",
         success: function(data){
             $(`#comment-${id}`).remove()
-            toast("Deleted comment")
+            toast("Comentário Excluído!")
             return(data)
         },
         error: function(errMsg) {
@@ -375,7 +375,7 @@ function saveComment(e) {
         success: function(data){
             addCommentToDiv(data)
             document.getElementById("comment").value = ""
-            toast("Added comment")
+            toast("Comentário Adicionado!")
             getComments()
             return(data)
         },
@@ -389,7 +389,7 @@ function saveComment(e) {
 function addCommentToDiv(comment) {
   user_id = {{current_user.id}};
   if (user_id === comment.author_id) {
-    delete_str = `<div class="dropdown dropdown-end"><label tabindex="0" class="btn btn-sm btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path></svg></label><ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 bg-neutral text-neutral-content"><li><a @click="deleteComment(${comment.id})">Delete</a></li></ul></div>`
+    delete_str = `<div class="dropdown dropdown-end"><label tabindex="0" class="btn btn-sm btn-ghost"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"></path></svg></label><ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 bg-neutral text-neutral-content"><li><a @click="deleteComment(${comment.id})">Excluir</a></li></ul></div>`
   } else {
     delete_str = ""
   }
@@ -428,7 +428,7 @@ function app(){
         checkItem: function(index) {
           var item = this.todos[index];
           if (!item.response) {
-            toast("Please provide a response", "warning")
+            toast("Forneça uma resposta", "warning")
             document.getElementById(`feedback-${item.id}`).checked = false;
             return
           }
@@ -462,7 +462,7 @@ function app(){
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function(data){
-              toast("Updated feedback")
+              toast("Feedback atualizado!")
               return(data)
             },
             error: function(errMsg) {
@@ -951,7 +951,7 @@ function loadSummary() {
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(data){
-          toast(`Control has been set as ${msg}`)
+          toast(`Controle foi definido como ${msg}`)
           $(".svg-reload").addClass("animate-spin")
           return(data)
       },
@@ -982,7 +982,7 @@ function loadSummary() {
       dataType: "json",
       success: function(data){
           if (notify) {
-            toast('Updated the subcontrol. <button class="float-right btn btn-xs hover:bg-primary hover:border-primary ml-3" @click="reload">Reload</button>')
+            toast('Subcontrole Atualizado <button class="float-right btn btn-xs hover:bg-primary hover:border-primary ml-3" @click="reload">Recarregar</button>')
           }
           $(".svg-reload").addClass("animate-spin")
           return(data)
@@ -1003,7 +1003,7 @@ function loadSummary() {
       var id = $(this).data("id");
       saveSubControl(id, notify=false)
     });
-    toast('Saved the subcontrols. <button class="float-right btn btn-xs hover:bg-primary hover:border-primary ml-3" @click="reload">Reload</button>')
+    toast('Subcontrole Salvo. <button class="float-right btn btn-xs hover:bg-primary hover:border-primary ml-3" @click="reload">Recarregar</button>')
   });
   $(document).on('click', '.toggle-fa', function() {
     if ($(".collapse").hasClass("collapse-open")) {

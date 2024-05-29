@@ -1,6 +1,6 @@
 {% extends "layouts/sidebar-nav.html" %}
 
-{%block page_header_title%}Settings{%endblock%}
+{%block page_header_title%}Configurações{%endblock%}
 {%block page_header_title_border%}{%endblock%}
 
 {%block content%}
@@ -12,29 +12,29 @@
           <div class="px-4 py-5 sm:p-6">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
-                <label for="name" class="block text-sm font-medium ">Name</label>
-                <input type="text" value="not implemented" name="name" id="name" autocomplete="given-name" class="mt-1 input-md border border-base-300 block w-full shadow-sm sm:text-sm rounded-md">
-                <p class="mt-2 text-sm ">The display name of your tenant</p>
+                <label for="name" class="block text-sm font-medium ">Nome</label>
+                <input type="text" value="Nome do locatário" name="name" id="name" autocomplete="given-name" class="mt-1 input-md border border-base-300 block w-full shadow-sm sm:text-sm rounded-md">
+                <p class="mt-2 text-sm ">O nome de exibição do seu locatário</p>
               </div>
 
               <div class="col-span-6 sm:col-span-4">
-                <label for="email" class="block text-sm font-medium ">Contact email address</label>
-                <input type="text" value="not implemented" name="email" id="email" autocomplete="email" class="mt-1 input-md border border-base-300 block w-full shadow-sm sm:text-sm rounded-md">
-                <p class="mt-2 text-sm ">The email for notifications</p>
+                <label for="email" class="block text-sm font-medium ">Endereço de e-mail de contato</label>
+                <input type="text" value="Email para contato" name="email" id="email" autocomplete="email" class="mt-1 input-md border border-base-300 block w-full shadow-sm sm:text-sm rounded-md">
+                <p class="mt-2 text-sm ">O e-mail para notificações</p>
               </div>
 
               <div class="col-span-6 sm:col-span-3">
-                <label for="country" class="block text-sm font-medium ">License</label>
+                <label for="country" class="block text-sm font-medium ">Licença</label>
                 <select id="country" name="country" autocomplete="country-name" class="mt-1 input-md border border-base-300 block w-full py-2 px-3 rounded-md shadow-sm focus:outline-none sm:text-sm" disabled>
-                  <option>Basic</option>
+                  <option>Básico</option>
                   <option>Pro</option>
                 </select>
-                <p class="mt-2 text-sm ">The license type (NOT IMPLEMENTED)</p>
+                <p class="mt-2 text-sm ">Tipo de licença (NÃO IMPLEMENTADO)</p>
               </div>
             </div>
           </div>
           <div class="px-4 py-3 text-right sm:px-6">
-            <button type="submit" class="btn btn-primary" disabled>Save</button>
+            <button type="submit" class="btn btn-primary" disabled>Salvar</button>
           </div>
         </div>
       </form>

@@ -14,9 +14,9 @@
               <h1 class="text-2xl tracking-tight font-bold text-gray-900 {%block hide_title_on_mobile%}{%endblock%}">
                 <div class="breadcrumbs p-0">
                   <ul>
-                    <li><a href="{{url_for("main.projects")}}">Projects</a></li>
+                    <li><a href="{{url_for("main.projects")}}">Projetos</a></li>
                     <li><a href="{{url_for("main.view_project",id=project.id)}}">{{project.name}}</a></li>
-                    <li class="text-primary">Settings</li>
+                    <li class="text-primary">Configurações</li>
                   </ul>
                 </div>
               </h1>
@@ -24,10 +24,10 @@
           </div>
         </div>
         <div class="tabs max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 gap-x-4">
-          <a href="{{url_for("main.view_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Project Summary</a>
-          <a href="{{url_for("main.view_policies_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Policies</a>
-          <a href="{{url_for("main.view_controls_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Controls</a>
-          <a href="{{url_for("main.view_settings_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-primary tab-active">Settings</a>
+          <a href="{{url_for("main.view_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Resumo do projeto</a>
+          <a href="{{url_for("main.view_policies_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Políticas</a>
+          <a href="{{url_for("main.view_controls_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-gray-500">Controles</a>
+          <a href="{{url_for("main.view_settings_in_project",id=project.id)}}" class="tab tab-lg tab-lifted text-sm font-medium border-b-0 !px-8 hover:text-primary text-primary tab-active">Configurações</a>
         </div>
     </header>
 {%endblock%}
@@ -41,19 +41,19 @@
           <div class="px-4 py-5 bg-white sm:p-6">
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nome</label>
                 <input type="text" value="{{project.name}}" name="name" id="name" class="mt-1 input-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                <p class="mt-2 text-sm text-gray-500">The display name of your project</p>
+                <p class="mt-2 text-sm text-gray-500">O nome de exibição do seu projeto</p>
               </div>
               <div class="col-span-6 sm:col-span-3">
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <label for="description" class="block text-sm font-medium text-gray-700">Descrição</label>
                 <input type="text" value="{{project.description}}" name="description" id="description" class="mt-1 input-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                <p class="mt-2 text-sm text-gray-500">The description of your project</p>
+                <p class="mt-2 text-sm text-gray-500">A descrição do seu projeto</p>
               </div>
             </div>
           </div>
           <div class="px-4 py-3 text-right sm:px-6 bg-white">
-            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Salvar</button>
           </div>
         </div>
       </form>

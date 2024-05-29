@@ -1,15 +1,15 @@
 {% extends "layouts/basic.html" %}
 
 {%block header_title%}Invite User{%endblock%}
-{%block header_actions%}<a href="{{url_for("main.users")}}" class="btn btn-sm">Users</a>{%endblock%}
+{%block header_actions%}<a href="{{url_for("main.users")}}" class="btn btn-sm">Usuários</a>{%endblock%}
 
 {%block content%}
   <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
-        <h2 class="card-title">Invite User</h2>
+        <h2 class="card-title">Convidar Usuário</h2>
         {%if config.MAIL_USERNAME and config.MAIL_PASSWORD%}
-        <p class="text-sm font-medium text-gray-500">The user will receive an email invite.</p>
+        <p class="text-sm font-medium text-gray-500">O usuário receberá um convite por e-mail.</p>
         <form action="{{url_for('main.add_user')}}" method="POST">
           <div class="overflow-hidden sm:rounded-md">
             <div class="bg-white px-4 py-5">
@@ -21,12 +21,12 @@
               </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
-              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Salvar</button>
             </div>
           </div>
         </form>
         {%else%}
-        <p class="text-sm font-medium text-warning">Env variables MAIL_USERNAME and/or MAIL_PASSWORD are not set</p>
+        <p class="text-sm font-medium text-warning">Variáveis de ambiente MAIL_USERNAME e/ou MAIL_PASSWORD não estão definidos.</p>
         {%endif%}
       </div>
     </div>
