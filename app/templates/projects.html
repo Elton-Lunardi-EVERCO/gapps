@@ -21,7 +21,7 @@
   </div>
   <div class="mt-5 flex lg:mt-0 lg:ml-4">
     <span class="ml-3 hidden sm:block">
-      <button type="button" class="format-btn inline-flex items-center rounded-md border border-base-300 hover:bg-base-200 px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">Formato do cartão</button>
+      <button type="button" class="format-btn inline-flex items-center rounded-md border border-base-300 hover:bg-base-200 px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2">Formato do Cartão</button>
     </span>
 
     <span class="sm:ml-3">
@@ -37,7 +37,7 @@
     <!-- Dropdown -->
     <div class="relative ml-3 sm:hidden">
       <button type="button" class="inline-flex items-center rounded-md border border-neutral-content px-4 py-2 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2" id="mobile-menu-button" aria-expanded="false" aria-haspopup="true">
-        Mais
+        More
         <!-- Heroicon name: mini/chevron-down -->
         <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
@@ -45,8 +45,8 @@
       </button>
       <div class="absolute right-0 z-10 mt-2 -mr-1 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu-button" tabindex="-1">
         <!-- Active: "bg-gray-100", Not Active: "" -->
-        <a href="#" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="mobile-menu-item-0">Editar</a>
-        <a href="#" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="mobile-menu-item-1">Vizualizar</a>
+        <a href="#" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="mobile-menu-item-0">Edit</a>
+        <a href="#" class="block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="mobile-menu-item-1">View</a>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@
                                         <input type="text" name="description" id="description" placeholder="Breve descrição do projeto" class="mt-3 border block w-full rounded-md border-base-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 input-md">
                                   </div>
                                   <div class="col-span-3 sm:col-span-3">
-                                        <label class="block text-sm font-medium mb-2">Selecione o Framework (você sempre pode adicionar controles adicionais posteriormente)</label>
+                                        <label class="block text-sm font-medium mb-2">Selecione Framework (você sempre pode adicionar controles adicionais posteriormente)</label>
                                         <select id="select-framework" class="select select-bordered w-full"></select>
                                   </div>
                                   <div class="col-span-3 sm:col-span-3">
@@ -157,8 +157,8 @@
 <input type="checkbox" id="delete-modal" class="modal-toggle" />
 <label for="delete-modal" class="modal cursor-pointer">
   <label class="modal-box relative" for="">
-    <h3 class="text-lg font-bold">Confirmar Exclusão</h3>
-    <p class="py-4">Tem certeza de que deseja excluir <b id="delete-project-body">?</b>? Você perderá todos os dados e progresso do projeto.</p>
+    <h3 class="text-lg font-bold">Confirmar exclusão</h3>
+    <p class="py-4">Tem certeza de que deseja excluir <b id="delete-project-body">?</b>? Você perderá todos os dados e o progresso do projeto.</p>
     <div class="modal-action">
       <label id="delete-project-btn" data-id="" @click="deleteProject;document.getElementById('delete-modal').checked = false;" class="btn btn-error">Sim, Excluir</label>
     </div>
@@ -170,13 +170,13 @@
 
 function deleteProject(e) {
     var id = $('#delete-project-btn').data('id')
-    toast("Working on it...", "warning")
+    toast("Trabalhando nisso...", "warning")
     $.ajax({
           type: "DELETE",
           url: `/api/v1/projects/${id}`,
           contentType: "application/json; charset=utf-8",
           success: function(data){
-            toast("Projeto Excluído!")
+            toast("Projeto excluído")
             loadCards()
             return(data)
           },
@@ -191,7 +191,7 @@ function deleteProject(e) {
 $(document).on('click', '.modal-button', function() {
        var selectedTenant = getTenant();
        if (!selectedTenant.id) {
-         toast("Please create a tenant <a href='/tenants' class='float-right btn btn-xs toggle-fa hover:bg-primary hover:border-primary ml-3 reload-button'>Begin</a>","warning")
+         toast("Por favor, crie um locatário<a href='/tenants' class='float-right btn btn-xs toggle-fa hover:bg-primary hover:border-primary ml-3 reload-button'>Begin</a>","warning")
        } else {
        $(".create-project").html('Salvar');
        document.getElementById('project-modal').checked = true;
@@ -202,7 +202,7 @@ $(document).on('click', '.modal-button', function() {
          dataType: "json",
          success: function(data){
              $("#select-framework").html("");
-             $("#select-framework").append(`<option value="n/a" selected>Selecionar framework</option>`)
+             $("#select-framework").append(`<option value="n/a" selected>Selecione o framework</option>`)
              for (var framework in data) {
                $("#select-framework").append(`<option value="${data[framework].name}">${data[framework].name.toUpperCase()}</option>`)
              }
@@ -222,13 +222,13 @@ $(document).on('click', '.modal-button', function() {
       divHolder.html("")
       var framework = $("#select-framework").val();
       if (framework === "soc2") {
-        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Categorias de Critérios incluídos</label><p class="text-xs font-medium mb-3">A segurança (critérios comuns) é necessária para todos os projetos SOC 2. Tem alguma dúvida sobre seleção?<a href="{{config.DOC_LINK}}" class="text-primary"> Clique Aqui</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Segurança</span><input id="criteria-1" type="checkbox" class="toggle toggle-primary" verificação desativado/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Disponibilidade</span><input id="criteria-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Confidencialidade</span><input id="criteria-3" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Integridade</span><input id="criteria-4" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Privacidade</span><input id="criteria-5" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
+        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Included Criteria Categories</label><p class="text-xs font-medium mb-3">Security (Common criteria) is required for all SOC 2 projects. Have a question about selection?<a href="{{config.DOC_LINK}}" class="text-primary"> Click here</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Security</span><input id="criteria-1" type="checkbox" class="toggle toggle-primary" checked disabled/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Availability</span><input id="criteria-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Confidentiality</span><input id="criteria-3" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Integrity</span><input id="criteria-4" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Privacy</span><input id="criteria-5" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
       }
       if (framework === "cmmc") {
-        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Included CMMC Levels</label><p class="text-xs font-medium mb-3">Você tem certeza que quer v1? O CMMC v2 está disponível. Tem alguma dúvida sobre seleção?<a href="{{config.DOC_LINK}}" class="text-primary"> Clique Aqui</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 1</span><input id="level-1" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 2</span><input id="level-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 3</span><input id="level-3" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 4</span><input id="level-4" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 5</span><input id="level-5" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
+        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Included CMMC Levels</label><p class="text-xs font-medium mb-3">Are you sure you want v1? CMMC v2 is available. Have a question about selection?<a href="{{config.DOC_LINK}}" class="text-primary"> Click here</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 1</span><input id="level-1" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 2</span><input id="level-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 3</span><input id="level-3" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 4</span><input id="level-4" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 5</span><input id="level-5" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
       }
       if (framework === "cmmc_v2") {
-        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Included CMMC Levels</label><p class="text-xs font-medium mb-3">CMMC v2, nível 3 ainda não está disponível. Tem alguma dúvida sobre seleção?<a href="{{config.DOC_LINK}}" class="text-primary"> Clique Aqui</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Nível 1</span><input id="level-1" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Nível 2</span><input id="level-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Nível 3</span><input id="level-3" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
+        divHolder.append(`<div class="col-span-6 sm:col-span-6"><label for="label" class="block text-sm font-medium">Included CMMC Levels</label><p class="text-xs font-medium mb-3">CMMC v2, level 3 is not yet available. Have a question about selection?<a href="{{config.DOC_LINK}}" class="text-primary"> Click here</a></p><div class="flex flex-col"><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 1</span><input id="level-1" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 2</span><input id="level-2" type="checkbox" class="toggle toggle-primary"/></label></div><div class="form-control w-52"><label class="cursor-pointer label"><span class="label-text">Level 3</span><input id="level-3" type="checkbox" class="toggle toggle-primary"/></label></div></div></div>`)
       }
     });
     $(document).on('click', '.create-project', function() {
@@ -240,46 +240,46 @@ $(document).on('click', '.modal-button', function() {
         return
       }
       if (framework === "n/a") {
-        toast("Selecione o Framework","error")
+        toast("Selecione um framework","error")
         return
       }
       toast("Isso pode demorar alguns segundos. Por favor, aguarde...")
       $(".create-project").html('<div role="status"><svg aria-hidden="true" class="w-6 h-6 text-gray-200 animate-spin dark:text-gray-700 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Carregando...</span></div>');
       if (framework === "soc2") {
         var data = {
-          "nome":$("#name").val(),
-          "descrição":$("#description").val(),
+          "name":$("#name").val(),
+          "description":$("#description").val(),
           "framework":framework,
-          "critério-1":$("#criteria-1").is(':checked'),
-          "critério-2":$("#criteria-2").is(':checked'),
-          "critério-3":$("#criteria-3").is(':checked'),
-          "critério-4":$("#criteria-4").is(':checked'),
-          "critério-5":$("#criteria-5").is(':checked')
+          "criteria-1":$("#criteria-1").is(':checked'),
+          "criteria-2":$("#criteria-2").is(':checked'),
+          "criteria-3":$("#criteria-3").is(':checked'),
+          "criteria-4":$("#criteria-4").is(':checked'),
+          "criteria-5":$("#criteria-5").is(':checked')
         };
       } else if (framework === "cmmc") {
         var data = {
-          "nome":$("#name").val(),
-          "descrição":$("#description").val(),
+          "name":$("#name").val(),
+          "description":$("#description").val(),
           "framework":framework,
-          "nível-1":$("#level-1").is(':checked'),
-          "nível-2":$("#level-2").is(':checked'),
-          "nível-3":$("#level-3").is(':checked'),
-          "nível-4":$("#level-4").is(':checked'),
-          "nível-5":$("#level-5").is(':checked')
+          "level-1":$("#level-1").is(':checked'),
+          "level-2":$("#level-2").is(':checked'),
+          "level-3":$("#level-3").is(':checked'),
+          "level-4":$("#level-4").is(':checked'),
+          "level-5":$("#level-5").is(':checked')
         };
       } else if (framework === "cmmc_v2") {
         var data = {
-          "nome":$("#name").val(),
-          "descrição":$("#description").val(),
+          "name":$("#name").val(),
+          "description":$("#description").val(),
           "framework":framework,
-          "nível-1":$("#level-1").is(':checked'),
-          "nível-2":$("#level-2").is(':checked'),
-          "nível-3":$("#level-3").is(':checked')
+          "level-1":$("#level-1").is(':checked'),
+          "level-2":$("#level-2").is(':checked'),
+          "level-3":$("#level-3").is(':checked')
         };
       } else {
         var data = {
-          "nome":$("#name").val(),
-          "descrição":$("#description").val(),
+          "name":$("#name").val(),
+          "description":$("#description").val(),
           "framework":framework,
         }
       }
@@ -290,7 +290,7 @@ $(document).on('click', '.modal-button', function() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-          toast("Created project")
+          toast("Projeto criado!")
           document.getElementById('project-modal').checked = false;
           //setTimeout(function() {location.reload();}, 500);
           loadCards()
@@ -325,7 +325,7 @@ function loadCards(format="cards") {
       setCardData(data)
       $("#card-div").html("");
       if (format === "table") {
-        $("#card-div").html(`<div class="col-span-9"><div class="card shadow-md card-body border border-base-200"><div class=""><h2 class="card-title mb-4">Projetos</h2><table class="table table-vcenter" id="project-table" style="width:100%"><thead><tr><th>Nome</th><th class="w-1">Framework</th><th class="w-1">Controles</th><th class="w-1">Políticas</th><th class="w-1">Completo</th><th class="w-1">Mais</th></tr></thead><tbody id="project-table-body"></tbody></table></div></div></div>`);
+        $("#card-div").html(`<div class="col-span-9"><div class="card shadow-md card-body border border-base-200"><div class=""><h2 class="card-title mb-4">Projects</h2><table class="table table-vcenter" id="project-table" style="width:100%"><thead><tr><th>Name</th><th class="w-1">Framework</th><th class="w-1">Controles</th><th class="w-1">Políticas</th><th class="w-1">Completo</th><th class="w-1">More</th></tr></thead><tbody id="project-table-body"></tbody></table></div></div></div>`);
       };
 
       for (var card in data) {
@@ -399,31 +399,31 @@ plotOptions: {
 
 
 
-<span class="font-medium text-sm px-4 tooltip" data-tip="Controles aguardando no InfoSec"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>${obj.review_summary["not started"]||0+obj.review_summary["infosec action"]||0+obj.review_summary["action required"]||0}</span>
-<span class="font-medium text-sm px-4 tooltip" data-tip="Controles aguardando no Auditor"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>${obj.review_summary["ready for auditor"]||0}</span>
+<span class="font-medium text-sm px-4 tooltip" data-tip="Controles esperando pela InfoSec"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>${obj.review_summary["not started"]||0+obj.review_summary["infosec action"]||0+obj.review_summary["action required"]||0}</span>
+<span class="font-medium text-sm px-4 tooltip" data-tip="Controles esperando pelo Auditor"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mx-auto"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>${obj.review_summary["ready for auditor"]||0}</span>
 
 
-</div><div class="card-actions justify-start mt-2"><div class="grid grid-rows-2 grid-flow-col gap-x-2"><div class="row-span-2"><div class="avatar placeholder"><div class="bg-neutral-focus text-neutral-content rounded-full w-8"><span class="text-xs uppercase">${obj.tenant[0]}</span></div></div></div><div class="col-span-2"><p class="font-medium text-secondary text-sm capitalize">Tenant: ${obj.tenant}</p></div><div class="row-span-1 col-span-2"><p class="text-xs">${obj.date_added}</p></div></div></div></div></div></div></div>`);
+</div><div class="card-actions justify-start mt-2"><div class="grid grid-rows-2 grid-flow-col gap-x-2"><div class="row-span-2"><div class="avatar placeholder"><div class="bg-neutral-focus text-neutral-content rounded-full w-8"><span class="text-xs uppercase">${obj.tenant[0]}</span></div></div></div><div class="col-span-2"><p class="font-medium text-secondary text-sm capitalize">Locatário: ${obj.tenant}</p></div><div class="row-span-1 col-span-2"><p class="text-xs">${obj.date_added}</p></div></div></div></div></div></div></div>`);
           new ApexCharts(document.querySelector(`#completion-progress-${obj.id}`), options).render()
         }
       }
       $("#project-table").DataTable({"pageLength":25,"order": [[ 0, "desc" ]]});
       if (data === undefined || data.length == 0) {
-        $("#card-div").html('<div class="col-span-9 mx-auto mt-48"><p class="text-2xl font-medium">Crie um projeto para começar (ou troque de locatário)</p><div class="text-center mt-4"><button class="modal-button btn btn-primary">Criar</button></div></div>')
+        $("#card-div").html('<div class="col-span-9 mx-auto mt-48"><p class="text-2xl font-medium">Crie um projeto para começar (ou troque de locatário)</p><div class="text-center mt-4"><button class="modal-button btn btn-primary">Create</button></div></div>')
       }
 
       return(data)
     },
     error: function(errMsg) {
-        $("#card-div").html('<div class="col-span-9 mx-auto mt-48"><p class="text-2xl font-medium">Crie um projeto para começar (ou troque de locatário)</p><div class="text-center mt-4"><button class="modal-button btn btn-primary">Criar</button></div></div>')
+        $("#card-div").html('<div class="col-span-9 mx-auto mt-48"><p class="text-2xl font-medium">Crie um projeto para começar (ou troque de locatário)</p><div class="text-center mt-4"><button class="modal-button btn btn-primary">Create</button></div></div>')
         return(errMsg);
     }
   })
 }
 
 function setFormatBtn() {
-  if ($(".format-btn").html() === "Card Format") {
-    $(".format-btn").html("Formato de Tabela")
+  if ($(".format-btn").html() === "Formato do Cartão") {
+    $(".format-btn").html("Table Format")
     loadCards(format="table")
   } else {
     $(".format-btn").html("Formato do Cartão")
@@ -490,7 +490,7 @@ plotOptions: {
       $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Nome</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0 capitalize">${data[item].name}</dd></div>`)
       $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Descrição</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">${data[item].description}</dd></div>`)
       $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Framework</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0 capitalize badge badge-primary badge-md">${data[item].framework}</dd></div>`)
-      $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Dono</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">${data[item].owner}</dd></div>`)
+      $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Proprietário</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">${data[item].owner}</dd></div>`)
       $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Total de Controles</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">${data[item].total_controls}</dd></div>`)
       $("#modal-details").append(`<div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"><dt class="text-sm font-medium">Total de Políticas</dt><dd class="mt-1 text-sm sm:col-span-2 sm:mt-0">${data[item].total_policies}</dd></div>`)
     }
