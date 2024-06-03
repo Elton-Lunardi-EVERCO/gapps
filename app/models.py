@@ -482,7 +482,7 @@ class Tenant(LogMixin, db.Model):
     def get_questionnaires_for_user(self, user):
         user_roles = self.get_roles_for_user(user)
         data = []
-        if user.super or any(role in ["admin", "editor"] for role in user_roles):
+        if user.super or any(role in ["administrador", "editor"] for role in user_roles):
             return self.questionnaires.all()
         for questionnaire in self.questionnaires.all():
             if questionnaire.has_guest(user.email):
@@ -517,7 +517,7 @@ class Tenant(LogMixin, db.Model):
         new_roles = Role.ids_to_names(list_of_role_ids)
         current_roles = user.roles_for_tenant(self)
         # if vendor tag is removed, user will lose guest access to questionnaires
-        if "vendor" in current_roles and "vendor" not in new_roles:
+        if "fornecedor" in current_roles and "fornecedor" not in new_roles:
             self.remove_user_from_questionnaires(user)
         # remove user from tenant
         self.remove_user(user, skip_dependencies=True)
@@ -526,15 +526,15 @@ class Tenant(LogMixin, db.Model):
 
     def add_user(self, user, roles=[]):
         if not roles:
-            roles = ["user"]
+            roles = ["usuario"]
         if not isinstance(roles, list):
             roles = [roles]
         # vendor role will override all other roles
-        if "vendor" in roles:
-            roles = ["vendor"]
+        if "fornecedor" in roles:
+            roles = ["fornecedor"]
         else:
-            if "user" not in roles:
-                roles.append("user")
+            if "usuario" not in roles:
+                roles.append("usuario")
         for role_name in roles:
             if not self.has_user_with_role(user, role_name):
                 if role := Role.find_by_name(role_name):
@@ -564,7 +564,7 @@ class Tenant(LogMixin, db.Model):
         return True
 
     def remove_role_from_user(self, user, role_name):
-        if role_name.lower() in ["user"]:
+        if role_name.lower() in ["usuario"]:
             return False
         if role := Role.find_by_name(role_name):
             UserRole.query.filter(UserRole.tenant_id == self.id).filter(
@@ -648,7 +648,7 @@ class Tenant(LogMixin, db.Model):
         db.session.add(tenant)
         db.session.commit()
         # add user as Admin to the tenant
-        tenant.add_user(user, roles=["admin"])
+        tenant.add_user(user, roles=["administrador"])
         if init:
             tenant.create_base_frameworks()
             tenant.create_base_policies()
@@ -1322,7 +1322,7 @@ class Project(LogMixin, db.Model, DateMixin):
             return True
         if user.id == self.owner_id:
             return True
-        if user.has_role_for_tenant(self.project.tenant, "admin"):
+        if user.has_role_for_tenant(self.project.tenant, "administrador"):
             return True
         return False
 
@@ -1892,9 +1892,9 @@ class User(LogMixin, db.Model, UserMixin):
         lazy="dynamic",
         backref=db.backref("users", lazy="dynamic"),
     )
-    projects = db.relationship("Project", backref="user", lazy="dynamic")
+    projects = db.relationship("Project", backref="usuario", lazy="dynamic")
     questionnaires = db.relationship(
-        "QuestionnaireGuest", backref="user", lazy="dynamic"
+        "QuestionnaireGuest", backref="usuario", lazy="dynamic"
     )
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
     date_updated = db.Column(db.DateTime, onupdate=datetime.utcnow)
@@ -1948,7 +1948,7 @@ class User(LogMixin, db.Model, UserMixin):
         tenants=[],
     ):
         """
-        tenants = [{"id":1,"roles":["user"]}]
+        tenants = [{"id":1,"roles":["usuario"]}]
         """
         email_confirmed_at = None
         if not password:
@@ -2117,7 +2117,7 @@ class User(LogMixin, db.Model, UserMixin):
     def is_privileged_for_tenant(self, tenant):
         if self.super:
             return True
-        if self.has_user_with_role(self, "admin"):
+        if self.has_user_with_role(self, "administrador"):
             return True
         return False
 
@@ -2294,7 +2294,7 @@ class Questionnaire(LogMixin, db.Model):
     def can_render_form(self, user):
         if user.super or user.id == self.owner_id:
             return True
-        if user.has_role_for_tenant(self.tenant, "admin"):
+        if user.has_role_for_tenant(self.tenant, "administrador"):
             return True
         if self.has_guest(user.email):
             return True
@@ -2368,7 +2368,7 @@ class Questionnaire(LogMixin, db.Model):
         return users
 
     def can_user_be_added_as_a_guest(self, user):
-        if self.tenant.has_user_with_role(user, "vendor"):
+        if self.tenant.has_user_with_role(user, "fornecedor"):
             return True
         return False
 
