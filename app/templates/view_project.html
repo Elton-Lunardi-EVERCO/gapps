@@ -29,17 +29,17 @@
         <li><a class="capitalize" href="{{url_for("main.view_project",pid=project.id)}}">{{project.name}}</a></li>
         <li>
           <select class="select text-2xl font-bold text-primary sm:tracking-tight pl-0 focus:border-transparent focus:outline-none tab-select hover:text-secondary">
-            <option selected value="summary">Resumo</option>
-            <option value="controls">Controles</option>
-            <option value="policies">Políticas</option>
-            <option value="evidence">Evidências</option>
-            <option value="matrix">Resp. Matrix</option>
-            <option value="scratchpad">Caderno de Rabiscos</option>
-            <option value="comments">Comentários</option>
-            <option value="report">Reportar</option>
-            <option value="findings">Descobertas</option>
-            <option value="integrations">Integrações</option>
-            <option value="settings">Configurações</option>
+            <option selected value="resumo">Resumo</option>
+            <option value="controles">Controles</option>
+            <option value="políticas">Políticas</option>
+            <option value="evidências">Evidências</option>
+            <option value="matriz">Resp. Matrix</option>
+            <option value="caderno de rabiscos">Caderno de Rabiscos</option>
+            <option value="comentários">Comentários</option>
+            <option value="reportar">Reportar</option>
+            <option value="descobertas">Descobertas</option>
+            <option value="integrações">Integrações</option>
+            <option value="configurações">Configurações</option>
           </select>
         </li>
       </ul>
@@ -76,13 +76,13 @@
       {%endif%}
       <div class="divider divider-horizontal mx-0"></div>
       <div class="flex space-x-2 tabs">
-        {%for tab in ["summary","controls","policies","evidence","matrix","scratchpad","comments","settings"]%}
+        {%for tab in ["resumo","controles","políticas","evidências","matriz","caderno de rabiscos","comentários","configurações"]%}
         <span @click="changeTab('{{tab}}')" id="tab-{{tab}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">{{tab}}</span>
         {%endfor%}
         <div class="dropdown mb-[2px]">
           <label tabindex="0" class="m-1 cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200">Mais</label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-          {%for tab in ["report","findings","integrations"]%}
+          {%for tab in ["reportar","descobertas","integrações"]%}
             <li><span @click="changeTab('{{tab}}')" id="tab-{{tab}}" class="cursor-pointer rounded-md py-1 px-4 text-sm font-medium hover:bg-base-200 capitalize">{{tab}}</span></li>
           {%endfor%}
           </ul>
@@ -532,7 +532,7 @@ function loadScratchPad() {
         $("#card-div").html(`<div class="col-span-9">
           <div class="mb-4 justify-between flex">
             <div>
-              <h1 class="text-2xl font-bold">Scratchpad</h1>
+              <h1 class="text-2xl font-bold">Caderno de Rabiscos</h1>
               <p class="text-sm">Use este local para documentar quaisquer detalhes sobre o projeto ou notas e atualizações gerais. {%if project.can_auditor_read_scratchpad%}O auditor <b>pode ler</b> o caderno de rabiscos.{%else%} O auditor <b>não consegue ler</b> o caderno de rabiscos.{%endif%}</p>
             </div>
             <div class="gap-x-2 flex flex-row">
@@ -668,7 +668,7 @@ function loadComments() {
           </div>
           <div class="mb-5">
             <textarea id="comment" rows="4" class="textarea textarea-bordered w-full text-sm" placeholder="Escreva um comentário..." required=""></textarea>
-            <div class=" h-[calc(100vh-500px)] overflow-auto px-3" id="comments"></div>
+            <div class=" h-[calc(100vh-500px)] overflow-auto px-3" id="comentários"></div>
           </div>
         </div>`)
           $("#comments").html("")
@@ -894,7 +894,7 @@ plotOptions: {
             <div class="col-span-2"><div class="card border border-base-300"><div class="p-5"><h2 class="card-title capitalize text-lg"><div class="tooltip" data-tip="Progresso da conclusão do seu projeto">Progresso completo</div></h2><div class="text-center"><div id="complete-progress"></div></div></div></div></div>
             <div class="col-span-2"><div class="card border border-base-300"><div class="p-5"><h2 class="card-title capitalize text-lg"><div class="tooltip" data-tip="Progresso dos controles que são implementados">Progresso Implementado</div></h2><div class="text-center"><div id="implemented-progress"></div></div></div></div></div>
             <div class="col-span-2"><div class="card border border-base-300"><div class="p-5"><h2 class="card-title capitalize text-lg"><div class="tooltip" data-tip="Progresso das evidências coletadas para controles">Progresso das Evidências</div></h2><div class="text-center"><div id="evidence-progress"></div></div></div></div></div>
-            <div class="col-span-2"><div class="card border border-base-300"><div class="p-5"><h2 class="card-title capitalize text-lg"><div class="tooltip" data-tip="Progresso entre InfoSec e Auditor">Review Progress</div></h2><div class="text-center"><div id="review-progress"></div></div></div></div></div>
+            <div class="col-span-2"><div class="card border border-base-300"><div class="p-5"><h2 class="card-title capitalize text-lg"><div class="tooltip" data-tip="Progresso entre InfoSec e Auditor">Revisão do Progresso</div></h2><div class="text-center"><div id="review-progress"></div></div></div></div></div>
           </div>`)
 
           var auditor_alert = "";
@@ -950,7 +950,7 @@ plotOptions: {
 <div class="card border border-base-300">
   <div class="card-body">
     <div class="card-title mb-4 justify-between">
-      <h2 class="card-title">Auditor Summary</h2>
+      <h2 class="card-title">Resumo do Auditor</h2>
       <div>
         <a target="_blank" rel="noopener noreferrer" href="/projects/{{project.id}}?tab=controls" class="btn btn-sm btn-ghost border border-base-300">Ver Controles<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg></a>
       </div>
@@ -1092,7 +1092,7 @@ function loadEvidence() {
         }
       });
 
-      $("#card-div").append(`<div class="col-span-6"><div class="card shadow-md card-body border border-base-300"><div class=""><h2 class="card-title mb-4">Evidence by Controls</h2><table class="table table-vcenter " id="evidence-table" style="width:100%"><thead><tr><th class="bg-base-200">Nome</th><th class="w-1 bg-base-200"># de Controles</th></tr></thead><tbody id="evidence-table-body"></tbody></table></div></div></div>`);
+      $("#card-div").append(`<div class="col-span-6"><div class="card shadow-md card-body border border-base-300"><div class=""><h2 class="card-title mb-4">Evidência por Controles</h2><table class="table table-vcenter " id="evidence-table" style="width:100%"><thead><tr><th class="bg-base-200">Nome</th><th class="w-1 bg-base-200"># de Controles</th></tr></thead><tbody id="evidence-table-body"></tbody></table></div></div></div>`);
       $.ajax({
         type: "GET",
         url: "/api/v1/projects/{{project.id}}/evidence/controls",
@@ -1117,7 +1117,7 @@ function buildSubControlsTable(data) {
     var owner = params.get('owner');
     var operator = params.get('operator');
     var subSelectList = '<select class="select select-sm select-bordered controls-filter"><option value="1">Todos</option><option value="10">Completo</option><option value="11">Incompleto</option><option value="12">Revisão: Não iniciado</option><option value="13">Revisão: Ação InfoSec</option><option value="14">Revisão: Ação necessária</option><option value="15">Revisão: Pronto para Auditor</option><option value="16">Revisão: Completa</option></select>';
-    var selectGrouping = `<select class="select select-sm select-bordered grouping-filter"><option value="subcontrols">Agrupamento: Subcontroles</option><option value="controls">Agrupamento: Controles</option></select>`;
+    var selectGrouping = `<select class="select select-sm select-bordered grouping-filter"><option value="subcontrols">Agrupamento: Subcontroles</option><option value="controles">Agrupamento: Controles</option></select>`;
     var selectOwner = `<div><input @blur="blurOwnerFilter" type="text" placeholder="Procurar Dono" class="input input-bordered input-sm w-full owner-filter" /></div>`;
     var selectOperator = `<div><input @blur="blurOperatorFilter" type="text" placeholder="Procurar Operador" class="input input-bordered input-sm w-full operator-filter" /></div>`;
     $("#card-div").html(`<div class="col-span-9"><div class="card shadow-md card-body border border-base-300 p-5"><div><div class="justify-between flex"><div><h2 class="card-title mb-4 control-title"></h2></div><div class="flex flex-row gap-x-2">${selectOwner}${selectOperator}<div>${selectGrouping}</div>${subSelectList}<div class="space-x-2"><button class="btn btn-sm btn-ghost border border-base-300 capitalize reload-button tooltip" data-tip="Atualizar dados"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-green-600"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg></button><button class="btn btn-sm btn-ghost border border-base-300 capitalize remove-control-filter tooltip" data-tip="Remover filtro"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button></div></div></div><table class="table table-vcenter " id="project-table" style="width:100%"><thead><tr><th class="bg-base-200">ID</th><th class="bg-base-200">Código Ref</th><th class="bg-base-200">Subcontrole</th><th class="bg-base-200 w-1"><div class="tooltip" data-tip="Dono/Operador">D/Op</div></th><th class="bg-base-200 w-1">Completo</th><th class="bg-base-200 w-1"><div class="tooltip" data-tip="Revise o status com o auditor">Revisar</div></th><th class="bg-base-200 w-1"><div class="tooltip" data-tip="Progresso do controle">Progresso</div></th><th class="bg-base-200 w-1"><div class="tooltip" data-tip="Itens de ação do auditor">Pendência</div></th><th class="bg-base-200 w-1">Evidência</th><th class="bg-base-200 w-1">Vizualizar</th></tr></thead><tbody id="project-table-body"></tbody></table></div></div></div>`);
@@ -1208,7 +1208,7 @@ function buildControlsTable(data) {
       var filter = params.get('filter');
       var grouping = params.get('grouping');
       var selectList = '<select class="select select-sm select-bordered controls-filter"><option value="1">Todos</option><option value="2">Com Evidência</option><option value="3">Evidências ausentes</option><option value="4">Não implementado</option><option value="5">Implementado</option><option value="6">Aplicável</option><option value="7">Não aplicável</option><option value="8">Completo</option><option value="9">Incompleto</option></select>';
-      var selectGrouping = `<select class="select select-sm select-bordered grouping-filter"><option value="controls">Agrupamento: Controles</option><option value="subcontrols">Agrupamento: Subcontroles</option></select>`;
+      var selectGrouping = `<select class="select select-sm select-bordered grouping-filter"><option value="controles">Agrupamento: Controles</option><option value="subcontrols">Agrupamento: Subcontroles</option></select>`;
       $("#card-div").html(`<div class="col-span-9"><div class="card shadow-md card-body border border-base-300 p-5"><div><div class="justify-between flex"><div><h2 class="card-title mb-4">Project Controls (${Object.keys(data).length})</h2></div><div class="flex flex-row gap-x-2"><div>${selectGrouping}</div>${selectList}<div class="space-x-2"><button class="btn btn-sm btn-ghost border border-base-300 capitalize reload-button tooltip" data-tip="Atualizar dados"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-green-600"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg></button><button class="btn btn-sm btn-ghost border border-base-300 capitalize remove-control-filter tooltip" data-tip="Remover filtro"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-red-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button></div></div></div><table class="table table-vcenter " id="project-table" style="width:100%"><thead><tr><th class="w-1 bg-base-200">ID</th><th class="w-1 bg-base-200">Código Ref</th><th class="bg-base-200">Nome</th><th class="w-1 bg-base-200"><div class="tooltip" data-tip="Status do controle">Status</div></th><th class="w-1 bg-base-200"><div class="tooltip" data-tip="Revise o status com o auditor">Revisar</div></th><th class="w-1 bg-base-200"><div class="tooltip" data-tip="Itens de ação do auditor">Pendência</div></th><th class="w-1 bg-base-200"><div class="tooltip" data-tip="% de controle implementado">Implementado</div></th><th class="w-1 bg-base-200">Vizualizar</th></tr></thead><tbody id="project-table-body"></tbody></table></div></div></div>`);
 
       $(".controls-filter").val(filter);
@@ -1218,7 +1218,7 @@ function buildControlsTable(data) {
         filter = "1";
       }
       if (!grouping) {
-        grouping = "controls";
+        grouping = "controles";
       }
       setTimeout(()=>$(".controls-filter").val(filter),100);
       setTimeout(()=>$(".grouping-filter").val(grouping),100);
@@ -1335,7 +1335,7 @@ function loadControls(reload=false) {
   var filter = params.get('filter');
   var grouping = params.get('grouping');
   if (grouping === undefined || grouping === null || grouping === "null") {
-    grouping = "controls";
+    grouping = "controles";
   }
   if (filter === undefined || filter === null || filter === "null") {
     filter = "1";
@@ -1957,29 +1957,29 @@ function loadPageElements(tab) {
   $(".tabs span").removeClass("bg-base-200");
   $(`#tab-${tab}`).addClass("bg-base-200")
   if (tab == null) {
-    var tab = "summary"
+    var tab = "resumo"
   }
-  if (tab === "controls") {
+  if (tab === "controles") {
     loadControls(reload=true)
-  } else if (tab === "summary") {
+  } else if (tab === "resumo") {
     loadSummary()
-  } else if (tab === "policies") {
+  } else if (tab === "políticas") {
     loadPolicies()
-  } else if (tab === "evidence") {
+  } else if (tab === "evidências") {
     loadEvidence()
-  } else if (tab === "matrix") {
+  } else if (tab === "matriz") {
     loadMatrix()
-  } else if (tab === "scratchpad") {
+  } else if (tab === "caderno de rabiscos") {
     loadScratchPad()
-  } else if (tab === "comments") {
+  } else if (tab === "comentários") {
     loadComments()
-  } else if (tab === "report") {
+  } else if (tab === "reportar") {
     loadReport()
-  } else if (tab === "settings") {
+  } else if (tab === "configurações") {
     loadSettings()
-  } else if (tab === "findings") {
+  } else if (tab === "descobertas") {
     loadFindings()
-  } else if (tab === "integrations") {
+  } else if (tab === "integrações") {
     loadIntegrations()
   } else {
     loadSummary();
