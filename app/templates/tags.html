@@ -7,7 +7,7 @@
   {{ macro.filehelper(datatables=True) }}
 {% endblock %}
 
-{%block page_header_title%}Etiquetas<p class="text-sm  font-medium">As etiquetas permitem agrupar logicamente controles e políticasr</p>{%endblock%}
+{%block page_header_title%}Etiquetas<p class="text-sm  font-medium">As etiquetas permitem que você agrupe logicamente controles e políticas</p>{%endblock%}
 {%block page_header_title_border%}{%endblock%}
 {%block page_header_buttons%}<button class="btn btn-sm modal-button">Novo</button>{%endblock%}
 
@@ -78,7 +78,7 @@
     $(document).on('click', '.save-tag-btn', function() {
         var name = $("#name").val();
         if (name == null || name.length === 0){
-          toast("Forneça um nome","error")
+          toast("Forneça um nome!","error")
           return
         }
         data = {"name":name}
@@ -144,7 +144,7 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function(data){
-          toast("Etiqueta Excluída")
+          toast("Etiqueta excluída!")
           loadTagTable()
           document.getElementById('delete-modal').checked = false;
           return(data)

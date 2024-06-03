@@ -159,7 +159,7 @@
           $("#can-user-create-tenants").prop('checked', data.can_user_create_tenant);
           $("#active").prop('checked', data.is_active);
           $("#super").prop('checked', data.super);
-          $("#tenant-div").html('<label class="block text-sm font-medium">Tenants</label>')
+          $("#tenant-div").html('<label class="block text-sm font-medium">Locatários</label>')
           for(var tenant in data.tenants) {
             $("#tenant-div").append(`<div class="col-span-1"><div class="badge bg-base-200 border-base-300 text-base-content font-semibold">${data.tenants[tenant]}</div></div>`)
           }
