@@ -202,7 +202,7 @@
         <div class="flex flex-col h-screen">
           <div class="flex-shrink-0">
             <div class="flex items-center justify-between px-3 py-{{layout["header-padding"]}} border-b border-base-200">
-              <h2 class="text-xl font-bold capitalize">Help</h2>
+              <h2 class="text-xl font-bold capitalize">Ajuda</h2>
               <div class="flex items-center space-x-3">
                 <!-- Toggle sidebar button -->
                 <button @click="toggleSecondSidebarMenu()" class="p-2 rounded-md btn btn-ghost hover:bg-base-200 btn-sm">
@@ -215,17 +215,17 @@
           </div>
           <nav aria-label="Main" class="flex-1 w-100 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
   <form x-data="ContactForm()" @click.outside="hidden = true" @submit.prevent="submitForm" class="grid sm:grid-cols-2 gap-4 mx-auto p-4">
-    <p class="font-medium text-sm col-span-2">You can submit a issue on <a href="https://github.com/bmarsh9/gapps/issues" class="text-primary underline">Github</a> and/or submit your question/bug/issue below. You are on version {{config.VERSION}}</p>
+    <p class="font-medium text-sm col-span-2">Você pode enviar um problema no <a href="https://github.com/bmarsh9/gapps/issues" class="text-primary underline">Github</a> e/ou enviar sua pergunta/bug/problema abaixo . Você está na versão {{config.VERSION}}</p>
     <div class="sm:col-span-2">
       <label for="email" class="inline-block font-semibold text-sm sm:text-base mb-2">Email</label>
       <input name="email" type="email" class="input w-full input-bordered" required x-model="formData.email">
     </div>
     <div class="sm:col-span-2">
-      <label for="message" class="inline-block font-semibold text-sm sm:text-base mb-2">How can we help?</label>
+      <label for="message" class="inline-block font-semibold text-sm sm:text-base mb-2">Como podemos ajudar?</label>
       <textarea name="name" type="text" class="textarea w-full input-bordered" rows="4" required x-model="formData.name"></textarea>
     </div>
     <div class="sm:col-span-2 flex justify-between items-center">
-      <button :class="{'btn-disabled text-neutral-content': formSubmitting}" :disabled="formLoading" x-text="buttonText" url="https://script.google.com/macros/s/AKfycbzH9l5QQinzryZ4V2PU-PSpGvqps4prvgOLD2ak0S4oCZjhs3Smsw_wv6Rt83GSK17kwQ/exec" class="btn btn-primary">Submit</button>
+      <button :class="{'btn-disabled text-neutral-content': formSubmitting}" :disabled="formLoading" x-text="buttonText" url="https://script.google.com/macros/s/AKfycbzH9l5QQinzryZ4V2PU-PSpGvqps4prvgOLD2ak0S4oCZjhs3Smsw_wv6Rt83GSK17kwQ/exec" class="btn btn-primary">Enviar</button>
       <div class="text-neutral-content font-semibold" x-text="formMessage"></div>
     </div>
   </form>
@@ -333,7 +333,7 @@
                   </button>
                   <div @click.away="isOpen = false" class="absolute z-50 w-48 max-w-md mt-3 transform border-base-200 border bg-base-100 rounded-md shadow-lg -translate-x-3/4 min-w-max" style="display: none;" x-show.transition.opacity="isOpen">
                     <div class="p-4 font-medium border-b border-base-200">
-                      <span class="">Roles</span>
+                      <span class="">Funções</span>
                     </div>
                     <ul class="flex flex-col p-2 my-2 space-y-1">
                       {%if current_user.super%}
@@ -360,17 +360,17 @@
                   </button>
                   <div @click.away="isOpen = false" class="absolute z-50 w-48 max-w-md mt-3 transform border-base-200 border bg-base-100 rounded-md shadow-lg -translate-x-3/4 min-w-max" style="display: none;" x-show.transition.opacity="isOpen">
                     <div class="p-4 font-medium border-b border-base-200">
-                      <span class="">Options</span>
+                      <span class="">Opções</span>
                     </div>
                     <ul class="flex flex-col p-2 my-2 space-y-1">
                       <li>
-                        <a class="block px-2 py-1 transition rounded-md hover:bg-base-200 cursor-pointer" @click="toggleSecondSidebarMenu()">Help</a>
+                        <a class="block px-2 py-1 transition rounded-md hover:bg-base-200 cursor-pointer" @click="toggleSecondSidebarMenu()">Ajuda</a>
                       </li>
                       <li>
-                        <a class="block px-2 py-1 transition rounded-md hover:bg-base-200" href="{{url_for("main.settings")}}">Settings</a>
+                        <a class="block px-2 py-1 transition rounded-md hover:bg-base-200" href="{{url_for("main.settings")}}">Configurações</a>
                       </li>
                       <li>
-                        <button @click="clearTenant;toast('Cleared session')" class="block px-2 py-1 transition rounded-md hover:bg-base-200">Clear Session</button>
+                        <button @click="clearTenant;toast('Sessão Limpa')" class="block px-2 py-1 transition rounded-md hover:bg-base-200">Limpar Sessão</button>
                       </li>
                     </ul>
                   </div>
@@ -393,7 +393,7 @@
                   </div>
                   <ul class="flex flex-col p-2 my-2 space-y-1">
                     <li>
-                      <a class="block px-2 py-1 transition rounded-md hover:bg-base-200" href="{{url_for("main.user_profile",uid=current_user.id)}}">Profile</a>
+                      <a class="block px-2 py-1 transition rounded-md hover:bg-base-200" href="{{url_for("main.user_profile",uid=current_user.id)}}">Perfil</a>
                     </li>
                   </ul>
                   <div class="flex items-center justify-center p-4 underline border-t border-base-200">
