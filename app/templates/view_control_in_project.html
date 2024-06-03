@@ -211,8 +211,8 @@
                                     <textarea class="textarea bg-base-200 w-full leading-tight my-2" rows="3" @change="updateItem(index)" x-model="item.response" placeholder="Forneça uma explicação para o item de ação ou pergunta dos Auditores." {%if is_auditor%}disabled{%endif%}></textarea>
                                 </div>
                                 <div class="w-full flex justify-end" x-show="item.open">
-                                    <button class="btn btn-success mr-2" @click="updateItem(index)">Save</button>
-                                    <a target="_blank" rel="noopener noreferrer" x-bind:href="'/projects/{{project.id}}/controls/{{project_control.id}}/subcontrols/' + item.subcontrol_id + '?tab=todo'" class="btn btn-primary mr-2">View Item</a>
+                                    <button class="btn btn-success mr-2" @click="updateItem(index)">Salvar</button>
+                                    <a target="_blank" rel="noopener noreferrer" x-bind:href="'/projects/{{project.id}}/controls/{{project_control.id}}/subcontrols/' + item.subcontrol_id + '?tab=todo'" class="btn btn-primary mr-2">Vizualizar Item</a>
                                     {%if is_auditor%}
                                     <button class="btn btn-error" @click="removeItem(index)">Excluir</button>
                                     {%endif%}
@@ -237,13 +237,13 @@
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
     <div class="flex justify-between">
       <div>
-        <h2 class="card-title mb-5">Control Guidance</h2>
+        <h2 class="card-title mb-5">Orientação de controle</h2>
       </div>
     </div>
     {%if project_control.control.guidance%}
     {{project_control.control.guidance|safe}}
     {%else%}
-    There is no guidance for this control at this time. Please see the <a class="text-primary font-semibold underline" href="https://github.com/bmarsh9/gapps/issues/31">Github issue</a> for more information.
+    Não há orientação para esse controle neste momento. por favor veja o <a class="text-primary font-semibold underline" href="https://github.com/bmarsh9/gapps/issues/31">problema no Github</a> para mais informações.
     {%endif%}
   </label>
 </label>
@@ -253,10 +253,10 @@
   <label class="modal-box relative w-11/12 max-w-5xl" for="">
     <div class="flex justify-between">
       <div>
-        <h2 class="card-title mb-5">Help</h2>
+        <h2 class="card-title mb-5">Ajuda</h2>
       </div>
     </div>
-    You are currently viewing a single control within your project. Each control will have subcontrols. So for example, the current control has {{project_control.subcontrols.count()}} subcontrol(s). In order to complete the control, you must complete all of the subcontrols. For each subcontrol, you can click into the "Auditor Collab" page. This page allows you to converse with the Auditor/Reviewer about the subcontrol.<br><br>If you do not believe the control is Applicable, you can mark the control as "Non-Applicable" and it will be excluded from your project. You can also mark individual subcontrols as "Non-Applicable".
+    No momento, você está visualizando um único controle em seu projeto. Cada controle terá subcontroles. Assim, por exemplo, o controle atual tem {{project_control.subcontrols.count()}} subcontrole(s). Para concluir o controle, você deve concluir todos os subcontroles. Para cada subcontrole, você pode clicar na página "Auditor Collab". Esta página permite que você converse com o Auditor/Revisor sobre o subcontrole.<br><br>Se você não acredita que o controle seja Aplicável, você pode marcar o controle como "Não Aplicável" e ele será excluído do seu projeto . Você também pode marcar subcontroles individuais como "Não aplicáveis".
   </label>
 </label>
 {%endblock%}

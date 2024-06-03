@@ -7,7 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    APP_NAME = os.environ.get("APP_NAME", "Gapps")
+    APP_NAME = os.environ.get("APP_NAME", "Risk Management")
     APP_SUBTITLE = os.environ.get("APP_SUBTITLE", "")
     CR_YEAR = os.environ.get("CR_YEAR", "2023")
     VERSION = os.environ.get("VERSION", "1.0.0")
