@@ -42,7 +42,7 @@ class Finding(LogMixin, db.Model):
     title = db.Column(db.String())
     description = db.Column(db.String())
     mitigation = db.Column(db.String())
-    status = db.Column(db.String(), default="open")
+    status = db.Column(db.String(), default="aberto")
     risk = db.Column(db.Integer(), default=0)
     task_id = db.Column(db.Integer, db.ForeignKey("tasks.id"))
     project_id = db.Column(db.Integer, db.ForeignKey("projects.id"))
@@ -51,7 +51,7 @@ class Finding(LogMixin, db.Model):
 
     @staticmethod
     def get_status_list():
-        return ["open", "in progress", "closed"]
+        return ["aberto", "em progresso", "fechado"]
 
     @validates("status")
     def _validate_status(self, key, status):
@@ -222,7 +222,7 @@ class Task(LogMixin, db.Model):
             not kwargs.get("status")
             or kwargs.get("status") not in Finding.get_status_list()
         ):
-            kwargs["status"] = "open"
+            kwargs["status"] = "aberto"
         finding = Finding(project_id=self.integration.project_id, **kwargs)
         self.findings.append(finding)
         db.session.commit()
@@ -2254,7 +2254,7 @@ class Questionnaire(LogMixin, db.Model):
             elif metrics["percentage_complete"] == 100 and self.submitted:
                 return "complete"
             else:
-                return "in progress"
+                return "em progresso"
         return "not started"
 
     def get_keys_from_dict(self, d):

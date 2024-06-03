@@ -97,7 +97,7 @@ def user_profile(uid):
         user.username = request.form["username"]
         user.is_active = True if request.form["active"] == "yes" else False
         db.session.commit()
-        flash("Updated user")
+        flash("Usuário atualizado")
         Logs.add(
             f"{current_user.email} atualizou as configurações do usuário:{user.email}",
             namespace="events",

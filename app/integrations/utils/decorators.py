@@ -22,9 +22,9 @@ def task(*args, **kwargs):
                 lockers = task.integration.get_lockers()
                 lock = task.get_lock()
 
-            logging.info(f"Starting task: {lock}")
+            logging.info(f"Iniciando tarefa: {lock}")
             result = func(task, lockers, *job_args, **job_kwargs)
-            logging.info(f"Task complete: {lock}")
+            logging.info(f"Tarefa completa: {lock}")
             return result
         return bg_app.task(*args, **kwargs)(new_func)
     return wrap
